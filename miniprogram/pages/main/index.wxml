@@ -1,0 +1,4 @@
+<!--pages/main/index.wxml-->
+<view class="container">
+  <view class="item-view" wx:for="{{gridList}}"></view>
+</view>

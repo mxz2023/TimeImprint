@@ -1,0 +1,17 @@
+/* pages/main/index.wxss */
+.container {
+  height: 100vh;
+  background-color:chocolate;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.item-view {
+  background-color: blue;
+  height: 20px;
+  width: 20px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
