@@ -1,5 +1,7 @@
 // pages/main/index.ts
-import { generateGridList } from '../../utils/util'
+import { Calendar,Day } from '../../utils/calendar'
+
+const calendar = new Calendar();
 
 Page({
 
@@ -10,7 +12,11 @@ Page({
     crossAxisCount: 8,
     crossAxisGap : 4,
     mainAxisGap: 4,
-    gridList : generateGridList(31)
+    gridListDays: calendar.getDays()
+  },
+
+  getDayText(item:Day) {
+    console.log(item)
   },
 
   /**

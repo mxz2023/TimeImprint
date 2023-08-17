@@ -1,4 +1,6 @@
 <!--pages/main/index.wxml-->
-<view class="container">
-  <view class="item-view" wx:for="{{gridList}}"></view>
+<view class="container main">
+  <view class="item-view" style="background-color: {{item.isCurrentMonth ? 'darkorange' : 'darkgrey'}}" wx:for="{{gridListDays}}" wx:key="*this">
+    <text class="item-text">{{getDayText(item)}}</text>
+  </view>
 </view>

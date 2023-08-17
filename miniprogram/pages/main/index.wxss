@@ -1,17 +1,27 @@
 /* pages/main/index.wxss */
-.container {
+.main {
   height: 100vh;
-  background-color:chocolate;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
+  align-items: flex-start;
 }
 
 .item-view {
-  background-color: blue;
-  height: 20px;
-  width: 20px;
+  /* background-color: red; */
+  border-radius: 5px;
+  border: 1px solid red;
+  flex-basis: calc(100% / 7);
+  aspect-ratio: 1 / 1;
   margin-top: 4px;
   margin-left: 4px;
+  justify-content: center;
+  align-items: center;
+  align-content:center;
+}
+
+.item-text {
+  font-size: 1rem;
+  color: cadetblue;
 }
