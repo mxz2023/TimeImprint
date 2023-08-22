@@ -1,0 +1,12 @@
+
+var getText = function(item) {
+  var str = JSON.stringify(item)
+  console.log(str)
+  return str;
+}
+
+
+
+module.exports = {
+  getText: getText,
+}

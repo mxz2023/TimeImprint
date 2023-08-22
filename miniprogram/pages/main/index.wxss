@@ -12,8 +12,9 @@
   /* background-color: red; */
   border-radius: 5px;
   border: 1px solid red;
-  flex-basis: calc(100% / 7);
   aspect-ratio: 1 / 1;
+  /* flex-basis: calc(100% / 7); */
+  width: calc(((100% - 4px) / 7) - 2px - 4px);
   margin-top: 4px;
   margin-left: 4px;
   justify-content: center;

@@ -1,12 +1,4 @@
-export const generateGridList = (childCount: number) => {
-  const ans = []
-  for (let i = 0; i < childCount; i++) {
-    ans.push({
-      id: i,
-    })
-  }
-  return ans
-}
+
 
 export const formatTime = (date: Date) => {
   const year = date.getFullYear()
