@@ -1,6 +1,13 @@
 export interface Day {
   date: Date;
   isCurrentMonth: boolean;
+  isCurrentDay: boolean;
+  text: string;
+}
+
+export interface Week {
+  index: number;
+  text: string;
 }
 
 export class Calendar {
@@ -25,26 +32,41 @@ export class Calendar {
     const prevMonthDays = firstDay.getDay();
     for (let i = prevMonthLastDate - prevMonthDays + 1; i <= prevMonthLastDate; i++) {
       const prevMonthDate = new Date(year, month - 1, i);
-      days.push({ date: prevMonthDate, isCurrentMonth: false });
+      days.push({ 
+        date: prevMonthDate, 
+        isCurrentMonth: false, 
+        isCurrentDay: false, 
+        text: prevMonthDate.getDate().toString()
+      });
     }
 
     // Add days from current month
     for (let i = 1; i <= lastDay.getDate(); i++) {
       const currentDate = new Date(year, month, i);
-      days.push({ date: currentDate, isCurrentMonth: true });
+      days.push({
+        date: currentDate,
+        isCurrentMonth: true,
+        isCurrentDay: currentDate.getDate() == date.getDate(),
+        text: currentDate.getDate().toString()
+      });
     }
 
     // Add days from next month
     const nextMonthDays = 7 - lastDay.getDay() - 1;
     for (let i = 1; i <= nextMonthDays; i++) {
       const nextMonthDate = new Date(year, month + 1, i);
-      days.push({ date: nextMonthDate, isCurrentMonth: false });
+      days.push({
+        date: nextMonthDate, 
+        isCurrentMonth: false,
+        isCurrentDay: false,
+        text: nextMonthDate.getDate().toString() });
     }
 
     return days;
   }
 
   public getDays(): Day[] {
+    console.log(this.days)
     return this.days;
   }
 

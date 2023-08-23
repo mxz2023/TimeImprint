@@ -8,13 +8,12 @@
   align-items: flex-start;
 }
 
-.item-view {
+.week-view {
   /* background-color: red; */
   border-radius: 5px;
-  border: 1px solid red;
   aspect-ratio: 1 / 1;
   /* flex-basis: calc(100% / 7); */
-  width: calc(((100% - 4px) / 7) - 2px - 4px);
+  width: calc(((100% - 4px) / 7) - 4px);
   margin-top: 4px;
   margin-left: 4px;
   justify-content: center;
@@ -22,7 +21,26 @@
   align-content:center;
 }
 
-.item-text {
+.week-text {
+  font-size: 1rem;
+  color: cadetblue;
+}
+
+.date-view {
+  /* background-color: red; */
+  border-radius: 10px;
+  /* border: 1px solid red; */
+  aspect-ratio: 1 / 1;
+  /* flex-basis: calc(100% / 7); */
+  width: calc(((100% - 4px) / 7) - 4px);
+  margin-top: 4px;
+  margin-left: 4px;
+  justify-content: center;
+  align-items: center;
+  align-content:center;
+}
+
+.date-text {
   font-size: 1rem;
   color: cadetblue;
 }

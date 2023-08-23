@@ -13,7 +13,8 @@ Page({
     crossAxisGap : 4,
     mainAxisGap: 4,
     calendar : new Calendar(),
-    gridListDays: gCalendar.getDays()
+    gridListDays: gCalendar.getDays(),
+    weeks: ["日","一","二","三","四","五","六"],
   },
 
   /**
