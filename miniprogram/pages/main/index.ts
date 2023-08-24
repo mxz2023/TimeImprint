@@ -14,7 +14,15 @@ Page({
     mainAxisGap: 4,
     calendar : new Calendar(),
     gridListDays: gCalendar.getDays(),
-    weeks: ["日","一","二","三","四","五","六"],
+    weeks: [
+      {"text":"日", "color": 'var(--week-weekend-color)'},
+      {"text":"一", "color": 'var(--week-default-color)'},
+      {"text":"二", "color": 'var(--week-default-color)'},
+      {"text":"三", "color": 'var(--week-default-color)'},
+      {"text":"四", "color": 'var(--week-default-color)'},
+      {"text":"五", "color": 'var(--week-default-color)'},
+      {"text":"六", "color": 'var(--week-weekend-color)'},
+    ],
   },
 
   /**

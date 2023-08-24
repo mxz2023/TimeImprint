@@ -1,8 +1,11 @@
+import { solarToLunar } from "lunar-calendar"
+const LunarCalendar = require('lunar-calendar')
+
 export interface Day {
   date: Date;
-  isCurrentMonth: boolean;
-  isCurrentDay: boolean;
   text: string;
+  color: string;
+  bgColor: string;
 }
 
 export interface Week {
@@ -12,10 +15,19 @@ export interface Week {
 
 export class Calendar {
   private currentDate: Date;
+  private lunarDate: Object;
   private days: Day[];
 
   constructor() {
     this.currentDate = new Date();
+
+    console.log(LunarCalendar)
+    console.log(solarToLunar)
+    // this.lunarDate = solarToLunar(
+    //   this.currentDate.getFullYear(), 
+    //   this.currentDate.getMonth() + 1, 
+    //   this.currentDate.getDate());
+
     this.days = this.generateDays(this.currentDate);
   }
 
@@ -31,35 +43,42 @@ export class Calendar {
     const prevMonthLastDate = prevMonthLastDay.getDate();
     const prevMonthDays = firstDay.getDay();
     for (let i = prevMonthLastDate - prevMonthDays + 1; i <= prevMonthLastDate; i++) {
-      const prevMonthDate = new Date(year, month - 1, i);
+      const prevDateObj = new Date(year, month - 1, i);
+      const prevDate = prevDateObj.getDate();
+      const prevWeek = prevDateObj.getDay();
       days.push({ 
-        date: prevMonthDate, 
-        isCurrentMonth: false, 
-        isCurrentDay: false, 
-        text: prevMonthDate.getDate().toString()
+        date: prevDateObj, 
+        text: prevDate.toString(),
+        color : (prevWeek == 0 || prevWeek == 6) ? 'var(--day-disable-weekend-color)' : 'var(--day-disable-color)',
+        bgColor : 'var(--day-bg-color)',
       });
     }
 
     // Add days from current month
     for (let i = 1; i <= lastDay.getDate(); i++) {
-      const currentDate = new Date(year, month, i);
+      const curDateObj = new Date(year, month, i);
+      const curDate = curDateObj.getDate();
+      const week = curDateObj.getDay();
       days.push({
-        date: currentDate,
-        isCurrentMonth: true,
-        isCurrentDay: currentDate.getDate() == date.getDate(),
-        text: currentDate.getDate().toString()
+        date: curDateObj,
+        text: curDate.toString(),
+        color: curDate == date.getDate() ? 'var(--day-select-color)' : (week == 0 || week == 6) ? 'var(--day-weekend-color)' : 'var(--day-default-color)',
+        bgColor : curDate == date.getDate() ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)'
       });
     }
 
     // Add days from next month
     const nextMonthDays = 7 - lastDay.getDay() - 1;
     for (let i = 1; i <= nextMonthDays; i++) {
-      const nextMonthDate = new Date(year, month + 1, i);
+      const nextDateObj = new Date(year, month + 1, i);
+      const nextDate = nextDateObj.getDate();
+      const nextWeek = nextDateObj.getDay();
       days.push({
-        date: nextMonthDate, 
-        isCurrentMonth: false,
-        isCurrentDay: false,
-        text: nextMonthDate.getDate().toString() });
+        date: nextDateObj, 
+        text: nextDate.toString(),
+        color : (nextWeek == 0 || nextWeek == 6)  ? 'var(--day-disable-weekend-color)' : 'var(--day-disable-color)',
+        bgColor : 'var(--day-bg-color)',
+      });
     }
 
     return days;

@@ -1,13 +1,20 @@
 <!--pages/main/index.wxml-->
 <view class="container main">
   <wxs src='./index.wxs' module="utils"></wxs>
+
   <view class="week-view"
     wx:for="{{ weeks }}" wx:key="*this">
-    <view class="week-text">{{ item }}</view>
+    <view class="week-text" style="color: {{item.color}};">
+      {{ item.text }}
+    </view>
   </view>
   
-  <view class="date-view" style="background-color: {{item.isCurrentMonth ? (item.isCurrentDay ? 'deeppink' : 'darkorange') : 'darkgrey'}}"
+  <view class="line" style="margin-bottom: 10px"></view>
+
+  <view class="date-view" style="background-color: {{item.bgColor}}"
     wx:for="{{ gridListDays }}" wx:key="*this">
-    <view class="date-text">{{ item.text }}</view>
+    <view class="date-text" style="color: {{item.color}}">{{ item.text }}</view>
   </view>
+  
+  <view class="line" style="margin-bottom: 10px"></view>
 </view>
