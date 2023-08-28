@@ -2,19 +2,20 @@
 <view class="container main">
   <wxs src='./index.wxs' module="utils"></wxs>
 
-  <view class="week-view"
+  <view class="view.week"
     wx:for="{{ weeks }}" wx:key="*this">
-    <view class="week-text" style="color: {{item.color}};">
+    <view class="text.week" style="color: {{item.color}};">
       {{ item.text }}
     </view>
   </view>
   
   <view class="line" style="margin-bottom: 10px"></view>
 
-  <view class="date-view" style="background-color: {{item.bgColor}}"
+  <view class="view.date" style="background-color: {{item.bgColor}}"
     wx:for="{{ gridListDays }}" wx:key="*this">
-    <view class="date-text" style="color: {{item.color}}">{{ item.text }}</view>
+    <view class="text.date" style="color: {{item.color}}">{{ item.title1 }}</view>
+    <view class="text.date.sub" style="color: {{item.color}}">{{ item.title2 }}</view>
   </view>
   
-  <view class="line" style="margin-bottom: 10px"></view>
+  <view class="line" style="margin-top: 10px"></view>
 </view>

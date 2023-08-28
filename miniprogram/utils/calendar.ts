@@ -1,9 +1,10 @@
-import { solarToLunar } from "lunar-calendar"
-const LunarCalendar = require('lunar-calendar')
+const LunarCalendar = require('../my_npm/LunarCalendar')
+import type { LunarCalendarObj } from '../my_npm/LunarCalendar-declare'
 
 export interface Day {
   date: Date;
-  text: string;
+  title1: string;
+  title2: string;
   color: string;
   bgColor: string;
 }
@@ -15,18 +16,17 @@ export interface Week {
 
 export class Calendar {
   private currentDate: Date;
-  private lunarDate: Object;
+  private lunarDate: LunarCalendarObj;
   private days: Day[];
 
   constructor() {
     this.currentDate = new Date();
 
-    console.log(LunarCalendar)
-    console.log(solarToLunar)
-    // this.lunarDate = solarToLunar(
-    //   this.currentDate.getFullYear(), 
-    //   this.currentDate.getMonth() + 1, 
-    //   this.currentDate.getDate());
+    this.lunarDate = LunarCalendar.solarToLunar(
+      this.currentDate.getFullYear(), 
+      this.currentDate.getMonth() + 1, 
+      this.currentDate.getDate()
+    );
 
     this.days = this.generateDays(this.currentDate);
   }
@@ -46,9 +46,17 @@ export class Calendar {
       const prevDateObj = new Date(year, month - 1, i);
       const prevDate = prevDateObj.getDate();
       const prevWeek = prevDateObj.getDay();
+
+      const prevLunarDate: LunarCalendarObj = LunarCalendar.solarToLunar(
+        prevDateObj.getFullYear(), 
+        prevDateObj.getMonth() + 1, 
+        prevDateObj.getDate()
+      );
+
       days.push({ 
         date: prevDateObj, 
-        text: prevDate.toString(),
+        title1: prevDate.toString(),
+        title2: prevLunarDate.GanZhiDay,
         color : (prevWeek == 0 || prevWeek == 6) ? 'var(--day-disable-weekend-color)' : 'var(--day-disable-color)',
         bgColor : 'var(--day-bg-color)',
       });
@@ -59,9 +67,17 @@ export class Calendar {
       const curDateObj = new Date(year, month, i);
       const curDate = curDateObj.getDate();
       const week = curDateObj.getDay();
+      
+      const curLunarDate: LunarCalendarObj = LunarCalendar.solarToLunar(
+        curDateObj.getFullYear(), 
+        curDateObj.getMonth() + 1, 
+        curDateObj.getDate()
+      );
+
       days.push({
         date: curDateObj,
-        text: curDate.toString(),
+        title1: curDate.toString(),
+        title2: curLunarDate.GanZhiDay,
         color: curDate == date.getDate() ? 'var(--day-select-color)' : (week == 0 || week == 6) ? 'var(--day-weekend-color)' : 'var(--day-default-color)',
         bgColor : curDate == date.getDate() ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)'
       });
@@ -73,9 +89,17 @@ export class Calendar {
       const nextDateObj = new Date(year, month + 1, i);
       const nextDate = nextDateObj.getDate();
       const nextWeek = nextDateObj.getDay();
+
+      const nextLunarDate: LunarCalendarObj = LunarCalendar.solarToLunar(
+        nextDateObj.getFullYear(), 
+        nextDateObj.getMonth() + 1, 
+        nextDateObj.getDate()
+      );
+
       days.push({
         date: nextDateObj, 
-        text: nextDate.toString(),
+        title1: nextDate.toString(),
+        title2: nextLunarDate.GanZhiDay,
         color : (nextWeek == 0 || nextWeek == 6)  ? 'var(--day-disable-weekend-color)' : 'var(--day-disable-color)',
         bgColor : 'var(--day-bg-color)',
       });
@@ -92,10 +116,22 @@ export class Calendar {
   public nextDays(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.days = this.generateDays(this.currentDate);
+
+    this.updateLunarDate()
   }
 
   public prevMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.days = this.generateDays(this.currentDate);
+
+    this.updateLunarDate()
+  }
+
+  private updateLunarDate():void {
+    this.lunarDate = LunarCalendar.solarToLunar(
+      this.currentDate.getFullYear(), 
+      this.currentDate.getMonth() + 1, 
+      this.currentDate.getDate()
+    );
   }
 }

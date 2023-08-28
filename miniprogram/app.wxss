@@ -1,19 +1,19 @@
 /**app.wxss**/
 page {
-  --line-color:rgb(214, 214, 214);
+  --line-color: rgb(214, 214, 214);
 
-  --day-default-color:rgb(0, 0, 0);
-  --day-select-color:rgb(256,256,256);
-  --day-disable-color:rgba(0, 0, 0, 0.2);
+  --day-default-color: rgb(0, 0, 0);
+  --day-select-color: rgb(256, 256, 256);
+  --day-disable-color: rgba(0, 0, 0, 0.2);
 
-  --day-weekend-color:rgb(220, 16, 16);
-  --day-disable-weekend-color:rgb(220, 16, 16, 0.2);
+  --day-weekend-color: rgb(220, 16, 16);
+  --day-disable-weekend-color: rgb(220, 16, 16, 0.2);
 
-  --week-default-color:rgb(80, 200, 200);
-  --week-weekend-color:rgb(210, 42, 42);
+  --week-default-color: rgb(80, 200, 200);
+  --week-weekend-color: rgb(210, 42, 42);
 
-  --day-bg-color:rgba(256,256,256,0);
-  --day-bg-select-color:rgb(210, 42, 42);
+  --day-bg-color: rgba(256, 256, 256, 0);
+  --day-bg-select-color: rgb(210, 42, 42);
 }
 
 
@@ -29,6 +29,12 @@ view {
   justify-content: space-between;
   padding: 100;
   box-sizing: border-box;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 800;
+  color: red;
 }
 
 .line {
