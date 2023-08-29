@@ -509,7 +509,8 @@
 			zodiac : getYearZodiac(GanZhiYear),
 			GanZhiYear : getLunarYearName(GanZhiYear),
 			GanZhiMonth : getLunarMonthName(year,GanZhiMonth),
-			GanZhiDay : getLunarDayName(year,month,day),
+      GanZhiDay : getLunarDayName(year,month,day),
+      
 			//放假安排：0无特殊安排，1工作，2放假
 			worktime : worktime['y'+year] && worktime['y'+year][formateDayD4(month,day)] ? worktime['y'+year][formateDayD4(month,day)] : 0,
 			term : termList[formateDayD4(month,day)],

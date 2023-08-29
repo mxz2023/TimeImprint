@@ -19,6 +19,7 @@ page {
 
 view {
   display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -29,12 +30,6 @@ view {
   justify-content: space-between;
   padding: 100;
   box-sizing: border-box;
-}
-
-.text {
-  font-size: 12px;
-  font-weight: 800;
-  color: red;
 }
 
 .line {

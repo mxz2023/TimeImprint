@@ -7,10 +7,48 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  align-items: flex-start;
 }
 
-.view.week {
+.view-header {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  height: 3rem;
+  width: 100%;
+}
+
+.view-header-date {
+  margin: 0;
+  background-color:burlywood;
+  border-radius: 5px;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-header-detail {
+  flex-direction: column;
+  margin-left: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.view-header-opt {
+  flex-direction: row;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.view-header-opt-item {
+  padding: 3px;
+  margin-right: 10px;
+  border:1px solid lightcoral;
+  border-radius: 4px;
+}
+
+.view-week {
   border-radius: 5px;
   aspect-ratio: 1 / 1;
   width: calc(((100% - 4px) / 7) - 4px);
@@ -21,11 +59,7 @@
   align-content:center;
 }
 
-.text.week {
-  font-size: 12px;
-}
-
-.view.date {
+.view-date {
   flex-direction: column;
   border-radius: 10px;
   aspect-ratio: 1 / 1;
@@ -37,12 +71,29 @@
   align-content:center;
 }
 
-.text.date {
+.text-week {
+  font-size: 12px;
+}
+
+.text-date {
   font-size: 16px;
   font-weight: 600;
 }
 
-.text.date.sub {
+.text-date-sub {
   font-size: 8px;
   font-weight: 400;
+}
+
+.text-header-date {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.text-header-detail {
+  font-size: 12px;
+}
+
+.text-header-opt-item {
+  font-size: 10px;
 }
