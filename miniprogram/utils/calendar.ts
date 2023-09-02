@@ -132,8 +132,8 @@ export class Calendar {
         title2: lunarDate.GanZhiDay,
         color: this.transColor(obj),
         bgColor : isCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)',
-        title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonth}月${lunarDate.lunarDay}日`,
-        title4: `${lunarDate.GanZhiYear} ${lunarDate.GanZhiMonth} ${lunarDate.GanZhiDay}`,
+        title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
+        title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
     }
   }
 

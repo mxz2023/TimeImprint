@@ -41,13 +41,6 @@
   align-items: center;
 }
 
-.view-header-opt-item {
-  padding: 3px;
-  margin-right: 10px;
-  border:1px solid lightcoral;
-  border-radius: 4px;
-}
-
 .view-week {
   border-radius: 5px;
   aspect-ratio: 1 / 1;
@@ -95,5 +88,6 @@
 }
 
 .text-header-opt-item {
-  font-size: 10px;
+  width: 32px;
+  height: 32px;
 }

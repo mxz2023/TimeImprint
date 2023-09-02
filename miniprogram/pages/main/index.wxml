@@ -17,10 +17,10 @@
 
     <view class="view-header-opt">
       <view class="view-header-opt-item">
-        <text class="text-header-opt-item">上个月</text>
+        <image class="text-header-opt-item" src="../../res/icon_left.png"></image>
       </view>
       <view class="view-header-opt-item">
-        <text class="text-header-opt-item">下个月</text>
+        <image class="text-header-opt-item" src="../../res/icon_right.png"></image>
       </view>
     </view>
   </view>
