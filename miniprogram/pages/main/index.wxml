@@ -4,14 +4,14 @@
 
   <view class="view-header">
     <view class="view-header-date">
-      <text class="text-header-date"> 29 </text>
+      <text class="text-header-date">{{currentDay.title1}}</text>
     </view>
     <view class="view-header-detail">
       <view class="view-header-detail-top">
-        <text class="text-header-detail"> 2023年8月 农历七月十四 </text>
+        <text class="text-header-detail">{{currentDay.title3}}</text>
       </view>
       <view class="view-header-detail-bottom">
-        <text class="text-header-detail"> xx年 xx月 相信日 </text>
+        <text class="text-header-detail">{{currentDay.title4}}</text>
       </view>
     </view>
 

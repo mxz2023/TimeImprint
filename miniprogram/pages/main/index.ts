@@ -14,6 +14,7 @@ Page({
     mainAxisGap: 4,
     calendar : new Calendar(),
     gridListDays: gCalendar.getDays(),
+    currentDay: gCalendar.getCurrentDay(),
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
       {"text":"一", "color": 'var(--week-default-color)'},
