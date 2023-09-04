@@ -37,7 +37,7 @@
 
   <view class="line" style="margin-bottom: 10px"></view>
 
-  <view class="view-date" style="background-color: {{item.bgColor}}" wx:for="{{ gridListDays }}" wx:key="*this">
+  <view class="view-date" style="background-color: {{item.bgColor}}" wx:for="{{ gridListDays }}" wx:key="*this" data-item="{{item}}" data-index="{{index}}" bind:tap="onSelectDay">
     <text class="text-date" style="color: {{item.color}}">{{ item.title1 }}</text>
     <text class="text-date-sub" style="color: {{item.color}}">{{ item.title2 }}</text>
   </view>

@@ -18,19 +18,12 @@ export interface Week {
 
 export class Calendar {
   private currentDate: Date;  // 当前日期或当前选中的日期
-  private lunarDate: LunarCalendarObj;
   private days: Day[];
   private currentIndex: number; // 当前日期或当前选中的日期在数据中的索引
 
   constructor() {
+    this.currentIndex = -1;
     this.currentDate = new Date();
-
-    this.lunarDate = LunarCalendar.solarToLunar(
-      this.currentDate.getFullYear(), 
-      this.currentDate.getMonth() + 1, 
-      this.currentDate.getDate(),
-    );
-
     this.days = this.generateDays(this.currentDate);
   }
 
@@ -41,8 +34,8 @@ export class Calendar {
     const lastDay = new Date(year, month+1, 0);
     const days: Day[] = [];
 
-    //默认为0
-    this.currentIndex = 0;
+    //临时变量计算当前天的索引
+    var currentIndex = 0;
 
     // Add days from previous month
     const prevMonthLastDay = new Date(year, month, 0);
@@ -55,7 +48,7 @@ export class Calendar {
       const prevDateObj = new Date(year, month - 1, i);
       days.push(this.generateDay(prevDateObj))
 
-      this.currentIndex++
+      currentIndex++
     }
 
     var hasFind = false
@@ -64,13 +57,16 @@ export class Calendar {
       const curDateObj = new Date(year, month, i);
       days.push(this.generateDay(curDateObj));
 
-      var isCurrent = curDateObj.getDate() == this.currentDate.getDate() && curDateObj.getMonth() == this.currentDate.getMonth();
+      if (this.currentIndex == -1) {
+        var isCurrent = curDateObj.getDate() == this.currentDate.getDate() && curDateObj.getMonth() == this.currentDate.getMonth();
 
-      // 找到当天日期索引
-      if (!hasFind && !isCurrent) {
-        this.currentIndex++;
-      } else if (isCurrent) {
-        hasFind = true
+        // 找到当天日期索引
+        if (!hasFind && !isCurrent) {
+          currentIndex++;
+        } else if (isCurrent) {
+          hasFind = true;
+          this.currentIndex = currentIndex;
+        }
       }
     }
 
@@ -96,32 +92,36 @@ export class Calendar {
   public nextDays(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.days = this.generateDays(this.currentDate);
-
-    this.updateLunarDate()
   }
 
   public prevMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.days = this.generateDays(this.currentDate);
-
-    this.updateLunarDate()
   }
 
-  private updateLunarDate():void {
-    this.lunarDate = LunarCalendar.solarToLunar(
-      this.currentDate.getFullYear(), 
-      this.currentDate.getMonth() + 1, 
-      this.currentDate.getDate()
-    );
+  public updateCurrentDay(index:number) {
+    var oldIndex = this.currentIndex;
+    
+    var item = this.days[oldIndex];
+    var currentItem = this.days[index];
+    this.currentDate = currentItem.date;
+
+    item = this.generateDay(item.date);
+    this.days[oldIndex] = item
+    currentItem = this.generateDay(currentItem.date);
+    this.days[index] = currentItem;
+
+    this.currentIndex = index;
   }
 
+  // Private Method
   private generateDay(obj:Date): Day {
     const date = obj.getDate();
     const moth = obj.getMonth();
     const lunarDate: LunarCalendarObj = LunarCalendar.solarToLunar(
       obj.getFullYear(), 
       obj.getMonth() + 1, 
-      obj.getDate()
+      obj.getDate(),
     );
 
     var isCurrent = date == this.currentDate.getDate() && moth == this.currentDate.getMonth();

@@ -12,7 +12,6 @@ Page({
     crossAxisCount: 8,
     crossAxisGap : 4,
     mainAxisGap: 4,
-    calendar : new Calendar(),
     gridListDays: gCalendar.getDays(),
     currentDay: gCalendar.getCurrentDay(),
     weeks: [
@@ -24,6 +23,16 @@ Page({
       {"text":"五", "color": 'var(--week-default-color)'},
       {"text":"六", "color": 'var(--week-weekend-color)'},
     ],
+  },
+
+  onSelectDay(event: any) {
+    var index = event.currentTarget.dataset.index;
+    gCalendar.updateCurrentDay(index);
+
+    this.setData({
+      gridListDays: gCalendar.getDays(),
+      currentDay: gCalendar.getCurrentDay()
+    });
   },
 
   /**
