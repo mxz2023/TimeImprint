@@ -21,9 +21,16 @@ export class Calendar {
   private days: Day[];
   private currentIndex: number; // 当前日期或当前选中的日期在数据中的索引
 
+  private needShowCurrent: boolean; // 是否需要显示当前天
+  private currentDay: Day; // 当前天数据
+
   constructor() {
     this.currentIndex = -1;
+    this.needShowCurrent = true;
+
     this.currentDate = new Date();
+    this.currentDay = this.generateDay(this.currentDate);
+
     this.days = this.generateDays(this.currentDate);
   }
 
@@ -55,7 +62,8 @@ export class Calendar {
     // Add days from current month
     for (let i = 1; i <= lastDay.getDate(); i++) {
       const curDateObj = new Date(year, month, i);
-      days.push(this.generateDay(curDateObj));
+      var item = this.generateDay(curDateObj)
+      days.push(item);
 
       if (this.currentIndex == -1) {
         var isCurrent = curDateObj.getDate() == this.currentDate.getDate() && curDateObj.getMonth() == this.currentDate.getMonth();
@@ -66,6 +74,7 @@ export class Calendar {
         } else if (isCurrent) {
           hasFind = true;
           this.currentIndex = currentIndex;
+          Object.assign(this.currentDay, item);
         }
       }
     }
@@ -81,21 +90,40 @@ export class Calendar {
   }
 
   public getDays(): Day[] {
-    console.log(this.days)
+    // console.log(this.days)
     return this.days;
   }
 
   public getCurrentDay(): Day {
-    return this.days[this.currentIndex]
+    // return this.days[this.currentIndex]
+    return this.currentDay;
   }
 
-  public nextDays(): void {
+  public nextMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+
+    // 判断是否需要显示当前天
+    var currentDate = new Date();
+    if (currentDate.getMonth() == this.currentDate.getMonth()) {
+      this.needShowCurrent = true;
+    }else{
+      this.needShowCurrent = false;
+    }
+
     this.days = this.generateDays(this.currentDate);
   }
 
   public prevMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+
+    // 判断是否需要显示当前天
+    var currentDate = new Date();
+    if (currentDate.getMonth() == this.currentDate.getMonth()) {
+      this.needShowCurrent = true;
+    }else{
+      this.needShowCurrent = false;
+    }
+
     this.days = this.generateDays(this.currentDate);
   }
 
@@ -112,6 +140,7 @@ export class Calendar {
     this.days[index] = currentItem;
 
     this.currentIndex = index;
+    Object.assign(this.currentDay, currentItem);
   }
 
   // Private Method
@@ -124,16 +153,16 @@ export class Calendar {
       obj.getDate(),
     );
 
-    var isCurrent = date == this.currentDate.getDate() && moth == this.currentDate.getMonth();
+    var needShowCurrent = this.needShowCurrent && (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
 
     return {
       date: obj, 
-        title1: date.toString(),
-        title2: lunarDate.GanZhiDay,
-        color: this.transColor(obj),
-        bgColor : isCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)',
-        title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
-        title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
+      title1: date.toString(),
+      title2: lunarDate.GanZhiDay,
+      color: this.transColor(obj),
+      bgColor : needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)',
+      title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
+      title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
     }
   }
 
@@ -142,7 +171,7 @@ export class Calendar {
     const date = obj.getDate();
     const week = obj.getDay();
     
-    if (date == this.currentDate.getDate()) {
+    if (this.needShowCurrent && date == this.currentDate.getDate()) {
       return 'var(--day-select-color)';
     } else if (moth == this.currentDate.getMonth()) {
       if (week == 0 || week == 6) {

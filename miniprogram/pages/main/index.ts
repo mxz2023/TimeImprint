@@ -28,13 +28,25 @@ Page({
   onSelectDay(event: any) {
     var index = event.currentTarget.dataset.index;
     gCalendar.updateCurrentDay(index);
+    this.updateUIData();
+  },
 
+  onPrevMonth(event: any) {
+    gCalendar.prevMonth();
+    this.updateUIData();
+  },
+
+  onNextMonth(event: any) {
+    gCalendar.nextMonth();
+    this.updateUIData();
+  },
+
+  updateUIData() {
     this.setData({
       gridListDays: gCalendar.getDays(),
       currentDay: gCalendar.getCurrentDay()
     });
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
