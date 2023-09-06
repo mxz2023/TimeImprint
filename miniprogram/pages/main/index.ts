@@ -1,7 +1,8 @@
 // pages/main/index.ts
-import { Calendar } from '../../utils/calendar'
 
-const gCalendar = new Calendar();
+import { DataCenter } from '../../data/data_center'
+
+const gDataCenter = new DataCenter();
 
 Page({
 
@@ -12,8 +13,8 @@ Page({
     crossAxisCount: 8,
     crossAxisGap : 4,
     mainAxisGap: 4,
-    gridListDays: gCalendar.getDays(),
-    currentDay: gCalendar.getCurrentDay(),
+    gridListMonth: gDataCenter.getThreeMonthDays(),
+    currentDay: gDataCenter.getCurrentDay(),
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
       {"text":"一", "color": 'var(--week-default-color)'},
@@ -24,27 +25,28 @@ Page({
       {"text":"六", "color": 'var(--week-weekend-color)'},
     ],
   },
-
+  
   onSelectDay(event: any) {
-    var index = event.currentTarget.dataset.index;
-    gCalendar.updateCurrentDay(index);
+    var index1 = event.currentTarget.dataset.index1;
+    var index2= event.currentTarget.dataset.index2;
+    gDataCenter.updateCurrentDay(index1, index2);
     this.updateUIData();
   },
 
   onPrevMonth(event: any) {
-    gCalendar.prevMonth();
+    gDataCenter.prevMonth();
     this.updateUIData();
   },
 
   onNextMonth(event: any) {
-    gCalendar.nextMonth();
+    gDataCenter.nextMonth();
     this.updateUIData();
   },
 
   updateUIData() {
     this.setData({
-      gridListDays: gCalendar.getDays(),
-      currentDay: gCalendar.getCurrentDay()
+      gridListMonth: gDataCenter.getThreeMonthDays(),
+      currentDay: gDataCenter.getCurrentDay()
     });
   },
   /**
