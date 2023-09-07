@@ -9,16 +9,26 @@ export class DataCenter {
   constructor() {
     this.calendar = new Calendar();
     this.threeMonthDays = [];
-    
+    this.today = {date: new Date()};
+    this.currentDay = {date: new Date()};
+
+    // 构建今天的详细信息
+    var today = this.calendar.getCurrentDay();
+    // 解决引用问题
+    Object.assign(this.today, today);
+    Object.assign(this.currentDay, today)
+
     this.generateDays(this.threeMonthDays)
   }
 
   public getCurrentDay() {
-    return this.currentDay;
+    var day = this.currentDay
+    return day;
   }
 
   public getThreeMonthDays() {
-    return this.threeMonthDays;
+    var days = this.threeMonthDays
+    return days;
   }
 
   public updateCurrentDay(index1: number, index2: number) {
@@ -30,11 +40,6 @@ export class DataCenter {
   }
 
   private generateDays(threeMonthDays: any[]) {
-
-    // 构建今天的详细信息
-    this.today = this.calendar.getCurrentDay();
-    this.currentDay = this.today;
-
     // 前一个月数据
     this.calendar.prevMonth();
     var prevMonthDays = this.calendar.getDays();
@@ -49,5 +54,13 @@ export class DataCenter {
     this.calendar.nextMonth();
     var nextMothDays = this.calendar.getDays();
     threeMonthDays.push(nextMothDays);
+
+    // 复原当月
+    this.calendar.prevMonth();
+
+    // 更新当前所选天信息
+    var today = this.calendar.getCurrentDay();
+    // 解决引用问题
+    Object.assign(this.currentDay, today)
   }
 }

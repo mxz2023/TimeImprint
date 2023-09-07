@@ -3,12 +3,12 @@ import type { LunarCalendarObj } from '../my_npm/LunarCalendar-declare'
 
 export interface Day {
   date: Date;
-  title1: string; // 日期
-  title2: string; // 农历
-  color: string;  // 文字颜色
-  bgColor: string; // 单元格背景色
-  title3: string; // 详细日期
-  title4: string; // 详细农历（节日）
+  title1?: string; // 日期
+  title2?: string; // 农历
+  color?: string;  // 文字颜色
+  bgColor?: string; // 单元格背景色
+  title3?: string; // 详细日期
+  title4?: string; // 详细农历（节日）
 }
 
 export interface Week {
@@ -36,7 +36,6 @@ export class Calendar {
   }
 
   public getDays(): Day[] {
-    // console.log(this.days)
     return this.days;
   }
 
