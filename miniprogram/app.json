@@ -15,7 +15,8 @@
   "lazyCodeLoading":"requiredComponents",
   "rendererOptions": { 
     "skyline": { 
-      "defaultDisplayBlock": true 
+      "defaultDisplayBlock": true,
+      "disableABTest": true
     }
   },
   "componentFramework": "glass-easel"
