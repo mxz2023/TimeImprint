@@ -33,18 +33,28 @@ export class DataCenter {
 
   public updateCurrentDay(index1: number, index2: number) {
     var day = this.threeMonthDays[index1][index2]
-    this.calendar.changeCurrentDate(day.date);
+    this.calendar.setCurrentDate(day.date);
 
     this.threeMonthDays = []
     this.generateDays(this.threeMonthDays)
   }
 
   public prevMonth() {
+    var date = this.calendar.getCurrentDate();
+    date.setMonth(date.getMonth()-1);
+    this.calendar.setCurrentDate(date);
 
+    this.threeMonthDays = []
+    this.generateDays(this.threeMonthDays)
   }
 
   public nextMonth() {
+    var date = this.calendar.getCurrentDate();
+    date.setMonth(date.getMonth()+1);
+    this.calendar.setCurrentDate(date);
 
+    this.threeMonthDays = []
+    this.generateDays(this.threeMonthDays)
   }
   
   private generateDays(threeMonthDays: any[]) {

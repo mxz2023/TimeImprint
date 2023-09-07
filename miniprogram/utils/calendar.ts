@@ -34,8 +34,12 @@ export class Calendar {
 
     this.isManual = false
   }
+  
+  public getCurrentDate() {
+    return this.currentDate;
+  }
 
-  public changeCurrentDate(date: Date) {
+  public setCurrentDate(date: Date) {
     this.currentDate = date;
   }
 
