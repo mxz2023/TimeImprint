@@ -15,6 +15,7 @@ Page({
     mainAxisGap: 4,
     currentIndex: 1,
     scrollWithAnimation: false,
+    navBarHeight:0,
 
     gridListMonth: gDataCenter.getThreeMonthDays(),
     currentDay: gDataCenter.getCurrentDay(),
@@ -31,7 +32,7 @@ Page({
   
   onSelectDay(event: any) {
     var index1 = event.currentTarget.dataset.index1;
-    var index2= event.currentTarget.dataset.index2;
+    var index2 = event.currentTarget.dataset.index2;
     gDataCenter.updateCurrentDay(index1, index2);
     this.updateUIData();
   },
@@ -64,7 +65,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    var systemInfo = wx.getSystemInfoSync()
+    const { statusBarHeight, platform } = systemInfo;
+    let navBarHeight = 0;
+    if (platform === 'android') {
+      navBarHeight = 48;
+    } else if (platform === 'devtools') {
+      navBarHeight = 44;
+    } else {
+      navBarHeight = 44;
+    }
+    navBarHeight += statusBarHeight;
+    console.log('导航栏高度：', navBarHeight);
+    this.setData({
+      navBarHeight:navBarHeight
+    })
   },
 
   /**

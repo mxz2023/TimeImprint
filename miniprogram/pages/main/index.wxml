@@ -1,55 +1,59 @@
 <!--pages/main/index.wxml-->
-<view class="container main">
+<view class="box" id="navbar">
   <!-- <wxs src='./index.wxs' module="utils"></wxs> -->
+  <view class="nav-view" style="height: {{navBarHeight}}px;">
 
-  <view class="view-header">
-    <view class="view-header-date">
-      <text class="text-header-date">{{currentDay.title1}}</text>
-    </view>
-    <view class="view-header-detail">
-      <view class="view-header-detail-top">
-        <text class="text-header-detail">{{currentDay.title3}}</text>
-      </view>
-      <view class="view-header-detail-bottom">
-        <text class="text-header-detail">{{currentDay.title4}}</text>
-      </view>
-    </view>
-
-    <view class="view-header-opt">
-      <view class="view-header-opt-item" bind:tap="onPrevMonth">
-        <image class="text-header-opt-item" src="../../res/icon_left.png"></image>
-      </view>
-      <view class="view-header-opt-item" bind:tap="onNextMonth">
-        <image class="text-header-opt-item" src="../../res/icon_right.png"></image>
-      </view>
-    </view>
   </view>
 
-  <view class="line" style="margin-top: 10px"></view>
-
-  <view style="width: 100%; flex-direction: row;">
-    <view class="view-week" wx:for="{{ weeks }}" wx:key="*this">
-      <view class="text-week" style="color: {{item.color}};">
-        {{ item.text }}
+  <view class="container main">
+    <view class="view-header">
+      <view class="view-header-date">
+        <text class="text-header-date">{{currentDay.title1}}</text>
       </view>
-    </view>
-  </view>
-
-  <view class="line" style="margin-bottom: 10px"></view>
-
-  <swiper class="scroll-view" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
-    <swiper-item class="scroll-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
-      wx:for-index="idx" wx:for-item="itemDays">
-      <view class="view-main">
-        <view class="view-date" style="background-color: {{item.bgColor}}" wx:for="{{ itemDays }}"  wx:key="row2"
-        data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
-          <text class="text-date" style="color: {{item.color}}">{{ item.title1 }}</text>
-          <text class="text-date-sub" style="color: {{item.color}}">{{ item.title2 }}</text>
+      <view class="view-header-detail">
+        <view class="view-header-detail-top">
+          <text class="text-header-detail">{{currentDay.title3}}</text>
+        </view>
+        <view class="view-header-detail-bottom">
+          <text class="text-header-detail">{{currentDay.title4}}</text>
         </view>
       </view>
-    </swiper-item>
-  </swiper>
 
-  <view class="line" style="margin-top: 10px"></view>
-  
+      <view class="view-header-opt">
+        <view class="view-header-opt-item" bind:tap="onPrevMonth">
+          <image class="text-header-opt-item" src="../../res/icon_left.png"></image>
+        </view>
+        <view class="view-header-opt-item" bind:tap="onNextMonth">
+          <image class="text-header-opt-item" src="../../res/icon_right.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="line" style="margin-top: 10px"></view>
+
+    <view style="width: 100%; flex-direction: row;">
+      <view class="view-week" wx:for="{{ weeks }}" wx:key="*this">
+        <view class="text-week" style="color: {{item.color}};">
+          {{ item.text }}
+        </view>
+      </view>
+    </view>
+
+    <view class="line" style="margin-bottom: 10px"></view>
+
+    <swiper class="swiper-view" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
+      <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
+        wx:for-index="idx" wx:for-item="itemDays">
+        <view class="view-main">
+          <view class="view-date" style="background-color: {{item.bgColor}}" wx:for="{{ itemDays }}"  wx:key="row2"
+          data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
+            <text class="text-date" style="color: {{item.color}}">{{ item.title1 }}</text>
+            <text class="text-date-sub" style="color: {{item.color}}">{{ item.title2 }}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="line" style="margin-top: 10px"></view>
+  </view>
 </view>

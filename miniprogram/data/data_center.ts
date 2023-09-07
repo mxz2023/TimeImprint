@@ -39,6 +39,14 @@ export class DataCenter {
     this.generateDays(this.threeMonthDays)
   }
 
+  public prevMonth() {
+
+  }
+
+  public nextMonth() {
+
+  }
+  
   private generateDays(threeMonthDays: any[]) {
     // 前一个月数据
     this.calendar.isManual = true

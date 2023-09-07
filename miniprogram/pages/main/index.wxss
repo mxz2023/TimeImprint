@@ -1,9 +1,13 @@
 /* pages/main/index.wxss */
+
+.nav-view {
+  background-color: white;
+}
+
 .main {
-  padding-top: 64px;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: 100vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 500px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -53,13 +57,13 @@
   align-content:center;
 }
 
-.scroll-view {
+.swiper-view {
   width: 100%;
-  height: 240px;
+  height: 260px;
   white-space: nowrap
 }
 
-.scroll-view-item {
+.swiper-view-item {
   display: inline-block;
 }
 
