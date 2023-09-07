@@ -41,16 +41,19 @@ export class DataCenter {
 
   private generateDays(threeMonthDays: any[]) {
     // 前一个月数据
+    this.calendar.isManual = true
     this.calendar.prevMonth();
     var prevMonthDays = this.calendar.getDays();
     threeMonthDays.push(prevMonthDays);
 
     // 当月数据
+    this.calendar.isManual = false
     this.calendar.nextMonth(); //切换到当前月
     var currentMonthDays = this.calendar.getDays();
     threeMonthDays.push(currentMonthDays);
 
     // 后一个月数据
+    this.calendar.isManual = true
     this.calendar.nextMonth();
     var nextMothDays = this.calendar.getDays();
     threeMonthDays.push(nextMothDays);

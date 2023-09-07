@@ -21,6 +21,8 @@ export class Calendar {
   private days: Day[];  // 当前选中日期所在月的日期情况
   private currentDay: Day; // 当前天数据
 
+  public isManual: boolean; // 标记当前是否为中间月
+
   constructor() {
     this.currentDate = new Date();
     
@@ -29,6 +31,8 @@ export class Calendar {
 
     // 构建展示数据
     this.days = this.generateDays(this.currentDate);
+
+    this.isManual = false
   }
 
   public changeCurrentDate(date: Date) {
@@ -111,24 +115,22 @@ export class Calendar {
       obj.getDate(),
     );
 
-    var needShowCurrent = (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
+    var needShowCurrent = !this.isManual && (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
     return {
       date: obj, 
       title1: date.toString(),
       title2: lunarDate.GanZhiDay,
-      color: this.transColor(obj),
+      color: this.transColor(obj, needShowCurrent),
       bgColor : needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)',
       title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
       title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
     }
   }
 
-  private transColor(obj:Date): string {
+  private transColor(obj:Date, needShowCurrent: boolean): string {
     const moth = obj.getMonth();
-    const date = obj.getDate();
     const week = obj.getDay();
-    
-    var needShowCurrent = (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
+  
     if (needShowCurrent) {
       return 'var(--day-select-color)';
     } else if (moth == this.currentDate.getMonth()) {

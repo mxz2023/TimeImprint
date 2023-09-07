@@ -1,5 +1,6 @@
 /* pages/main/index.wxss */
 .main {
+  padding-top: 64px;
   padding-left: 5px;
   padding-right: 5px;
   height: 100vh;

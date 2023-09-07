@@ -13,6 +13,9 @@ Page({
     crossAxisCount: 8,
     crossAxisGap : 4,
     mainAxisGap: 4,
+    currentIndex: 1,
+    scrollWithAnimation: false,
+
     gridListMonth: gDataCenter.getThreeMonthDays(),
     currentDay: gDataCenter.getCurrentDay(),
     weeks: [
@@ -43,10 +46,18 @@ Page({
     this.updateUIData();
   },
 
+  onChangecurrent(event: any) {
+    var current = event.detail.current
+    this.setData({
+      currentIndex : current
+    })
+  },
+
   updateUIData() {
     this.setData({
       gridListMonth: gDataCenter.getThreeMonthDays(),
-      currentDay: gDataCenter.getCurrentDay()
+      currentDay: gDataCenter.getCurrentDay(),
+      currentIndex: 1,
     });
   },
   /**
