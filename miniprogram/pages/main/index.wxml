@@ -21,10 +21,13 @@
 
       <view class="view-header-opt">
         <view class="view-header-opt-item" bind:tap="onPrevMonth">
-          <image class="text-header-opt-item" src="../../res/icon_left.png"></image>
+          <image class="view-header-opt-item" src="../../res/icon_left.png"></image>
+        </view>
+        <view class="view-today" bind:tap="onLocationToday">
+          <text class="text-today">今</text>
         </view>
         <view class="view-header-opt-item" bind:tap="onNextMonth">
-          <image class="text-header-opt-item" src="../../res/icon_right.png"></image>
+          <image class="view-header-opt-item" src="../../res/icon_right.png"></image>
         </view>
       </view>
     </view>

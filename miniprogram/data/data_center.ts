@@ -59,6 +59,14 @@ export class DataCenter {
     this.generateDays(this.threeMonthDays)
   }
   
+  public locationToday() {
+    var today = new Date()
+    this.calendar.setCurrentDate(today);
+
+    this.threeMonthDays = []
+    this.generateDays(this.threeMonthDays)
+  }
+
   private generateDays(threeMonthDays: any[]) {
     // 前一个月数据
     this.calendar.isManual = true

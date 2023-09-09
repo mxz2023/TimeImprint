@@ -47,8 +47,14 @@ Page({
     this.updateUIData();
   },
 
+  onLocationToday(event:Any) {
+    gDataCenter.locationToday();
+    this.updateUIData();
+  },
+
   onChangecurrent(event: any) {
     var current = event.detail.current
+    console.log(current)
     this.setData({
       currentIndex : current
     })

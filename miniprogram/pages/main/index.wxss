@@ -43,6 +43,22 @@
   flex-direction: row;
   margin-left: 10px;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.view-header-opt-item {
+  width: 32px;
+  height: 32px;
+}
+
+.view-today {
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--day-bg-select-color);
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .view-week {
@@ -104,9 +120,11 @@
 
 .text-header-detail {
   font-size: 1rem;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
-.text-header-opt-item {
-  width: 32px;
-  height: 32px;
+.text-today {
+  font-size: 12px;
+  color: var(--day-select-color);
 }
