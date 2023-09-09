@@ -12,7 +12,7 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "renderer": "skyline",
-  "lazyCodeLoading":"requiredComponents",
+  "lazyCodeLoading": "requiredComponents",
   "rendererOptions": { 
     "skyline": { 
       "defaultDisplayBlock": true,

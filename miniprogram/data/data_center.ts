@@ -40,6 +40,7 @@ export class DataCenter {
   }
 
   public prevMonth() {
+    console.log("前一个月");
     var date = this.calendar.getCurrentDate();
     date.setMonth(date.getMonth()-1);
     this.calendar.setCurrentDate(date);
@@ -49,6 +50,7 @@ export class DataCenter {
   }
 
   public nextMonth() {
+    console.log("后一个月");
     var date = this.calendar.getCurrentDate();
     date.setMonth(date.getMonth()+1);
     this.calendar.setCurrentDate(date);

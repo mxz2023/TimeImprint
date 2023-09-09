@@ -2,10 +2,10 @@
 <view class="box" id="navbar">
   <!-- <wxs src='./index.wxs' module="utils"></wxs> -->
   <view class="nav-view" style="height: {{navBarHeight}}px;">
-
   </view>
 
   <view class="container main">
+    <!-- 日期详细信息 -->
     <view class="view-header">
       <view class="view-header-date">
         <text class="text-header-date">{{currentDay.title1}}</text>
@@ -31,6 +31,7 @@
 
     <view class="line" style="margin-top: 10px"></view>
 
+    <!-- 日、一、二、三、四、五、六 -->
     <view style="width: 100%; flex-direction: row;">
       <view class="view-week" wx:for="{{ weeks }}" wx:key="*this">
         <view class="text-week" style="color: {{item.color}};">
@@ -41,6 +42,7 @@
 
     <view class="line" style="margin-bottom: 10px"></view>
 
+    <!-- 详细日历 -->
     <swiper class="swiper-view" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
       <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
         wx:for-index="idx" wx:for-item="itemDays">
