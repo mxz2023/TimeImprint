@@ -43,6 +43,13 @@ export class Calendar {
 
   public setCurrentDate(date: Date) {
     this.currentDate = date;
+  }
+
+  public getShowDate() {
+    return this.showDate;
+  }
+
+  public setShowDate(date: Date) {
     this.showDate = date;
   }
 

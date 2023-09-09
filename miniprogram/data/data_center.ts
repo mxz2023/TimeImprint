@@ -34,6 +34,7 @@ export class DataCenter {
   public updateCurrentDay(index1: number, index2: number) {
     var day = this.threeMonthDays[index1][index2]
     this.calendar.setCurrentDate(day.date);
+    this.calendar.setShowDate(day.date);
 
     this.threeMonthDays = []
     this.generateDays(this.threeMonthDays)
@@ -41,9 +42,9 @@ export class DataCenter {
 
   public prevMonth() {
     console.log("前一个月");
-    var date = this.calendar.getCurrentDate();
+    var date = this.calendar.getShowDate();
     date.setMonth(date.getMonth()-1);
-    this.calendar.setCurrentDate(date);
+    this.calendar.setShowDate(date);
 
     this.threeMonthDays = []
     this.generateDays(this.threeMonthDays)
@@ -51,9 +52,9 @@ export class DataCenter {
 
   public nextMonth() {
     console.log("后一个月");
-    var date = this.calendar.getCurrentDate();
+    var date = this.calendar.getShowDate();
     date.setMonth(date.getMonth()+1);
-    this.calendar.setCurrentDate(date);
+    this.calendar.getShowDate(date);
 
     this.threeMonthDays = []
     this.generateDays(this.threeMonthDays)
