@@ -22,15 +22,17 @@ export class Calendar {
   private currentDay: Day; // 当前天数据
 
   public isManual: boolean; // 标记当前是否为中间月
+  private showDate: Date;  // 当前显示的日期
 
   constructor() {
     this.currentDate = new Date();
+    this.showDate = new Date();
     
     // 用于显示当前天信息
-    this.currentDay = this.generateDay(this.currentDate);
+    this.currentDay = this.generateDay(this.showDate);
 
     // 构建展示数据
-    this.days = this.generateDays(this.currentDate);
+    this.days = this.generateDays();
 
     this.isManual = false
   }
@@ -41,6 +43,7 @@ export class Calendar {
 
   public setCurrentDate(date: Date) {
     this.currentDate = date;
+    this.showDate = date;
   }
 
   public getDays(): Day[] {
@@ -52,17 +55,19 @@ export class Calendar {
   }
 
   public nextMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    this.days = this.generateDays(this.currentDate);
+    this.showDate.setMonth(this.showDate.getMonth() + 1);
+    this.days = this.generateDays();
   }
 
   public prevMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    this.days = this.generateDays(this.currentDate);
+    this.showDate.setMonth(this.showDate.getMonth() - 1);
+    this.days = this.generateDays();
   }
 
   // Private Method
-  private generateDays(date: Date):Day[] {
+  private generateDays():Day[] {
+    var date = this.showDate
+    
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1);
@@ -120,24 +125,29 @@ export class Calendar {
     );
 
     var needShowCurrent = !this.isManual && (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
+
+    // 是否是今天
+    var today = new Date()
+    var isToday = (obj.toDateString() == today.toDateString());
+
     return {
       date: obj, 
       title1: date.toString(),
       title2: lunarDate.GanZhiDay,
-      color: this.transColor(obj, needShowCurrent),
-      bgColor : needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)',
+      color: this.transColor(obj, isToday, needShowCurrent),
+      bgColor : isToday ? 'var(--day-bg-today-color)' : (needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)'),
       title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
       title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
     }
   }
 
-  private transColor(obj:Date, needShowCurrent: boolean): string {
+  private transColor(obj:Date, isToday: boolean, needShowCurrent: boolean): string {
     const moth = obj.getMonth();
     const week = obj.getDay();
   
-    if (needShowCurrent) {
+    if (isToday || needShowCurrent) {
       return 'var(--day-select-color)';
-    } else if (moth == this.currentDate.getMonth()) {
+    } else if (moth == this.showDate.getMonth()) {
       if (week == 0 || week == 6) {
         return 'var(--day-weekend-color)'
       } else {

@@ -50,7 +50,7 @@
       <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
         wx:for-index="idx" wx:for-item="itemDays">
         <view class="view-main">
-          <view class="view-date" style="background-color: {{item.bgColor}}" wx:for="{{ itemDays }}"  wx:key="row2"
+          <view class="view-date" style="height: calc(100% / {{itemDays.length/7}}); background-color: {{item.bgColor}}" wx:for="{{ itemDays }}" wx:key="row2"
           data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
             <text class="text-date" style="color: {{item.color}}">{{ item.title1 }}</text>
             <text class="text-date-sub" style="color: {{item.color}}">{{ item.title2 }}</text>
