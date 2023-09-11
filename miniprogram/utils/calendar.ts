@@ -18,11 +18,10 @@ export interface Week {
 
 export class Calendar {
   private currentDate: Date;  // 当前选中的日期
-  private days: Day[];  // 当前选中日期所在月的日期情况
-  private currentDay: Day; // 当前天数据
-
-  public isManual: boolean; // 标记当前是否为中间月
   private showDate: Date;  // 当前显示的日期
+
+  private days: Day[];  // 当前月信息
+  private currentDay: Day; // 当前天信息
 
   constructor() {
     this.currentDate = new Date();
@@ -33,45 +32,61 @@ export class Calendar {
 
     // 构建展示数据
     this.days = this.generateDays();
-
-    this.isManual = false
-  }
-  
-  public getCurrentDate() {
-    return this.currentDate;
   }
 
+  /**
+   * 设置当前手动所选日期
+   * @param date 日期
+   */
   public setCurrentDate(date: Date) {
-    this.currentDate = date;
+    // 解决引用问题
+    // this.currentDate = date;
+    this.currentDate = new Date(date);
   }
 
-  public getShowDate() {
-    return this.showDate;
-  }
-
+  /**
+   * 设置当前显示的三个月的中间月日期
+   * @param date 中间月日期
+   */
   public setShowDate(date: Date) {
-    this.showDate = date;
+    // this.showDate = date;
+    this.showDate = new Date(date);
   }
 
+  /**
+   * 获取当前月信息（用于显示月份日期信息数据）
+   */
   public getDays(): Day[] {
     return this.days;
   }
 
+  /**
+   * 当前手动选择的日期详细信息（阳历及农历信息）
+   */
   public getCurrentDay(): Day {
     return this.currentDay;
   }
 
+  /**
+   * 下一个月，并更新显示月份日期数据
+   */
   public nextMonth(): void {
     this.showDate.setMonth(this.showDate.getMonth() + 1);
     this.days = this.generateDays();
   }
 
+  /**
+   * 前一个月，并更新显示月份日期数据
+   */
   public prevMonth(): void {
     this.showDate.setMonth(this.showDate.getMonth() - 1);
     this.days = this.generateDays();
   }
 
   // Private Method
+  /**
+   * 构建月份的日期信息
+   */
   private generateDays():Day[] {
     var date = this.showDate
     
@@ -101,7 +116,7 @@ export class Calendar {
       days.push(item);
 
       // 找到选中不再进行查找
-      if (!this.isManual && !hasFind) {
+      if (!hasFind) {
         var isCurrent = itemDateObj.getDate() == this.currentDate.getDate() && itemDateObj.getMonth() == this.currentDate.getMonth();
 
         // 找到当天日期索引
@@ -122,6 +137,10 @@ export class Calendar {
     return days;
   }
 
+  /**
+   * 构建显示的日期数据
+   * @param obj 
+   */
   public generateDay(obj:Date): Day {
     const date = obj.getDate();
     const moth = obj.getMonth();
@@ -131,7 +150,7 @@ export class Calendar {
       obj.getDate(),
     );
 
-    var needShowCurrent = !this.isManual && (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
+    var needShowCurrent = (date == this.currentDate.getDate() && moth == this.currentDate.getMonth());
 
     // 是否是今天
     var today = new Date()
@@ -148,6 +167,12 @@ export class Calendar {
     }
   }
 
+  /**
+   * 构建日期中文字颜色数据
+   * @param obj 日期
+   * @param isToday 是否是今天
+   * @param needShowCurrent 是否是手动所选日期
+   */
   private transColor(obj:Date, isToday: boolean, needShowCurrent: boolean): string {
     const moth = obj.getMonth();
     const week = obj.getDay();
