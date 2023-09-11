@@ -3,12 +3,13 @@ import type { LunarCalendarObj } from '../my_npm/LunarCalendar-declare'
 
 export interface Day {
   date: Date;
-  title1?: string; // 日期
-  title2?: string; // 农历
   color?: string;  // 文字颜色
   bgColor?: string; // 单元格背景色
-  title3?: string; // 详细日期
-  title4?: string; // 详细农历（节日）
+  title1?: string; // 日期
+  title2?: string; // 节日(公历节日 > 农历节日 > 节气)
+  title3?: string; // 公历节日 || 农历节日 || 节气 || 农历
+  title4?: string; // 年月
+  title5?: string; // 农历
 }
 
 export interface Week {
@@ -49,6 +50,7 @@ export class Calendar {
    * @param date 中间月日期
    */
   public setShowDate(date: Date) {
+    // 解决引用问题
     // this.showDate = date;
     this.showDate = new Date(date);
   }
@@ -156,14 +158,25 @@ export class Calendar {
     var today = new Date()
     var isToday = (obj.toDateString() == today.toDateString());
 
+    var title1 = date.toString();
+    // 公历节日 > 农历节日 > 节气
+    var title2 = lunarDate.solarFestival || lunarDate.lunarFestival || lunarDate.term;
+    var title3 = title2 || lunarDate.GanZhiDay;
+    var title4 = `${obj.getFullYear()}年${obj.getMonth()+1}月`;
+    var title5 = `${lunarDate.GanZhiYear}年${lunarDate.lunarMonthName}月${lunarDate.lunarDayName}日`;
+
+    var color = this.transColor(obj, isToday, needShowCurrent);
+    var bgColor = isToday ? 'var(--day-bg-today-color)' : (needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)');
+
     return {
       date: obj, 
-      title1: date.toString(),
-      title2: lunarDate.GanZhiDay,
-      color: this.transColor(obj, isToday, needShowCurrent),
-      bgColor : isToday ? 'var(--day-bg-today-color)' : (needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)'),
-      title3: `${obj.getFullYear()}年${obj.getMonth()+1}月 农历${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`,
-      title4: `${lunarDate.GanZhiYear}年${lunarDate.GanZhiMonth}月${lunarDate.GanZhiDay}日【属${lunarDate.zodiac}】`,
+      color,
+      bgColor,
+      title1,
+      title2,
+      title3,
+      title4,
+      title5,
     }
   }
 

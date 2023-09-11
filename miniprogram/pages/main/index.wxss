@@ -2,6 +2,19 @@
 
 .nav-view {
   background-color: white;
+  justify-content: flex-end;
+}
+
+.nav-view-title {
+  margin-left: 1rem;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.header-view {
+  margin-left: 1rem;
+  margin-bottom: 10px;
+  font-size: 2rem;
 }
 
 .main {
@@ -111,6 +124,10 @@
 .text-date-sub {
   font-size: 0.6rem;
   font-weight: 400;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .text-header-date {
@@ -118,10 +135,22 @@
   font-weight: 600;
 }
 
-.text-header-detail {
+.text-header-date-sub {
+  font-size: 0.5rem;
+  font-weight: 400;
+}
+
+.text-header-detail1 {
   font-size: 1rem;
   text-overflow:ellipsis;
   white-space:nowrap;
+}
+
+.text-header-detail2 {
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--day-bg-today-color);
 }
 
 .text-today {

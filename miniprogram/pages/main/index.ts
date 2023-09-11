@@ -16,6 +16,8 @@ Page({
     currentIndex: 1,
     scrollWithAnimation: false,
     navBarHeight:0,
+    opacity:0,
+    title:"叶记时光🍃",
 
     gridListMonth: gDataCenter.getThreeMonthDays(),
     currentDay: gDataCenter.getCurrentDay(),
