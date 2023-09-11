@@ -18,7 +18,7 @@ export class DataCenter {
     Object.assign(this.today, today);
     Object.assign(this.currentDay, today)
 
-    this.generateDays(this.threeMonthDays)
+    this.generateShowDays(this.threeMonthDays)
   }
 
   public getCurrentDay() {
@@ -37,38 +37,34 @@ export class DataCenter {
     this.calendar.setShowDate(day.date);
 
     this.threeMonthDays = []
-    this.generateDays(this.threeMonthDays)
+    this.generateShowDays(this.threeMonthDays)
   }
 
   public prevMonth() {
     console.log("前一个月");
-    var date = this.calendar.getShowDate();
-    date.setMonth(date.getMonth()-1);
-    this.calendar.setShowDate(date);
+    this.calendar.prevMonth();
 
     this.threeMonthDays = []
-    this.generateDays(this.threeMonthDays)
+    this.generateShowDays(this.threeMonthDays)
   }
 
   public nextMonth() {
     console.log("后一个月");
-    var date = this.calendar.getShowDate();
-    date.setMonth(date.getMonth()+1);
-    this.calendar.getShowDate(date);
+    this.calendar.nextMonth();
 
     this.threeMonthDays = []
-    this.generateDays(this.threeMonthDays)
+    this.generateShowDays(this.threeMonthDays)
   }
   
   public locationToday() {
     var today = new Date()
-    this.calendar.setCurrentDate(today);
+    this.calendar.setShowDate(today);
 
     this.threeMonthDays = []
-    this.generateDays(this.threeMonthDays)
+    this.generateShowDays(this.threeMonthDays)
   }
 
-  private generateDays(threeMonthDays: any[]) {
+  private generateShowDays(threeMonthDays: any[]) {
     // 前一个月数据
     this.calendar.isManual = true
     this.calendar.prevMonth();

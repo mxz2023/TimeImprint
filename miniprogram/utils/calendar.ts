@@ -96,13 +96,13 @@ export class Calendar {
     var hasFind = false
     // Add days from current month
     for (let i = 1; i <= lastDay.getDate(); i++) {
-      const curDateObj = new Date(year, month, i);
-      var item = this.generateDay(curDateObj)
+      const itemDateObj = new Date(year, month, i);
+      var item = this.generateDay(itemDateObj)
       days.push(item);
 
       // 找到选中不再进行查找
-      if (!hasFind) {
-        var isCurrent = curDateObj.getDate() == this.currentDate.getDate() && curDateObj.getMonth() == this.currentDate.getMonth();
+      if (!this.isManual && !hasFind) {
+        var isCurrent = itemDateObj.getDate() == this.currentDate.getDate() && itemDateObj.getMonth() == this.currentDate.getMonth();
 
         // 找到当天日期索引
         if (isCurrent) {
