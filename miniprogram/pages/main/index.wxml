@@ -40,7 +40,7 @@
           </view>
         </view>
         <view class="view-header-opt-bottom">
-          <text class="text-header-detail1">{{currentMonth}}</text>
+          <text class="text-header-opt-bottom">{{currentMonth}}</text>
         </view>
       </view>
     </view>
