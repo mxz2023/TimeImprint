@@ -30,16 +30,16 @@
   display: flex;
   flex-direction: row;
   /* background-color: red; */
-  height: 3rem;
+  height: 5rem;
   width: 100%;
 }
 
 .view-header-date {
   margin: 0;
-  background-color:burlywood;
+  background-image: linear-gradient(burlywood 20%, white, burlywood 80%);
   border-radius: 5px;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 5rem;
   align-items: center;
   justify-content: center;
 }
@@ -52,21 +52,54 @@
   flex-grow: 1;
 }
 
-.view-header-opt {
+.view-header-detail-top {
+  height: 3rem;
+}
+
+.view-header-detail-bottom {
   flex-direction: row;
+  flex-grow: 1;
+  height: 1rem;
+  background-color: aqua;
+}
+
+.view-header-opt {
   margin-left: 10px;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+
+.view-header-opt-top {
+  flex-direction: row;
   align-items: center;
   flex-shrink: 0;
 }
 
-.view-header-opt-item {
-  width: 32px;
+.view-header-opt-bottom {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   height: 32px;
+  border-radius: 5px;
+  /* border-width: 2px;
+  border-color: cadetblue;
+  border-style: solid; */
+  background-color: #5d8d50;
+  color: var(--day-select-color);
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 3px;
+}
+
+.view-header-opt-item {
+  width: 2rem;
+  aspect-ratio: 1 / 1;
 }
 
 .view-today {
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  aspect-ratio: 1 / 1;
   justify-content: center;
   align-items: center;
   background-color: var(--day-bg-today-color);
@@ -75,9 +108,8 @@
 }
 
 .view-week {
-  border-radius: 5px;
-  aspect-ratio: 1 / 1;
   width: calc(100% / 7 - 0.2px);
+  height: 2rem;
   justify-content: center;
   align-items: center;
   align-content:center;
@@ -104,15 +136,14 @@
 .view-date {
   flex-direction: column;
   border-radius: 10px;
-  /* aspect-ratio: 1 / 1; */
   width: calc(100% / 7 - 0.2px);
-  /* height: calc(100% / 6); */
   justify-content: center;
   align-items: center;
   align-content: center;
 }
 
 .text-week {
+  text-align: center;
   font-size: 1rem;
 }
 
@@ -128,16 +159,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
 }
 
 .text-header-date {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
 }
 
 .text-header-date-sub {
-  font-size: 0.5rem;
-  font-weight: 400;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
 }
 
 .text-header-detail1 {
@@ -147,6 +180,7 @@
 }
 
 .text-header-detail2 {
+  margin-top: 0.2rem;
   font-size: 0.8rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -154,6 +188,6 @@
 }
 
 .text-today {
-  font-size: 12px;
+  font-size: 1rem;
   color: var(--day-select-color);
 }

@@ -181,6 +181,36 @@
 		'd1224':'平安夜',
 		'd1225':'圣诞节',
 		'd1226':'毛泽东诞辰纪念'
+  };
+  
+  var solarFestivalShort = {
+		'd0101':'元旦节',
+		'd0214':'情人节',
+		'd0305':'学雷锋日',
+		'd0308':'妇女节',
+		'd0312':'植树节',
+		'd0315':'消费者日',
+		'd0401':'愚人节',
+		'd0422':'地球日',
+		'd0501':'劳动节',
+		'd0504':'青年节',
+		'd0508':'红十字日',
+		'd0512':'护士节',
+		'd0601':'儿童节',
+		'd0623':'奥林匹克日',
+		'd0701':'香港回归',
+		'd0707':'抗战纪念',
+		'd0801':'建军节',
+		'd0910':'教师节', 
+		'd0918':'九一八事变',
+		'd0927':'旅游日',
+		'd1001':'国庆节',
+		'd1006':'老人节',
+		'd1010':'辛亥革命',
+		'd1109':'消防安全',
+		'd1220':'澳门回归',
+		'd1224':'平安夜',
+		'd1225':'圣诞节',
 	};
 	
 	//农历节日
@@ -522,7 +552,8 @@
 			lunarDayName : DATA.dateCn[lunarDate[2]-1],
 			lunarLeapMonth : lunarLeapMonth,
 			
-			solarFestival : solarFestival[formateDayD4(month,day)],
+      solarFestival : solarFestival[formateDayD4(month,day)],
+      solarFestivalShort : solarFestivalShort[formateDayD4(month,day)],
 			lunarFestival : lunarFtv
 		};
 

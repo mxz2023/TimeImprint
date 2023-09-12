@@ -26,6 +26,7 @@ export interface LunarCalendarObj {
 
   // 公历节日
   solarFestival : string,
+  solarFestivalShort : string,
 
   // 农历节日
   lunarFestival : string

@@ -10,6 +10,7 @@ export interface Day {
   title3?: string; // 公历节日 || 农历节日 || 节气 || 农历
   title4?: string; // 年月
   title5?: string; // 农历
+  title6?: string; // 生肖属相
 }
 
 export interface Week {
@@ -43,6 +44,13 @@ export class Calendar {
     // 解决引用问题
     // this.currentDate = date;
     this.currentDate = new Date(date);
+  }
+
+  /**
+   * 获取当前所选日期
+   */
+  public getCurrentDate() {
+    return this.currentDate
   }
 
   /**
@@ -161,9 +169,10 @@ export class Calendar {
     var title1 = date.toString();
     // 公历节日 > 农历节日 > 节气
     var title2 = lunarDate.solarFestival || lunarDate.lunarFestival || lunarDate.term;
-    var title3 = title2 || lunarDate.GanZhiDay;
+    var title3 = lunarDate.solarFestivalShort || lunarDate.lunarFestival || lunarDate.term || lunarDate.GanZhiDay;
     var title4 = `${obj.getFullYear()}年${obj.getMonth()+1}月`;
-    var title5 = `${lunarDate.GanZhiYear}年${lunarDate.lunarMonthName}月${lunarDate.lunarDayName}日`;
+    var title5 = `${lunarDate.GanZhiYear} ${lunarDate.lunarMonthName}${lunarDate.lunarDayName}`;
+    var title6 = lunarDate.zodiac;
 
     var color = this.transColor(obj, isToday, needShowCurrent);
     var bgColor = isToday ? 'var(--day-bg-today-color)' : (needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)');
@@ -177,6 +186,7 @@ export class Calendar {
       title3,
       title4,
       title5,
+      title6,
     }
   }
 

@@ -21,6 +21,8 @@ Page({
 
     gridListMonth: gDataCenter.getThreeMonthDays(),
     currentDay: gDataCenter.getCurrentDay(),
+    currentMonth: gDataCenter.getCurrentMonth(),
+
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
       {"text":"一", "color": 'var(--week-default-color)'},
@@ -66,6 +68,7 @@ Page({
     this.setData({
       gridListMonth: gDataCenter.getThreeMonthDays(),
       currentDay: gDataCenter.getCurrentDay(),
+      currentMonth: gDataCenter.getCurrentMonth(),
       currentIndex: 1,
     });
   },

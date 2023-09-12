@@ -22,6 +22,15 @@ export class DataCenter {
   }
 
   /**
+   * 获取当前月信息
+   */
+  public getCurrentMonth() {
+    var year = this.currentDay.date.getFullYear();
+    var month = this.currentDay.date.getMonth() + 1;
+    return `${year}年${month}月`;
+  }
+
+  /**
    * 获取手动所选日期信息
    */
   public getCurrentDay() {
@@ -44,30 +53,31 @@ export class DataCenter {
    */
   public updateCurrentDay(index1: number, index2: number) {
     var day = this.threeMonthDays[index1][index2]
-    this.calendar.setCurrentDate(day.date);
-    this.calendar.setShowDate(day.date);
-    this.threeMonthDays = this.generateShowDays()
-
-    // 更新当前所选天信息
-    var today = this.calendar.getCurrentDay();
-    // 解决引用问题
-    Object.assign(this.currentDay, today);
+    this.updateCurrentDate(day.date);
   }
 
   /**
    * 上一个月
    */
   public prevMonth() {
-    this.calendar.prevMonth();
-    this.threeMonthDays = this.generateShowDays()
+    // this.calendar.prevMonth();
+    // this.threeMonthDays = this.generateShowDays()
+
+    var day = this.calendar.getCurrentDay()
+    var date = new Date(day.date.getFullYear(), day.date.getMonth()-1, day.date.getDate());
+    this.updateCurrentDate(date);
   }
 
   /**
    * 下一个月
    */
   public nextMonth() {
-    this.calendar.nextMonth();
-    this.threeMonthDays = this.generateShowDays()
+    // this.calendar.nextMonth();
+    // this.threeMonthDays = this.generateShowDays();
+
+    var day = this.calendar.getCurrentDay()
+    var date = new Date(day.date.getFullYear(), day.date.getMonth()+1, day.date.getDate());
+    this.updateCurrentDate(date);
   }
   
   /**
@@ -109,5 +119,16 @@ export class DataCenter {
     // 复原当月
     this.calendar.prevMonth();
     return threeMonthDays
+  }
+
+  private updateCurrentDate(date:Date) {
+    this.calendar.setCurrentDate(date);
+    this.calendar.setShowDate(date);
+    this.threeMonthDays = this.generateShowDays()
+
+    // 更新当前所选天信息
+    var today = this.calendar.getCurrentDay();
+    // 解决引用问题
+    Object.assign(this.currentDay, today);
   }
 }
