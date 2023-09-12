@@ -36,7 +36,8 @@
 
 .view-header-date {
   margin: 0;
-  background-image: linear-gradient(burlywood 20%, white 90%, burlywood);
+  background-color: burlywood;
+  /* background-image: linear-gradient(burlywood 20%, white 90%, burlywood); */
   border-radius: 5px;
   width: 4rem;
   height: 5rem;
@@ -85,8 +86,8 @@
   /* border-width: 2px;
   border-color: cadetblue;
   border-style: solid; */
-  background-color: #5d8d50;
-  background-image: linear-gradient(#5d8d50 20%, white 90%, #5d8d50);
+  background-color: cadetblue;
+  /* background-image: linear-gradient(cadetblue 20%, white 90%, cadetblue); */
   padding-left: 3px;
   padding-right: 3px;
   margin-top: 5px;
@@ -167,12 +168,13 @@
 .text-header-date {
   font-size: 3rem;
   font-weight: 600;
+  color: var(--day-select-color);
 }
 
 .text-header-date-sub {
   font-size: 0.8rem;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: var(--day-select-color);
 }
 
 .text-header-detail1 {

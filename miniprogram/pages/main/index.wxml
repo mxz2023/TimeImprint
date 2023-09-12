@@ -27,6 +27,7 @@
         </view>
       </view>
 
+      <!-- 头部操作区 -->
       <view class="view-header-opt">
         <view class="view-header-opt-top">
           <view class="view-header-opt-item" bind:tap="onPrevMonth">
