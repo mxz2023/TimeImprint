@@ -51,7 +51,7 @@ Page({
     this.updateUIData();
   },
 
-  onLocationToday(event:Any) {
+  onLocationToday(event: any) {
     gDataCenter.locationToday();
     this.updateUIData();
   },
@@ -62,6 +62,14 @@ Page({
     this.setData({
       currentIndex : current
     })
+  },
+
+  onPickerDateChange(event: any) {
+    var day = event.currentTarget.dataset.day;
+    var dateStr = event.detail.value;
+    var date = new Date(`${dateStr}-${day}`);
+    gDataCenter.changeCurrentDate(date);
+    this.updateUIData();
   },
 
   updateUIData() {

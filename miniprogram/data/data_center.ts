@@ -27,7 +27,9 @@ export class DataCenter {
   public getCurrentMonth() {
     var year = this.currentDay.date.getFullYear();
     var month = this.currentDay.date.getMonth() + 1;
-    return `${year}年${month}月`;
+    var res = `${year}年${month}月`;
+    var resFormat = `${year}-${month}`
+    return {res,resFormat};
   }
 
   /**
@@ -54,6 +56,14 @@ export class DataCenter {
   public updateCurrentDay(index1: number, index2: number) {
     var day = this.threeMonthDays[index1][index2]
     this.updateCurrentDate(day.date);
+  }
+
+  /**
+   * 当调整月份和年份时，变更日期
+   * @param date 日期
+   */
+  public changeCurrentDate(date: Date) {
+    this.updateCurrentDate(date);
   }
 
   /**

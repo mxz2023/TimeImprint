@@ -40,7 +40,10 @@
           </view>
         </view>
         <view class="view-header-opt-bottom">
-          <text class="text-header-opt-bottom">{{currentMonth}}</text>
+          <picker mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31"
+            data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
+            <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
+          </picker>
         </view>
       </view>
     </view>

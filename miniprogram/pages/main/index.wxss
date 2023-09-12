@@ -105,6 +105,8 @@
   background-color: var(--day-bg-today-color);
   border-radius: 3px;
   flex-shrink: 0;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .view-week {
