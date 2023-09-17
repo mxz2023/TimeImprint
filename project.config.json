@@ -6,7 +6,7 @@
   },
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
-  "projectname": "ts-demo",
+  "projectname": "TimeImprint",
   "setting": {
     "packNpmManually": true,
     "packNpmRelationList": [

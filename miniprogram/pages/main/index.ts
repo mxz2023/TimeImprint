@@ -42,26 +42,43 @@ Page({
   },
 
   onPrevMonth(event: any) {
+    console.log(event);
     gDataCenter.prevMonth();
     this.updateUIData();
   },
 
   onNextMonth(event: any) {
+    console.log(event);
     gDataCenter.nextMonth();
     this.updateUIData();
   },
 
   onLocationToday(event: any) {
+    console.log(event);
     gDataCenter.locationToday();
     this.updateUIData();
   },
 
   onChangecurrent(event: any) {
+    var currentIndex = event.currentTarget.dataset.current;
     var current = event.detail.current
-    console.log(current)
     this.setData({
-      currentIndex : current
-    })
+      currentIndex: current,
+    });
+
+    if (currentIndex > current) {
+      gDataCenter.prevMonth();
+    } else if (currentIndex < current) {
+      gDataCenter.nextMonth();
+    } else {
+      return
+    }
+    this.setData({
+      gridListMonth: gDataCenter.getThreeMonthDays(),
+      currentDay: gDataCenter.getCurrentDay(),
+      currentMonth: gDataCenter.getCurrentMonth(),
+      currentIndex: 1,
+    });
   },
 
   onPickerDateChange(event: any) {

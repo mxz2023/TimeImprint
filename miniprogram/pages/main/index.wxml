@@ -22,13 +22,16 @@
           <text class="text-header-detail1">{{currentDay.title5}}</text>
           <text class="text-header-detail2">{{currentDay.title2}}</text>
         </view>
-        <view class="view-header-detail-bottom">
-          
+        <view class="view-header-detail-bottom view-header-opt-bottom">
+          <picker mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31"
+            data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
+            <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
+          </picker>
         </view>
       </view>
 
       <!-- 头部操作区 -->
-      <view class="view-header-opt">
+      <!-- <view class="view-header-opt">
         <view class="view-header-opt-top">
           <view class="view-header-opt-item" bind:tap="onPrevMonth">
             <image class="view-header-opt-item" src="../../res/icon_left.png"></image>
@@ -46,7 +49,7 @@
             <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
           </picker>
         </view>
-      </view>
+      </view> -->
     </view>
 
     <view class="line" style="margin-top: 10px"></view>
@@ -61,7 +64,7 @@
     <view class="line" style="margin-bottom: 10px"></view>
 
     <!-- 详细日历 -->
-    <swiper class="swiper-view" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
+    <swiper class="swiper-view" data-current="{{currentIndex}}" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
       <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
         wx:for-index="idx" wx:for-item="itemDays">
         <view class="view-main">
