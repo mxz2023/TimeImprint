@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/main/index",
     "pages/index/index"
   ],
@@ -13,8 +14,8 @@
   "sitemapLocation": "sitemap.json",
   "renderer": "skyline",
   "lazyCodeLoading": "requiredComponents",
-  "rendererOptions": { 
-    "skyline": { 
+  "rendererOptions": {
+    "skyline": {
       "defaultDisplayBlock": true,
       "disableABTest": true
     }

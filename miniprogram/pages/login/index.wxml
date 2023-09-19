@@ -1,0 +1,6 @@
+<!--pages/login/index.wxml-->
+<view class="container">
+  <image class="logo" src="{{ logoUrl }}"></image>
+  <button class="btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button>
+  <rich-text class="agreement" nodes="{{ agreement }}"></rich-text>
+</view>
