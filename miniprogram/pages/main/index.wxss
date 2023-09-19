@@ -64,7 +64,11 @@
 .view-header-detail-bottom {
   flex-direction: row;
   flex-grow: 1;
+  flex-shrink: 0;
   height: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 .view-header-opt {
@@ -82,16 +86,17 @@
 }
 
 .view-header-opt-bottom {
-  /* flex-direction: row; */
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   border-radius: 5px;
   background-color: cadetblue;
   /* background-image: linear-gradient(cadetblue 20%, white 90%, cadetblue); */
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-top: 5px;
+  /* padding: 3px 5px 3px; */
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 2rem;
 }
 
 .view-header-opt-item {
@@ -100,15 +105,15 @@
 }
 
 .view-today {
-  width: 1.3rem;
+  width: 2rem;
   aspect-ratio: 1 / 1;
   justify-content: center;
   align-items: center;
   background-color: var(--day-bg-today-color);
   border-radius: 3px;
   flex-shrink: 0;
-  margin-left: 3px;
-  margin-right: 3px;
+  /* margin-left: 10px; */
+  margin-right: 10px;
 }
 
 .view-week {
@@ -200,4 +205,5 @@
 
 .text-header-opt-bottom {
   color: aliceblue;
+  line-height: 2rem;
 }

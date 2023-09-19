@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/main/index",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,13 +12,11 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "renderer": "skyline",
   "lazyCodeLoading": "requiredComponents",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
       "disableABTest": true
     }
-  },
-  "componentFramework": "glass-easel"
+  }
 }

@@ -106,6 +106,14 @@ export class DataCenter {
   }
 
   /**
+   * 是否需要显示“今”
+   */
+  public needShowToday() :boolean {
+    var isSameMonth = this.today.date.getMonth() == this.currentDay.date.getMonth();
+    var isSameYear = this.today.date.getFullYear() == this.currentDay.date.getFullYear()
+    return (!isSameMonth) || (!isSameYear)
+  }
+  /**
    * 构建
    * @param threeMonthDays 保存界面显示的日期数据
    */

@@ -22,8 +22,11 @@
           <text class="text-header-detail1">{{currentDay.title5}}</text>
           <text class="text-header-detail2">{{currentDay.title2}}</text>
         </view>
-        <view class="view-header-detail-bottom view-header-opt-bottom">
-          <picker mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31"
+        <view class="view-header-detail-bottom">
+          <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
+            <text class="text-today">今</text>
+          </view>
+          <picker class="view-header-opt-bottom" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31"
             data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
             <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
           </picker>

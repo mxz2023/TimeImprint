@@ -13,7 +13,6 @@ Page({
     crossAxisCount: 8,
     crossAxisGap : 4,
     mainAxisGap: 4,
-    currentIndex: 1,
     scrollWithAnimation: false,
     navBarHeight:0,
     opacity:0,
@@ -22,6 +21,8 @@ Page({
     gridListMonth: gDataCenter.getThreeMonthDays(),
     currentDay: gDataCenter.getCurrentDay(),
     currentMonth: gDataCenter.getCurrentMonth(),
+    currentIndex: 1,
+    needShowToday: gDataCenter.needShowToday(),
 
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
@@ -73,12 +74,7 @@ Page({
     } else {
       return
     }
-    this.setData({
-      gridListMonth: gDataCenter.getThreeMonthDays(),
-      currentDay: gDataCenter.getCurrentDay(),
-      currentMonth: gDataCenter.getCurrentMonth(),
-      currentIndex: 1,
-    });
+    this.updateUIData();
   },
 
   onPickerDateChange(event: any) {
@@ -95,6 +91,7 @@ Page({
       currentDay: gDataCenter.getCurrentDay(),
       currentMonth: gDataCenter.getCurrentMonth(),
       currentIndex: 1,
+      needShowToday: gDataCenter.needShowToday(),
     });
   },
   /**
