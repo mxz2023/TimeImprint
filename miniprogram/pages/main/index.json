@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "component-calendar": "../../compent/calendar"
+  },
   "renderer": "skyline",
   "componentFramework": "glass-easel"
 }

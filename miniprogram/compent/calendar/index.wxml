@@ -1,0 +1,29 @@
+<!--compent/calendar/index.wxml-->
+<view class="container main">
+  <view class="line" style="margin-top: 10px"></view>
+
+  <!-- 日、一、二、三、四、五、六 -->
+  <view style="width: 100%; flex-direction: row;">
+    <view class="view-week" wx:for="{{ weeks }}" wx:key="week">
+      <text class="text-week" style="color: {{item.color}}">{{ item.text }}</text>
+    </view>
+  </view>
+
+  <view class="line" style="margin-bottom: 10px"></view>
+
+  <!-- 详细日历 -->
+  <swiper class="swiper-view" data-current="{{currentIndex}}" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
+    <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
+      wx:for-index="idx" wx:for-item="itemDays">
+      <view class="view-main">
+        <view class="view-date" style="height: calc(100% / {{itemDays.length/7}}); background-color: {{item.bgColor}}" wx:for="{{ itemDays }}" wx:key="row2"
+        data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
+          <text class="text-date" style="color: {{item.color}}">{{ item.title1 }}</text>
+          <text class="text-date-sub" style="color: {{item.color}}">{{ item.title3 }}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="line" style="margin-top: 10px"></view>
+</view>

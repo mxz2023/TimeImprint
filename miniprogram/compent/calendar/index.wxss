@@ -1,0 +1,83 @@
+/* compent/calendar/index.wxss */
+
+view {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.line {
+  width: 100vw;
+  height: 1px;
+  background-color: var(--line-color);
+}
+
+.main {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.view-week {
+  width: calc(100% / 7 - 0.2px);
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  align-content:center;
+}
+
+.swiper-view {
+  width: 100%;
+  height: 15rem;
+  white-space: nowrap;
+}
+
+.swiper-view-item {
+  display: inline-block;
+}
+
+.view-main {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  align-content: space-between;
+}
+
+.view-date {
+  flex-direction: column;
+  border-radius: 10px;
+  width: calc(100% / 7 - 0.2px);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.text-week {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.text-date {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.text-date-sub {
+  font-size: 0.6rem;
+  font-weight: 400;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
