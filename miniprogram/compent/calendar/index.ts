@@ -92,13 +92,14 @@ Component({
     },
   
     updateUIData() {
-      this.sendDataChangeEvent();
       this.setData({
         currentIndex: 1,
         gridListMonth: gDataCenter.getThreeMonthDays(),
         currentDay: gDataCenter.getCurrentDay(),
         currentMonth: gDataCenter.getCurrentMonth(),
         needShowToday: gDataCenter.needShowToday(),
+      }, ()=> {
+        this.sendDataChangeEvent();
       });
     },
 
