@@ -1,0 +1,105 @@
+// 间隔线的间隔高度
+var getLineSpaceHeight = function(viewStyle) {
+  var height = '10px'
+  switch (viewStyle) {
+    case 1:
+      height = '5px';
+      break;
+    case 2:
+      height = '10px';
+      break;
+  
+    default:
+      break;
+  }
+  return height
+}
+
+// 星期设置
+var getWeekHeight = function(viewStyle) {
+  var height = '2rem'
+  switch (viewStyle) {
+    case 1:
+      height = '1rem';
+      break;
+    case 2:
+      height = '2rem';
+      break;
+  
+    default:
+      break;
+  }
+  return height
+}
+
+var getWeekFontSize = function(viewStyle) {
+  var height = '1rem'
+  switch (viewStyle) {
+    case 1:
+      height = '0.5rem';
+      break;
+    case 2:
+      height = '1rem';
+      break;
+  
+    default:
+      break;
+  }
+  return height
+}
+
+// 日期设置
+var getDateHeight = function(viewStyle) {
+  var height = '15rem'
+  switch (viewStyle) {
+    case 1:
+      height = '7rem';
+      break;
+    case 2:
+      height = '15rem';
+      break;
+  
+    default:
+      break;
+  }
+  return height
+}
+
+var getDateTitleSyle = function(viewStyle) {
+  var style = ""
+  switch (viewStyle) {
+    case 1:
+      style = "font-size: 0.6rem; font-weight: 400;"
+      break;
+    case 2:
+      style = "font-size: 1.2rem; font-weight: 600;"
+      break;
+    default:
+      break;
+  }
+  return style;
+}
+
+var getDateSubTitleSyle = function(viewStyle) {
+  var style = ""
+  switch (viewStyle) {
+    case 1:
+      style = "font-size: 0.4rem; font-weight: 400;"
+      break;
+    case 2:
+      style = "font-size: 0.6rem; font-weight: 400;"
+      break;
+    default:
+      break;
+  }
+  return style;
+}
+
+module.exports = {
+  lineSpaceHeight: getLineSpaceHeight,
+  weekHeight: getWeekHeight,
+  weekFontSize: getWeekFontSize,
+  dateHeight: getDateHeight,
+  dateTitleSyle: getDateTitleSyle,
+  dateSubTitleSyle: getDateSubTitleSyle
+}

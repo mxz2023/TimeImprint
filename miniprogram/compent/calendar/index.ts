@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    
+    viewStyle: Number
   },
 
   /**
@@ -19,6 +19,11 @@ Component({
   data: {
     currentIndex: 1,
     scrollWithAnimation: false,
+
+    lineSpace: 10,  // 间隔线的间隔高度
+
+
+
 
     gridListMonth: gDataCenter.getThreeMonthDays(),
 

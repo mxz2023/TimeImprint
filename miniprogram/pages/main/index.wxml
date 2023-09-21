@@ -35,7 +35,9 @@
     </view>
 
     <!-- 主日历 -->
-    <component-calendar bindupdateCurrentDay="onUpdateCurrentDay"></component-calendar>
+    <component-calendar class="view-calendar" 
+      view-Style="2" bindupdateCurrentDay="onUpdateCurrentDay">
+    </component-calendar>
     
     <!-- 发布按钮 -->
     <view class="view-record">

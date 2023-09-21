@@ -115,8 +115,11 @@
   background-color: var(--day-bg-today-color);
   border-radius: 3px;
   flex-shrink: 0;
-  /* margin-left: 10px; */
   margin-right: 10px;
+}
+
+.view-calendar {
+  width: 100%;
 }
 
 .view-record {
@@ -127,7 +130,6 @@
   height: 3rem;
   border-radius: 2rem;
   transform: translateX(-50%);
-  /* background-color: crimson; */
 }
 
 .text-header-date {
