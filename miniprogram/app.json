@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/main/index",
     "pages/index/index",
+    "pages/main/index",
     "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "叶记时光",
+    "navigationBarTitleText": "叶记时光🍃",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
