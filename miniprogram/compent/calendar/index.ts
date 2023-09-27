@@ -22,9 +22,6 @@ Component({
 
     lineSpace: 10,  // 间隔线的间隔高度
 
-
-
-
     gridListMonth: gDataCenter.getThreeMonthDays(),
 
     currentDay: gDataCenter.getCurrentDay(),

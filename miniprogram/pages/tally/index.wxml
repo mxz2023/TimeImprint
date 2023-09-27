@@ -1,0 +1,12 @@
+<!--pages/tally/index.wxml-->
+<view class="main-box">
+  <view class="view-item" wx:for="{{ gridListItem }}" wx:key="1" bind:tap="onAddRecord">
+    <view class="text-item">{{item.name}}</view>
+  </view>
+
+  <view class="view-popup-container" bind:tap="onHidePopup" wx:if="{{ showPopup }}">
+    <view class="view-popup-content">
+      这是一个半屏弹窗。
+    </view>
+  </view>
+</view>

@@ -28,6 +28,12 @@ Page({
     console.log(event);
   },
 
+  onPublishAction(event: any) {
+    wx.navigateTo({
+      url:'/pages/tally/index'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

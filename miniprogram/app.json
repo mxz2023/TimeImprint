@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/tally/index",
     "pages/main/index",
-    "pages/login/index"
+    "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
