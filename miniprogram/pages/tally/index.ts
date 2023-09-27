@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showPopup: true,
+    showPopup: false,
     gridListItem:[
       {"name":"餐饮"},
       {"name":"购物"},
