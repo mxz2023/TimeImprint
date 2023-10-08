@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/tally/index",
+    "pages/task/index",
     "pages/main/index",
+    "pages/tally/index",
     "pages/test/index"
   ],
   "window": {

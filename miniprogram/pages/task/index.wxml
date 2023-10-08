@@ -1,0 +1,6 @@
+<!--pages/task/index.wxml-->
+<view class="main-box">
+  <view>
+    <text>类型⏰</text>
+  </view>
+</view>
