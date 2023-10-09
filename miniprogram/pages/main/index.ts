@@ -15,6 +15,7 @@ Page({
     currentDay: {},
     currentMonth: {},
     needShowToday: true,
+    gridListMonth: gDataCenter.getThreeMonthDays(),
   },
 
   onUpdateCurrentDay(event: any) {
@@ -24,6 +25,9 @@ Page({
 
   onLocationToday(event: any) {
     console.log(event);
+    var date = new Date();
+    gDataCenter.changeCurrentDate(date);
+    this.updateUIData()
   },
 
   onPublishAction(event: any) {
@@ -46,6 +50,7 @@ Page({
       currentDay: gDataCenter.getCurrentDay(),
       currentMonth: gDataCenter.getCurrentMonth(),
       needShowToday: gDataCenter.needShowToday(),
+      gridListMonth: gDataCenter.getThreeMonthDays(),
     }, ()=> {
       
     });
@@ -83,7 +88,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**

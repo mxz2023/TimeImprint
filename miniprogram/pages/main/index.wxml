@@ -36,7 +36,7 @@
 
     <!-- 主日历 -->
     <component-calendar class="view-calendar" 
-      view-Style="2" bindupdateCurrentDay="onUpdateCurrentDay">
+      view-Style="2" grid-List-Month="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay">
     </component-calendar>
     
     <!-- 发布按钮 -->

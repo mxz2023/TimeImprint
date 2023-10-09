@@ -8,7 +8,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    viewStyle: Number
+    viewStyle: Number,
+    gridListMonth: Array,
   },
 
   /**
@@ -17,7 +18,6 @@ Component({
   data: {
     currentIndex: 1,
     scrollWithAnimation: false,
-    gridListMonth: gDataCenter.getThreeMonthDays(),
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
       {"text":"一", "color": 'var(--week-default-color)'},
