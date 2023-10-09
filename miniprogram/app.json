@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/task/index",
     "pages/main/index",
+    "pages/task/index",
     "pages/tally/index",
     "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "叶记时光🍃",
+    "navigationBarTitleText": "🍃 叶记时光",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

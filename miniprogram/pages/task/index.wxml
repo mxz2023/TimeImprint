@@ -1,6 +1,27 @@
 <!--pages/task/index.wxml-->
 <view class="main-box">
-  <view>
-    <text>类型⏰</text>
+  <view class="view-header">
+    <view class="view-task-type" wx:for="{{ rateTypeList }}" wx:key="index" 
+      data-item="{{item}}" bind:tap="onSelectType">
+      <text class="text-rate-type">{{ item.title }}</text>
+    </view>
   </view>
+
+  <view class="view-midle">
+    <view class="view-default" wx:if="{{ rateType == 0 }}">
+      <view class="view-date">
+        <!-- <picker class="view-header-opt-bottom" mode="date" value="{{currentMonth.resFormat}}"
+            fields="month" start="1900-01-01" end="2100-12-31"
+            data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
+            <text class="text-date">{{ }}</text>
+          </picker> -->
+      </view>
+      <view class="view-time">
+      </view>
+    </view>
+    <view class="view-rate" wx:if="{{ rateType == 1 }}">
+
+    </view>
+  </view>
+  
 </view>

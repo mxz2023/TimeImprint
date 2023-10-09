@@ -5,9 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    rateType:0,
+    rateTypeList: [{
+      title:"默认",
+      rate:0,
+    },{
+      title:"周期",
+      rate:1,
+    }]
   },
 
+  onSelectType(event: any) {
+    console.log(event);
+    var rate = event.currentTarget.dataset.item.rate;
+    this.setData({
+      rateType: rate
+    })
+  },
+
+  // onPickerDateChange(event: any) {
+  //   console.log("onPickerDateChange on task")
+  // },
+  
   /**
    * 生命周期函数--监听页面加载
    */

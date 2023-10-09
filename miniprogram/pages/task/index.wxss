@@ -1,1 +1,35 @@
 /* pages/task/index.wxss */
+.main-box {
+  padding: 1rem;
+}
+
+.view-header {
+  flex-direction: row;
+  border: 2px dotted gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.view-task-type {
+  background-color: green;
+  margin-right: 1rem;
+  padding: 3px 10px;
+  border-radius: 5px;
+}
+
+.view-midle {
+  margin-top: 2rem;
+  background-color: yellowgreen;
+}
+
+.view-default {
+  height: 3rem;
+}
+
+.view-rate {
+  height: 6rem;
+}
+
+.text-rate-type {
+  color: white;
+}
