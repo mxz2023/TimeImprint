@@ -1,8 +1,6 @@
 // compent/calendar/index.ts
 
-import { DataCenter } from '../../data/data_center'
-
-const gDataCenter = new DataCenter();
+import { gDataCenter } from '../../data/data_center'
 
 Component({
 
@@ -19,15 +17,7 @@ Component({
   data: {
     currentIndex: 1,
     scrollWithAnimation: false,
-
-    lineSpace: 10,  // 间隔线的间隔高度
-
     gridListMonth: gDataCenter.getThreeMonthDays(),
-
-    currentDay: gDataCenter.getCurrentDay(),
-    currentMonth: gDataCenter.getCurrentMonth(),
-    needShowToday: gDataCenter.needShowToday(),
-
     weeks: [
       {"text":"日", "color": 'var(--week-weekend-color)'},
       {"text":"一", "color": 'var(--week-default-color)'},
@@ -85,21 +75,10 @@ Component({
       this.updateUIData();
     },
   
-    onPickerDateChange(event: any) {
-      var day = event.currentTarget.dataset.day;
-      var dateStr = event.detail.value;
-      var date = new Date(`${dateStr}-${day}`);
-      gDataCenter.changeCurrentDate(date);
-      this.updateUIData();
-    },
-  
     updateUIData() {
       this.setData({
         currentIndex: 1,
         gridListMonth: gDataCenter.getThreeMonthDays(),
-        currentDay: gDataCenter.getCurrentDay(),
-        currentMonth: gDataCenter.getCurrentMonth(),
-        needShowToday: gDataCenter.needShowToday(),
       }, ()=> {
         this.sendDataChangeEvent();
       });
@@ -107,11 +86,7 @@ Component({
 
     sendDataChangeEvent() {
       // detail对象，提供给事件监听函数
-      var myEventDetail = {
-        currentDay: this.data.currentDay,
-        currentMonth: this.data.currentMonth,
-        needShowToday: this.data.needShowToday
-      } 
+      var myEventDetail = {} 
       // 触发事件的选项
       var myEventOption = {} 
       this.triggerEvent('updateCurrentDay', myEventDetail, myEventOption)

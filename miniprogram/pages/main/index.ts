@@ -1,5 +1,7 @@
 // pages/main/index.ts
 
+import { gDataCenter } from '../../data/data_center'
+
 Page({
 
   /**
@@ -17,11 +19,7 @@ Page({
 
   onUpdateCurrentDay(event: any) {
     console.log(event);
-    this.setData({
-      currentDay: event.detail.currentDay,
-      currentMonth: event.detail.currentMonth,
-      needShowToday: event.detail.needShowToday,
-    });
+    this.updateUIData()
   },
 
   onLocationToday(event: any) {
@@ -30,8 +28,27 @@ Page({
 
   onPublishAction(event: any) {
     wx.navigateTo({
-      url:'/pages/tally/index'
+      url:'/pages/task/index'
     })
+  },
+
+  onPickerDateChange(event: any) {
+    console.log("onPickerDateChange on sub")
+    var day = event.currentTarget.dataset.day;
+    var dateStr = event.detail.value;
+    var date = new Date(`${dateStr}-${day}`);
+    gDataCenter.changeCurrentDate(date);
+    this.updateUIData()
+  },
+
+  updateUIData() {
+    this.setData({
+      currentDay: gDataCenter.getCurrentDay(),
+      currentMonth: gDataCenter.getCurrentMonth(),
+      needShowToday: gDataCenter.needShowToday(),
+    }, ()=> {
+      
+    });
   },
 
   /**

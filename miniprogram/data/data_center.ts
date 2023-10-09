@@ -150,3 +150,5 @@ export class DataCenter {
     Object.assign(this.currentDay, today);
   }
 }
+
+export const gDataCenter:DataCenter = new DataCenter();
