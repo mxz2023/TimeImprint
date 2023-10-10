@@ -3,6 +3,7 @@ import type { LunarCalendarObj } from '../my_npm/LunarCalendar-declare'
 
 export interface Day {
   date: Date;
+  key?: string; // wx:key使用
   color?: string;  // 文字颜色
   bgColor?: string; // 单元格背景色
   title1?: string; // 日期
@@ -177,7 +178,10 @@ export class Calendar {
     var color = this.transColor(obj, isToday, needShowCurrent);
     var bgColor = isToday ? 'var(--day-bg-today-color)' : (needShowCurrent ? 'var(--day-bg-select-color)' : 'var(--day-bg-color)');
 
+    // 解决wx:key警告问题
+    var key = `${obj.getFullYear()}${obj.getMonth()}${obj.getDate()}`;;
     return {
+      key: key,
       date: obj, 
       color,
       bgColor,

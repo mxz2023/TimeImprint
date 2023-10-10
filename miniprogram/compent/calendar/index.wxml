@@ -6,7 +6,7 @@
 
   <!-- 日、一、二、三、四、五、六 -->
   <view style="width: 100%; flex-direction: row;">
-    <view class="view-week" style="height: {{ utils.weekHeight(viewStyle) }};" wx:for="{{ weeks }}" wx:key="week">
+    <view class="view-week" style="height: {{ utils.weekHeight(viewStyle) }};" wx:for="{{ weeks }}" wx:key="key">
       <text class="text-week" style="color: {{item.color}}; font-size: {{ utils.weekFontSize(viewStyle)}};">{{ item.text }}</text>
     </view>
   </view>
@@ -16,10 +16,10 @@
   <!-- 详细日历 -->
   <swiper class="swiper-view" style="height: {{ utils.dateHeight(viewStyle) }};"
   data-current="{{currentIndex}}" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
-    <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="row1"
+    <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="index"
       wx:for-index="idx" wx:for-item="itemDays">
       <view class="view-main">
-        <view class="view-date" style="height: calc(100% / {{itemDays.length/7}}); background-color: {{item.bgColor}}" wx:for="{{ itemDays }}" wx:key="row2"
+        <view class="view-date" style="height: calc(100% / {{itemDays.days.length/7}}); background-color: {{item.bgColor}}" wx:for="{{ itemDays.days }}" wx:key="key"
         data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
           <text class="text-date" style="color: {{item.color}}; {{utils.dateTitleSyle(viewStyle)}}">{{ item.title1 }}</text>
           <text wx:if="{{viewStyle==2}}" class="text-date-sub" style="color: {{item.color}}; {{utils.dateSubTitleSyle(viewStyle)}}">{{ item.title3 }}</text>

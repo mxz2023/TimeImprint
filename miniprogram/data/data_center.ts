@@ -54,7 +54,7 @@ export class DataCenter {
    * @param index2 所在月的日期索引
    */
   public updateCurrentDay(index1: number, index2: number) {
-    var day = this.threeMonthDays[index1][index2]
+    var day = this.threeMonthDays[index1].days[index2]
     this.updateCurrentDate(day.date);
   }
 
@@ -122,17 +122,17 @@ export class DataCenter {
     // 前一个月数据
     this.calendar.prevMonth();
     var prevMonthDays = this.calendar.getDays();
-    threeMonthDays.push(prevMonthDays);
+    threeMonthDays.push({"index":0, "days":prevMonthDays});
 
     // 当月数据
     this.calendar.nextMonth(); //切换到当前月
     var currentMonthDays = this.calendar.getDays();
-    threeMonthDays.push(currentMonthDays);
+    threeMonthDays.push({"index":1, "days":currentMonthDays});
 
     // 后一个月数据
     this.calendar.nextMonth();
     var nextMothDays = this.calendar.getDays();
-    threeMonthDays.push(nextMothDays);
+    threeMonthDays.push({"index":2, "days":nextMothDays});
 
     // 复原当月
     this.calendar.prevMonth();
