@@ -3,7 +3,7 @@
   padding: 1rem;
 }
 
-.view-header {
+.view-content {
   border: 2px dotted yellowgreen;
   border-radius: 5px;
   padding: 10px;
@@ -11,9 +11,6 @@
 
 .view-midle {
   margin-top: 2rem;
-  border: 2px dotted yellowgreen;
-  border-radius: 5px;
-  padding: 10px;
 }
 
 .view-bottom {
@@ -29,13 +26,7 @@
   justify-content: center;
 }
 
-.view-begin {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.view-end {
+.view-box {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +38,7 @@
   align-items: center;
 }
 
-.view-header-opt-bottom {
+.view-opt-picker {
   background-color:#6b8b6b;
   margin-left: 5px;
   height: 2rem;

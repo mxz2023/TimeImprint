@@ -1,38 +1,53 @@
 <!--pages/task/index.wxml-->
 <view class="main-box">
-  <view class="view-header">
+  <view class="view-content">
     <input type="text" placeholder="标题"/>
     <view class="line" style="margin-top: 10px; margin-bottom: 10px" />
     <input type="text" placeholder="内容"/>
   </view>
 
-  <view class="view-midle">
-    <view class="view-begin">
-      <text class="text-begin">开始</text>
+  <view class="view-content view-midle">
+    <view class="view-box">
+      <text class="text-all">全天</text>
+      <switch checked="switch" checked="{{isAllDayChecked}}" bindchange="onChangeSwitch"/>
+    </view>
+    <view class="line" style="margin-top: 10px; margin-bottom: 10px" />
+    <view class="view-box">
+      <text class="text-begin">{{currentText}}</text>
       <view class="view-date">
-        <picker class="view-header-opt-bottom" mode="date" value="{{ currentDate }}"
-            fields="day" start="1900-01-01" end="2100-12-31" data-type="0"  bindchange="onPickerDateChange">
+        <picker class="view-opt-picker" mode="date" value="{{ currentDate }}"
+            fields="day" start="1900-01-01" end="2100-12-31" data-type="1-1"  bindchange="onPickerChange">
           <text class="text-date">{{currentDate}}</text>
         </picker>
-        <picker class="view-header-opt-bottom" mode="time" value="{{ currentTime }}"
-            fields="day" start="00:00" end="23:59" data-type="0"  bindchange="onPickerTimeChange">
+        <picker class="view-opt-picker" wx:if="{{!isAllDayChecked}}" mode="time" value="{{ currentTime }}"
+            fields="day" start="00:00" end="23:59" data-type="1-2"  bindchange="onPickerChange">
           <text class="text-date">{{currentTime}}</text>
         </picker>
       </view>
     </view>
     <view class="line" style="margin-top: 10px; margin-bottom: 10px" />
-    <view class="view-end">
+    <view class="view-box">
       <text class="text-end">结束</text>
       <view class="view-date">
-        <picker class="view-header-opt-bottom" mode="date" value="{{ currentDate }}"
-            fields="day" start="1900-01-01" end="2100-12-31" data-type="1" bindchange="onPickerDateChange">
+        <picker class="view-opt-picker" mode="date" value="{{ currentDate }}"
+            fields="day" start="1900-01-01" end="2100-12-31" data-type="2-1" bindchange="onPickerChange">
           <text class="text-date">{{currentDateEnd}}</text>
         </picker>
-        <picker class="view-header-opt-bottom" mode="time" value="{{ currentTime }}"
-            fields="day" start="00:00" end="23:59" data-type="1" bindchange="onPickerTimeChange">
+        <picker class="view-opt-picker" wx:if="{{!isAllDayChecked}}" mode="time" value="{{ currentTime }}"
+            fields="day" start="00:00" end="23:59" data-type="2-2" bindchange="onPickerChange">
           <text class="text-date">{{currentTimeEnd}}</text>
         </picker>
       </view>
+    </view>
+  </view>
+
+  <view class="view-content view-midle">
+    <view class="view-box">
+      <text class="text-all">重复</text>
+      <picker class="view-opt-picker" mode="selector" range="{{ times }}" value="{{ timesIndex }}"
+             data-type="3-1"  bindchange="onPickerChange">
+          <text class="text-date">{{ times[timesIndex] }}</text>
+        </picker>
     </view>
   </view>
   

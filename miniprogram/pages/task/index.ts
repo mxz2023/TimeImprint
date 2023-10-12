@@ -13,35 +13,59 @@ Page({
       title: "周期",
       rate: 1,
     }],
+    currentText: "开始",
     currentDate: "",
     currentTime: "",
     currentDateEnd: "",
     currentTimeEnd: "",
+    isAllDayChecked: false,
+    times: ["永不","每天","每周","每月","每年"],
+    timesIndex: 0,
   },
 
-  onPickerDateChange(event: any) {
-    var type = event.currentTarget.dataset.type;
-    if (type == 0) {
-      this.setData({
-        currentDate: event.detail.value
-      })
-    } else if (type == 1) {
-      this.setData({
-        currentDateEnd: event.detail.value
-      })
-    }
+  onChangeSwitch(event:any) {
+    var isAllDay = event.detail.value
+    this.setData({
+      isAllDayChecked: isAllDay,
+    })
   },
 
-  onPickerTimeChange(event: any) {
+  onPickerChange(event: any) {
     var type = event.currentTarget.dataset.type;
-    if (type == 0) {
-      this.setData({
-        currentTime: event.detail.value
-      })
-    } else if (type == 1) {
-      this.setData({
-        currentTimeEnd: event.detail.value
-      })
+    switch(type) {
+      case "1-1":{
+        this.setData({
+          currentDate: event.detail.value
+        })
+        break;
+      }
+      case "1-2":{
+        this.setData({
+          currentTime: event.detail.value
+        })
+        break;
+      }
+      case "2-1":{
+        this.setData({
+          currentDateEnd: event.detail.value
+        })
+        break;
+      }
+      case "2-2":{
+        this.setData({
+          currentTimeEnd: event.detail.value
+        })
+        break;
+      }
+      case "3-1":{
+        this.setData({
+          timesIndex: event.detail.value
+        })
+        break;
+      }
+      default:{
+        console.error('未知的操作类型');
+      }
     }
   },
 
