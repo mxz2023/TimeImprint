@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/main/index",
     "pages/task/index",
+    "pages/main/index",
     "pages/tally/index",
     "pages/test/index"
   ],
@@ -11,7 +11,6 @@
     "navigationBarTitleText": "🍃 叶记时光",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "rendererOptions": {

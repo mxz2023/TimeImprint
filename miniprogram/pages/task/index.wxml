@@ -1,27 +1,42 @@
 <!--pages/task/index.wxml-->
 <view class="main-box">
   <view class="view-header">
-    <view class="view-task-type" wx:for="{{ rateTypeList }}" wx:key="index" 
-      data-item="{{item}}" bind:tap="onSelectType">
-      <text class="text-rate-type">{{ item.title }}</text>
-    </view>
+    <input type="text" placeholder="标题"/>
+    <view class="line" style="margin-top: 10px; margin-bottom: 10px" />
+    <input type="text" placeholder="内容"/>
   </view>
 
   <view class="view-midle">
-    <view class="view-default" wx:if="{{ rateType == 0 }}">
+    <view class="view-begin">
+      <text class="text-begin">开始</text>
       <view class="view-date">
-        <!-- <picker class="view-header-opt-bottom" mode="date" value="{{currentMonth.resFormat}}"
-            fields="month" start="1900-01-01" end="2100-12-31"
-            data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
-            <text class="text-date">{{ }}</text>
-          </picker> -->
-      </view>
-      <view class="view-time">
+        <picker class="view-header-opt-bottom" mode="date" value="{{ currentDate }}"
+            fields="day" start="1900-01-01" end="2100-12-31" data-type="0"  bindchange="onPickerDateChange">
+          <text class="text-date">{{currentDate}}</text>
+        </picker>
+        <picker class="view-header-opt-bottom" mode="time" value="{{ currentTime }}"
+            fields="day" start="00:00" end="23:59" data-type="0"  bindchange="onPickerTimeChange">
+          <text class="text-date">{{currentTime}}</text>
+        </picker>
       </view>
     </view>
-    <view class="view-rate" wx:if="{{ rateType == 1 }}">
-
+    <view class="line" style="margin-top: 10px; margin-bottom: 10px" />
+    <view class="view-end">
+      <text class="text-end">结束</text>
+      <view class="view-date">
+        <picker class="view-header-opt-bottom" mode="date" value="{{ currentDate }}"
+            fields="day" start="1900-01-01" end="2100-12-31" data-type="1" bindchange="onPickerDateChange">
+          <text class="text-date">{{currentDateEnd}}</text>
+        </picker>
+        <picker class="view-header-opt-bottom" mode="time" value="{{ currentTime }}"
+            fields="day" start="00:00" end="23:59" data-type="1" bindchange="onPickerTimeChange">
+          <text class="text-date">{{currentTimeEnd}}</text>
+        </picker>
+      </view>
     </view>
   </view>
   
+  <view class="view-bottom" bind:tap="onSaveTaskData">
+    <text class="text-save">保 存</text>
+  </view>
 </view>

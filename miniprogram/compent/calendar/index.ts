@@ -41,19 +41,19 @@ Component({
     },
   
     onPrevMonth(event: any) {
-      console.log(event);
+      // console.log(event);
       gDataCenter.prevMonth();
       this.updateUIData();
     },
   
     onNextMonth(event: any) {
-      console.log(event);
+      // console.log(event);
       gDataCenter.nextMonth();
       this.updateUIData();
     },
   
     onLocationToday(event: any) {
-      console.log(event);
+      // console.log(event);
       gDataCenter.locationToday();
       this.updateUIData();
     },

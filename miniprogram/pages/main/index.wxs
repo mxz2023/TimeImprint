@@ -1,11 +1,7 @@
 
-// const LunarCalendar = require('../../my_npm/LunarCalendar.js')
-
-// import * as LunarCalendar from "../../my_npm/LunarCalendar.js"
-
 var getDateDetail = function(item) {
   var str = JSON.stringify(item)
-  console.log(str)
+  // console.log(str)
   return str;
 }
 

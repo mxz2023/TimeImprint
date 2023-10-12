@@ -19,12 +19,12 @@ Page({
   },
 
   onUpdateCurrentDay(event: any) {
-    console.log(event);
+    // console.log(event);
     this.updateUIData()
   },
 
   onLocationToday(event: any) {
-    console.log(event);
+    // console.log(event);
     var date = new Date();
     gDataCenter.changeCurrentDate(date);
     this.updateUIData()
@@ -37,7 +37,6 @@ Page({
   },
 
   onPickerDateChange(event: any) {
-    console.log("onPickerDateChange on sub")
     var day = event.currentTarget.dataset.day;
     var dateStr = event.detail.value;
     var date = new Date(`${dateStr}-${day}`);
@@ -71,7 +70,7 @@ Page({
       navBarHeight = 44;
     }
     navBarHeight += statusBarHeight;
-    console.log('导航栏高度：', navBarHeight);
+    // console.log('导航栏高度：', navBarHeight);
     this.setData({
       navBarHeight:navBarHeight
     })
