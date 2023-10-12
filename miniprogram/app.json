@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/task/index",
     "pages/main/index",
+    "pages/task/index",
     "pages/tally/index",
     "pages/test/index"
   ],
