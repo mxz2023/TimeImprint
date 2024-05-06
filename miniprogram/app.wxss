@@ -1,5 +1,9 @@
 /**app.wxss**/
 page {
+  --yellow-color: #F7B500;
+  --green-color: #00737F;
+  --orange-color: #FA6400;
+
   --line-color: rgb(214, 214, 214);
 
   --day-default-color: rgb(0, 0, 0);

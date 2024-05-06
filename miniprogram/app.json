@@ -1,22 +1,18 @@
 {
-  "pages": [
-    "pages/main/index",
-    "pages/task/index",
-    "pages/tally/index",
-    "pages/test/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "🍃 叶记时光",
-    "navigationBarTextStyle": "black"
+  "setting": {
+    "minSDKVersion": "3.4.3"
   },
+  "pages": [
+    "pages/main/index"
+  ],
   "sitemapLocation": "sitemap.json",
+  "renderer": "skyline",
   "lazyCodeLoading": "requiredComponents",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
       "disableABTest": true
     }
-  }
+  },
+  "componentFramework": "glass-easel"
 }

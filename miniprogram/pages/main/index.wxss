@@ -39,7 +39,7 @@
 
 .view-header-date {
   margin: 0;
-  background-color: burlywood;
+  background-color: var(--yellow-color);
   /* background-image: linear-gradient(burlywood 20%, white 90%, burlywood); */
   border-radius: 5px;
   width: 4rem;
@@ -94,7 +94,7 @@
   justify-content: center;
   flex-shrink: 0;
   border-radius: 5px;
-  background-color: cadetblue;
+  background-color: var(--green-color);
   /* background-image: linear-gradient(cadetblue 20%, white 90%, cadetblue); */
   /* padding: 3px 5px 3px; */
   padding-left: 5px;
