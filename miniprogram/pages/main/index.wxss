@@ -3,26 +3,29 @@
   height: 100vh;
 }
 
+.scrollarea {
+  flex: 1;
+}
+
 .nav-view {
-  background-color: white;
+  background-color:#554433;
   justify-content: flex-end;
 }
 
-.nav-view-title {
-  margin-left: 1rem;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
+.nav-view-title1 {
+  font-size: 18px;
+}
+
+.nav-view-title2 {
+  font-size: 3rem;
 }
 
 .header-view {
-  margin-left: 1rem;
-  margin-bottom: 10px;
-  font-size: 2rem;
+  padding: 0.5rem;
 }
 
 .main {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;

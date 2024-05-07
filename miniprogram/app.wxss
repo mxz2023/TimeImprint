@@ -1,24 +1,30 @@
 /**app.wxss**/
 page {
-  --yellow-color: #F7B500;
-  --green-color: #00737F;
-  --orange-color: #FA6400;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --red-color: #d22a2a;
+  --yellow-color: #f7b500;
+  --green-color: #00737f;
+  --green-light-color: #8cc237;
+  --orange-color: #fa6400;
+  --grey-color: #d6d6d6;
+  --cyan-color: #50c8c8;
 
-  --line-color: rgb(214, 214, 214);
+  --line-color: var(--grey-color);
 
-  --day-default-color: rgb(0, 0, 0);
-  --day-select-color: rgb(256, 256, 256);
-  --day-disable-color: rgba(0, 0, 0, 0.2);
+  --day-default-color: var(--black-color);
+  --day-select-color: var(--white-color);
+  --day-disable-color: #00000033;
 
-  --day-weekend-color: rgb(220, 16, 16);
-  --day-disable-weekend-color: rgb(220, 16, 16, 0.2);
+  --day-weekend-color: var(--red-color);
+  --day-disable-weekend-color: #dc101033;
 
-  --week-default-color: rgb(80, 200, 200);
-  --week-weekend-color: rgb(210, 42, 42);
+  --week-default-color: var(--cyan-color);
+  --week-weekend-color: var(--red-color);
 
-  --day-bg-color: rgba(256, 256, 256, 0);
-  --day-bg-today-color: rgb(210, 42, 42);
-  --day-bg-select-color: rgb(140, 194, 55);
+  --day-bg-color: #ffffff00;
+  --day-bg-today-color: var(--red-color);
+  --day-bg-select-color: var(--green-light-color);
 }
 
 

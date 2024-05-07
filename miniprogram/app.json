@@ -1,18 +1,22 @@
 {
-  "setting": {
-    "minSDKVersion": "3.4.3"
-  },
   "pages": [
     "pages/main/index"
   ],
-  "sitemapLocation": "sitemap.json",
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
   "renderer": "skyline",
-  "lazyCodeLoading": "requiredComponents",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
-      "disableABTest": true
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
     }
   },
-  "componentFramework": "glass-easel"
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }

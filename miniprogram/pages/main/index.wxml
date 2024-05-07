@@ -1,48 +1,44 @@
 <!--pages/main/index.wxml-->
 <view class="main-box">
-  <!-- <wxs src='./index.wxs' module="utils"></wxs> -->
+  <mxz-navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></mxz-navigation-bar>
 
-  <view class="nav-view" style="height: {{navBarHeight}}px;">
-    <text class="nav-view-title1" style="opacity: {{opacity}};">{{title}}</text>
-  </view>
-
-  <view class="header-view">
-    <text class="nav-view-title2">{{title}}</text>
-  </view>
-
-  <view class="container main">
-    <!-- 日期详细信息 -->
-    <view class="view-header">
-      <view class="view-header-date">
-        <text class="text-header-date">{{currentDay.title1}}</text>
-        <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
-      </view>
-      <view class="view-header-detail">
-        <view class="view-header-detail-top">
-          <text class="text-header-detail1">{{currentDay.title5}}</text>
-          <text class="text-header-detail2">{{currentDay.title2}}</text>
-        </view>
-        <view class="view-header-detail-bottom">
-          <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
-            <text class="text-today">今</text>
-          </view>
-          <picker class="view-header-opt-bottom" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31"
-            data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
-            <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
-          </picker>
-        </view>
-      </view>
+  <scroll-view class="scrollarea" scroll-y type="list">
+    <!-- <wxs src='./index.wxs' module="utils"></wxs> -->
+    <view class="header-view">
+      <text class="nav-view-title2">{{title}}</text>
     </view>
 
-    <!-- 主日历 -->
-    <component-calendar class="view-calendar" 
-      view-Style="2" grid-List-Month="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay">
-    </component-calendar>
-    
-    <!-- 发布按钮 -->
-    <!-- <view class="view-record">
-      <image class="view-record" src="../../res/icon_fabu.png" bind:tap="onPublishAction"></image>
-    </view> -->
-    
-  </view>
+    <view class="main">
+      <!-- 日期详细信息 -->
+      <view class="view-header">
+        <view class="view-header-date">
+          <text class="text-header-date">{{currentDay.title1}}</text>
+          <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
+        </view>
+        <view class="view-header-detail">
+          <view class="view-header-detail-top">
+            <text class="text-header-detail1">{{currentDay.title5}}</text>
+            <text class="text-header-detail2">{{currentDay.title2}}</text>
+          </view>
+          <view class="view-header-detail-bottom">
+            <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
+              <text class="text-today">今</text>
+            </view>
+            <picker class="view-header-opt-bottom" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31" data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
+              <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <!-- 主日历 -->
+      <mxz-calendar class="view-calendar" view-Style="2" grid-List-Month="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay">
+      </mxz-calendar>
+    </view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <!-- <view class="view-record">
+    <image class="view-record" src="../../res/icon_fabu.png" bind:tap="onPublishAction"></image>
+  </view> -->
 </view>

@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight:0,
     navBarHeight:0,
     opacity:0,
     title:"叶记时光🍃",
@@ -59,20 +60,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    var systemInfo = wx.getSystemInfoSync()
-    const { statusBarHeight, platform } = systemInfo;
-    let navBarHeight = 0;
-    if (platform === 'android') {
-      navBarHeight = 48;
-    } else if (platform === 'devtools') {
-      navBarHeight = 44;
-    } else {
-      navBarHeight = 44;
-    }
-    navBarHeight += statusBarHeight;
-    // console.log('导航栏高度：', navBarHeight);
+    let sysInfo = wx.getSystemInfoSync();
+    let menuInfo = wx.getMenuButtonBoundingClientRect();
+    let navigationBarHeight = (menuInfo.top - sysInfo.statusBarHeight) * 2 + menuInfo.height;
     this.setData({
-      navBarHeight:navBarHeight
+      statusBarHeight:menuInfo.bottom, // 状态栏高度
+      navBarHeight:navigationBarHeight  // 棕色区域
     })
   },
 
