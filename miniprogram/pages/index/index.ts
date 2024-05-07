@@ -1,4 +1,4 @@
-// pages/main/index.ts
+// pages/index/index.ts
 
 import { gDataCenter } from '../../data/data_center'
 
@@ -19,19 +19,19 @@ Page({
     gridListMonth: gDataCenter.getThreeMonthDays(),
   },
 
-  onUpdateCurrentDay(event: any) {
+  onUpdateCurrentDay(_: any) {
     // console.log(event);
     this.updateUIData()
   },
 
-  onLocationToday(event: any) {
+  onLocationToday(_: any) {
     // console.log(event);
     var date = new Date();
     gDataCenter.changeCurrentDate(date);
     this.updateUIData()
   },
 
-  onPublishAction(event: any) {
+  onPublishAction(_: any) {
     wx.navigateTo({
       url:'/pages/task/index'
     })
@@ -54,6 +54,18 @@ Page({
     }, ()=> {
       
     });
+  },
+
+  onScrollStart(event: any) {
+    console.log(event)
+  },
+
+  onScrollEnd(event: any) {
+    console.log(event)
+  },
+
+  onScroll(event: any) {
+    console.log(event)
   },
 
   /**

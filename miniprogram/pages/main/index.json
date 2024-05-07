@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "mxz-calendar": "../../compents/calendar",
-    "mxz-navigation-bar": "../../compents/navigation-bar"
-  }
-}

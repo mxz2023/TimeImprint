@@ -1,4 +1,4 @@
-// compent/calendar/index.ts
+// compent/calendar/calendar.ts
 
 import { gDataCenter } from '../../data/data_center'
 

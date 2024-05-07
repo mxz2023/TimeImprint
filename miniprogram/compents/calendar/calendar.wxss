@@ -1,4 +1,4 @@
-/* compent/calendar/index.wxss */
+/* compent/calendar/calendar.wxss */
 
 view {
   display: flex;

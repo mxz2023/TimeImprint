@@ -1,4 +1,4 @@
-/* pages/main/index.wxss */
+/* pages/index/index.wxss */
 .main-box {
   height: 100vh;
 }
