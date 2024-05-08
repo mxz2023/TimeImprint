@@ -4,6 +4,7 @@
     title="{{title}}" 
     background="#FFFFFF"
     color="black"
+    back="{{false}}"
     homeButton="{{true}}"></mxz-navigation-bar>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" 
