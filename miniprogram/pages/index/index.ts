@@ -66,6 +66,10 @@ Page({
 
   onScroll(event: any) {
     console.log(event)
+    let top = event.detail.scrollTop > 30 ? 30 : event.detail.scrollTop
+    this.setData({
+      opacity:top/30
+    })
   },
 
   /**

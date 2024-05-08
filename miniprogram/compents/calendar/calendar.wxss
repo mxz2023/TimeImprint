@@ -52,13 +52,22 @@ view {
   align-content: space-between;
 }
 
-.view-date {
-  flex-direction: column;
-  border-radius: 10px;
+.view-date-warpper {
   width: calc(100% / 7 - 0.2px);
   justify-content: center;
   align-items: center;
   align-content: center;
+  padding: 1px;
+}
+
+.view-date {
+  flex-direction: column;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .text-week {
