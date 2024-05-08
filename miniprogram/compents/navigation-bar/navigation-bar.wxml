@@ -6,18 +6,14 @@
       <block wx:if="{{back || homeButton}}">
         <!-- 返回上一页 -->
         <block wx:if="{{back}}">
-          <view class="weui-navigation-bar__buttons">
-            <view bindtap="back" class="weui-navigation-bar__btn_goback_wrapper" hover-class="weui-active" hover-stay-time="100" aria-role="button" aria-label="返回">
-              <view class="weui-navigation-bar__button weui-navigation-bar__btn_goback"></view>
-            </view>
+          <view bindtap="back" class="weui-navigation-bar__btn_goback_wrapper" hover-class="weui-active" hover-stay-time="100" aria-role="button" aria-label="返回">
+            <image class="weui-navigation-bar__icon" src="../../res/icon_goback.png" mode="aspectFill"></image>
           </view>
         </block>
         <!-- 返回首页 -->
         <block wx:if="{{homeButton}}">
-          <view class="weui-navigation-bar__buttons">
-            <view bindtap="home" class="weui-navigation-bar__btn_home_wrapper" hover-class="weui-active" aria-role="button" aria-label="首页">
-              <image class="weui-navigation-bar__button weui-navigation-bar__btn_home" src="../../res/icon_home.png"></image>
-            </view>
+          <view bindtap="home" class="weui-navigation-bar__btn_home_wrapper" hover-class="weui-active" aria-role="button" aria-label="首页">
+            <image class="weui-navigation-bar__icon" src="../../res/icon_home.png" mode="aspectFill"></image>
           </view>
         </block>
       </block>
