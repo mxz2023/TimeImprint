@@ -11,7 +11,7 @@ Page({
     statusBarHeight:0,
     navBarHeight:0,
     opacity:0,
-    title:"叶记时光🍃",
+    title:"叶记时光🍀",
     
     currentDay: {},
     currentMonth: {},
@@ -131,6 +131,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return {
+      title: "欢迎使用，让时间证明一起"
+    }
   }
 })
