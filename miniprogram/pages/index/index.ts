@@ -8,11 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusBarHeight:0,
-    navBarHeight:0,
-    opacity:0,
-    title:"叶记时光🍀",
-    
+    statusBarHeight: 0,
+    navBarHeight: 0,
+    opacity: 0,
+    title: "叶记时光🍀",
+
     currentDay: {},
     currentMonth: {},
     needShowToday: true,
@@ -33,11 +33,12 @@ Page({
 
   onPublishAction(_: any) {
     wx.navigateTo({
-      url:'/pages/task/index'
+      url: '/pages/task/task'
     })
   },
 
   onPickerDateChange(event: any) {
+    // Todo 临时屏蔽picker事件
     var day = event.currentTarget.dataset.day;
     var dateStr = event.detail.value;
     var date = new Date(`${dateStr}-${day}`);
@@ -51,8 +52,8 @@ Page({
       currentMonth: gDataCenter.getCurrentMonth(),
       needShowToday: gDataCenter.needShowToday(),
       gridListMonth: gDataCenter.getThreeMonthDays(),
-    }, ()=> {
-      
+    }, () => {
+
     });
   },
 
@@ -68,7 +69,7 @@ Page({
     console.log(event)
     let top = event.detail.scrollTop > 30 ? 30 : event.detail.scrollTop
     this.setData({
-      opacity:top/30
+      opacity: top / 30
     })
   },
 
@@ -80,8 +81,8 @@ Page({
     let menuInfo = wx.getMenuButtonBoundingClientRect();
     let navigationBarHeight = (menuInfo.top - sysInfo.statusBarHeight) * 2 + menuInfo.height;
     this.setData({
-      statusBarHeight:menuInfo.bottom, // 状态栏高度
-      navBarHeight:navigationBarHeight  // 棕色区域
+      statusBarHeight: menuInfo.bottom, // 状态栏高度
+      navBarHeight: navigationBarHeight  // 棕色区域
     })
   },
 
@@ -96,7 +97,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    
+
   },
 
   /**
