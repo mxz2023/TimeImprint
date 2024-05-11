@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    title: "打卡 📌",
+    opacity: 1,
+    date: "",
+    needDate:true,
+    dataColor: "#F3F4F5",
+    items:["",""],
+    iconBad: '\u{e666}',
+    iconWeui: '\u{eA08}'
   },
 
   /**
@@ -26,7 +33,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    let date = new Date()
+    this.setData({
+      date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
+    })
   },
 
   /**

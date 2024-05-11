@@ -1,2 +1,24 @@
 <!--pages/task/task.wxml-->
-<text>pages/task/task.wxml</text>
+<view class="main-box">
+  <mxz-navigation-bar title="{{title}}" background="#FFFFFF" color="black" back="{{true}}" style="opacity: {{opacity}};"></mxz-navigation-bar>
+
+  <view class="title-view">
+    <input class="title-input" auto-focus placeholder="输入标题" />
+
+    <view class="title-check-view">
+      <text class="title-date" style="color: {{dataColor}}">{{date}}</text>
+      <checkbox class="title-check" checked="{{needDate}}" ></checkbox>
+    </view>
+  </view>
+
+  <scroll-view class="scrollarea" scroll-y="true" type="list">
+    <view class="item-view" wx:for="{{items}}" wx:key="{{item.value}}">
+      <input class="title-input" auto-focus placeholder="输入项目1内容" />
+      <text class="iconfont">{{iconBad}}</text>
+    </view>
+
+    <view class="add-view">
+      <text class="iconfont">{{iconBad}}</text>
+    </view>
+  </scroll-view>
+</view>

@@ -7,19 +7,6 @@
   flex: 1;
 }
 
-.nav-view {
-  background-color:#554433;
-  justify-content: flex-end;
-}
-
-.nav-view-title1 {
-  font-size: 18px;
-}
-
-.nav-view-title2 {
-  font-size: 3rem;
-}
-
 .header-view {
   padding: 0.5rem;
   flex-direction: row;

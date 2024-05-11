@@ -29,17 +29,17 @@ Page({
     setTimeout(()=>{
       wx.reLaunch({
         url: '../index/index',
-        success: function (res) {
+        success: function (_) {
           // success
-          console.log(res)
+          console.log("reLaunch success")
         },
         fail: function (err) {
           // fail
           console.log(err)
         },
-        complete: function (msg) {
+        complete: function (_) {
           // complete
-          console.log(msg)
+          console.log("reLaunch complete")
         }
       })
     }, 1000)

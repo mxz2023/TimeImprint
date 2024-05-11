@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/welcome/welcome",
     "pages/index/index",
-    "pages/task/task"
+    "pages/task/task",
+    "pages/welcome/welcome"
   ],
   "window": {
     "navigationBarTextStyle": "black",

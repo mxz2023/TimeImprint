@@ -10,7 +10,7 @@
 
   },
   "devDependencies": {
-    "miniprogram-api-typings": "3.12.2"
+
   },
   "main": ".eslintrc.js"
 }

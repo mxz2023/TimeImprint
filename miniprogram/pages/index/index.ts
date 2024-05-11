@@ -1,6 +1,7 @@
 // pages/index/index.ts
 
 import { gDataCenter } from '../../data/data_center'
+import { shareAppMessage, shareTimeline} from '../../utils/share'
 
 Page({
 
@@ -8,10 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusBarHeight: 0,
-    navBarHeight: 0,
+    title: "叶记时光 🍀",
     opacity: 0,
-    title: "叶记时光🍀",
 
     currentDay: {},
     currentMonth: {},
@@ -131,9 +130,14 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-    return {
-      title: "欢迎使用，让时间证明一起"
-    }
-  }
+  onShareAppMessage(res) {
+    shareAppMessage(res.from, res.target)
+  },
+
+  /**
+   * 自定义分享到朋友圈
+   */
+  onShareTimeline: function () {
+     shareTimeline()
+  },
 })
