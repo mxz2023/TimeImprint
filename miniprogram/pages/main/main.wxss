@@ -1,0 +1,148 @@
+/* pages/main/main.wxss */
+
+.custom-image {
+  height: 48rpx;
+  width: 174rpx;
+}
+
+.header-logo {
+  padding: 0.5rem;
+  flex-direction: row;
+  align-items: start;
+}
+
+.header-logo-image {
+  width: 160px;
+  height: 40px;
+}
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.view-header {
+  background-color: red;
+  height: 5rem;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+.view-header-date {
+  background-color: var(--yellow-color);
+  border-radius: 5px;
+  width: 4rem;
+  height: 5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.text-header-date {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--day-select-color);
+}
+
+.text-header-date-sub {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--day-select-color);
+  white-space: normal;
+}
+
+.view-header-detail {
+  flex-direction: column;
+  margin-left: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.view-header-detail-top {
+  justify-content: flex-start;
+  height: 3rem;
+  /* width: 10rem; */
+  /* background-color: chartreuse; */
+}
+
+.view-header-detail-bottom {
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.text-header-detail1 {
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-header-detail2 {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--day-bg-today-color);
+}
+
+.view-today {
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--day-bg-today-color);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.text-today {
+  font-size: 0.8rem;
+  color: var(--day-select-color);
+}
+
+.view-header-opt {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background-color: var(--green-color);
+  /* background-image: linear-gradient(cadetblue 20%, white 90%, cadetblue); */
+  /* padding: 3px 5px 3px; */
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 2rem;
+}
+
+.text-header-opt-bottom {
+  color: aliceblue;
+  line-height: 2rem;
+}
+
+.view-record {
+  position: absolute;
+  bottom: 30px;
+  left: 50%; 
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem;
+  transform: translateX(-50%);
+}
+
+
+
+
+
+
+

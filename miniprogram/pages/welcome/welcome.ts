@@ -28,7 +28,7 @@ Page({
   onShow() {
     setTimeout(()=>{
       wx.reLaunch({
-        url: '../index/index',
+        url: '../main/main',
         success: function (_) {
           // success
           console.log("reLaunch success")

@@ -1,15 +1,20 @@
 {
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-image": "tdesign-miniprogram/image/image"
+  },
   "pages": [
+    "pages/welcome/welcome",
     "pages/index/index",
-    "pages/task/task",
-    "pages/welcome/welcome"
+    "pages/logs/logs",
+    "pages/main/main"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
-  "style": "v2",
-  "renderer": "skyline",
+  "renderer": "webview",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,

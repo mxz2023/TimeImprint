@@ -1,16 +1,15 @@
 {
   "name": "miniprogram-ts-less-quickstart",
   "version": "1.0.0",
-  "description": "WeChatApp",
+  "description": "",
   "scripts": {},
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "",
   "dependencies": {
-
+    "tdesign-miniprogram": "1.4.0"
   },
   "devDependencies": {
-
-  },
-  "main": ".eslintrc.js"
+    "miniprogram-api-typings": "^2.8.3-1"
+  }
 }

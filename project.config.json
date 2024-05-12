@@ -1,20 +1,8 @@
 {
   "description": "项目配置文件",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
-  "projectname": "TimeImprint",
   "setting": {
-    "packNpmManually": true,
-    "packNpmRelationList": [
-      {
-        "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./miniprogram/"
-      }
-    ],
     "useCompilerPlugins": [
       "typescript"
     ],
@@ -23,19 +11,35 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "es6": true,
+    "coverView": false,
+    "postcss": false,
+    "minified": false,
     "enhance": true,
-    "postcss": true,
-    "minified": true
+    "showShadowRootInWxmlPanel": false,
+    "ignoreUploadUnusedFiles": true,
+    "compileHotReLoad": false,
+    "skylineRenderEnable": true,
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
+    "es6": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {},
   "srcMiniprogramRoot": "miniprogram/",
-  "appid": "wxe4c2b03ba26e8001",
-  "libVersion": "3.0.0",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "libVersion": "trial",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wxe4c2b03ba26e8001"
 }
