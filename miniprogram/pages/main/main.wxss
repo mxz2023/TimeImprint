@@ -25,7 +25,6 @@
 }
 
 .view-header {
-  background-color: red;
   height: 5rem;
   flex-direction: row;
   flex-grow: 1;
@@ -71,16 +70,6 @@
   /* background-color: chartreuse; */
 }
 
-.view-header-detail-bottom {
-  flex-direction: row;
-  flex-grow: 1;
-  flex-shrink: 0;
-  height: 2rem;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-}
-
 .text-header-detail1 {
   font-size: 1rem;
   text-overflow: ellipsis;
@@ -93,6 +82,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--day-bg-today-color);
+}
+
+.view-header-detail-bottom {
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 .view-today {
