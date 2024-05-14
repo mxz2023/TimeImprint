@@ -5,10 +5,9 @@
     "t-image": "tdesign-miniprogram/image/image"
   },
   "pages": [
+    "pages/main/main",
     "pages/welcome/welcome",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/main/main"
+    "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",

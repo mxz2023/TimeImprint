@@ -6,11 +6,11 @@
 </t-navbar>
 
 <!--logo-->
-<view class="main-view header-logo" style="opacity: {{1-opacity}}">
+<view class="header-logo" style="opacity: {{1-opacity}}">
   <image class="header-logo-image" src="../../static/welcome_text_2.png" mode="aspectFit" />
 </view>
 
-<view class="main-view main-box container">
+<view class="container">
   <!-- 日期详细信息 -->
   <view class="main-view view-header">
     <view class="main-view view-header-date">
@@ -33,3 +33,7 @@
     </view>
   </view>
 </view>
+
+<!-- 主日历 -->
+<mxz-calendar view-Style="2" grid-List-Month="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay">
+      </mxz-calendar>

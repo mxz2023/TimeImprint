@@ -28,6 +28,11 @@ page {
   --day-bg-select-color: var(--green-light-color);
 }
 
+view {
+  display: flex;
+  overflow: hidden;
+}
+
 .main-view {
   display: flex;
   box-sizing: border-box;

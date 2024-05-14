@@ -64,6 +64,7 @@
 }
 
 .view-header-detail-top {
+  flex-direction: column;
   justify-content: flex-start;
   height: 3rem;
   /* width: 10rem; */
@@ -139,7 +140,10 @@
   transform: translateX(-50%);
 }
 
-
+.view-calendar {
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
 
 
