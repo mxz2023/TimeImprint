@@ -98,9 +98,11 @@ Component({
     attached: function () {
       this.sendDataChangeEvent();
     },
+    
     moved: function () {
 
     },
+
     detached: function () {
 
     },
@@ -111,6 +113,7 @@ Component({
     show: function () {
 
     },
+
     hide: function () {
 
     },

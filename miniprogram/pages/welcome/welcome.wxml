@@ -1,11 +1,11 @@
 <!--pages/welcome/welcome.wxml-->
 
-<view class="main-view main-box container">
-  <view class="main-view welcome-view1">
+<view class="mView mBox container">
+  <view class="mView welcome-view1">
     <image class="welcome-img-text1" src="../../static/welcome_text_1.png" mode="aspectFit" />
   </view>
 
-  <view class="main-view welcome-view2">
+  <view class="mView welcome-view2">
     <image class="welcome-img-icon" src="../../static/welcome_icon.png" mode="aspectFit" />
     <image class="welcome-img-text2" src="../../static/welcome_text_2.png" mode="aspectFit" />
   </view>

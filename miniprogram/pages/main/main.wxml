@@ -12,21 +12,21 @@
 
 <view class="container">
   <!-- 日期详细信息 -->
-  <view class="main-view view-header">
-    <view class="main-view view-header-date">
+  <view class="mView view-header">
+    <view class="mView view-header-date">
       <text class="text-header-date">{{currentDay.title1}}</text>
       <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
     </view>
-    <view class="main-view view-header-detail">
-      <view class="main-view view-header-detail-top">
+    <view class="mView view-header-detail">
+      <view class="mView view-header-detail-top">
         <text class="text-header-detail1">{{currentDay.title5}}</text>
         <text class="text-header-detail2">{{currentDay.title2}}</text>
       </view>
-      <view class="main-view view-header-detail-bottom">
-        <view class="main-view view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
+      <view class="mView view-header-detail-bottom">
+        <view class="mView view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
           <text class="text-today">今</text>
         </view>
-        <view class="main-view view-header-opt">
+        <view class="mView view-header-opt">
           <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
         </view>
       </view>
@@ -35,5 +35,4 @@
 </view>
 
 <!-- 主日历 -->
-<mxz-calendar view-Style="2" grid-List-Month="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay">
-      </mxz-calendar>
+<mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
