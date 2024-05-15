@@ -14,7 +14,7 @@
   <view class="line" style="margin-bottom: {{ utils.lineSpaceHeight(viewStyle) }}"></view>
 
   <!-- 详细日历 -->
-  <swiper class="swiper-view" style="height: {{ utils.dateHeight(viewStyle) }};" data-current="{{currentIndex}}" bindchange="onChangecurrent" scroll-with-animation="{{ scrollWithAnimation }}" current="{{ currentIndex }}">
+  <swiper class="swiper-view" style="height: {{ utils.dateHeight(viewStyle) }};" data-current="{{currentIndex}}" bindchange="onChangecurrent" current="{{ currentIndex }}">
     <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="index" wx:for-index="idx" wx:for-item="itemDays">
       <view class="swiper-view-content">
         <view class="view-date-warpper" style="height: calc(100% / {{itemDays.days.length/7}})" wx:for="{{ itemDays.days }}" wx:key="key" data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
