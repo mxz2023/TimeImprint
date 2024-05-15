@@ -29,6 +29,37 @@ Page({
     });
   },
 
+  // 日历更新，通知主页面事件响应
+  onUpdateCurrentDay(_: any) {
+    // console.log(event);
+    this.updateUIData()
+  },
+
+  // 定位到今天
+  onLocationToday(_: any) {
+    // console.log(event);
+    var date = new Date();
+    gDataCenter.changeCurrentDate(date);
+    this.updateUIData()
+  },
+
+  // 调整日历月份
+  onPickerDateChange(event: any) {
+    // Todo 临时屏蔽picker事件
+    var day = event.currentTarget.dataset.day;
+    var dateStr = event.detail.value;
+    var date = new Date(`${dateStr}-${day}`);
+    gDataCenter.changeCurrentDate(date);
+    this.updateUIData()
+  },
+
+  // 发布按钮
+  onPublishAction(_: any) {
+    // wx.navigateTo({
+    //   url: '/pages/task/task'
+    // })
+  },
+
   /************* 系统方法，生命周期 ****************/
   /**
    * 生命周期函数--监听页面加载
