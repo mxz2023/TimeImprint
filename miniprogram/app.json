@@ -1,10 +1,11 @@
 {
   "usingComponents": {
-    "t-icon": "tdesign-miniprogram/icon/icon",
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-icon": "tdesign-miniprogram/icon/icon",
     "t-image": "tdesign-miniprogram/image/image"
   },
   "pages": [
+    
     "pages/main/main",
     "pages/welcome/welcome",
     "pages/logs/logs"

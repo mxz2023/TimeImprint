@@ -1,8 +1,21 @@
 /* pages/main/main.wxss */
 
-.custom-image {
-  height: 48rpx;
-  width: 174rpx;
+.mView {
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mBox {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--white-color);
+  flex-direction: column;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
 }
 
 .header-logo {
@@ -17,6 +30,7 @@
 }
 
 .container {
+  background-color: white;
   padding-left: 1rem;
   padding-right: 1rem;
   flex-direction: row;
@@ -67,8 +81,6 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 3rem;
-  /* width: 10rem; */
-  /* background-color: chartreuse; */
 }
 
 .text-header-detail1 {
@@ -118,8 +130,6 @@
   flex-shrink: 0;
   border-radius: 5px;
   background-color: var(--green-color);
-  /* background-image: linear-gradient(cadetblue 20%, white 90%, cadetblue); */
-  /* padding: 3px 5px 3px; */
   padding-left: 5px;
   padding-right: 5px;
   height: 2rem;
@@ -144,8 +154,3 @@
   overflow: hidden;
   box-sizing: border-box;
 }
-
-
-
-
-

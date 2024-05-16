@@ -1,38 +1,52 @@
 <!--pages/main/main.wxml-->
-<t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content">
-  <view slot="left">
-    <t-image t-class="custom-image" src="{{theme === 'dark' ? 'https://tdesign.gtimg.com/mobile/demos/image-dark.png' : 'https://tdesign.gtimg.com/mobile/demos/logo-light.png'}}" aria-label="导航栏图片" />
-  </view>
-</t-navbar>
 
-<!--logo-->
-<view class="header-logo" style="opacity: {{1-opacity}}">
-  <image class="header-logo-image" src="../../static/welcome_text_2.png" mode="aspectFit" />
-</view>
+<view class="mBox">
+  <!-- 导航 -->
+  <t-navbar style="opacity: {{opacity}}" title="{{title}}">
+  </t-navbar>
 
-<view class="container">
-  <!-- 日期详细信息 -->
-  <view class="mView view-header">
-    <view class="mView view-header-date">
-      <text class="text-header-date">{{currentDay.title1}}</text>
-      <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
+  <!-- 内容区域 -->
+  <scroll-view class="scrollarea" scroll-y="{{canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll">
+
+    <!--logo-->
+    <view class="header-logo" style="opacity: {{1-opacity}}">
+      <image class="header-logo-image" src="{{titleImage}}" mode="aspectFit" />
     </view>
-    <view class="mView view-header-detail">
-      <view class="mView view-header-detail-top">
-        <text class="text-header-detail1">{{currentDay.title5}}</text>
-        <text class="text-header-detail2">{{currentDay.title2}}</text>
-      </view>
-      <view class="mView view-header-detail-bottom">
-        <view class="mView view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
-          <text class="text-today">今</text>
-        </view>
-        <view class="mView view-header-opt">
-          <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
 
-<!-- 主日历 -->
-<mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
+    <scroll-view scroll-y="{{!canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll">
+
+      <view class="mView">
+        <!-- 主日历 -->
+        <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
+        <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
+        <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
+        <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bindupdateCurrentDay="onUpdateCurrentDay"></mxz-calendar>
+      </view>
+
+      <view class="container">
+        <!-- 日期详细信息 -->
+        <view class="mView view-header">
+          <view class="mView view-header-date">
+            <text class="text-header-date">{{currentDay.title1}}</text>
+            <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
+          </view>
+          <view class="mView view-header-detail">
+            <view class="mView view-header-detail-top">
+              <text class="text-header-detail1">{{currentDay.title5}}</text>
+              <text class="text-header-detail2">{{currentDay.title2}}</text>
+            </view>
+            <view class="mView view-header-detail-bottom">
+              <view class="mView view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
+                <text class="text-today">今</text>
+              </view>
+              <view class="mView view-header-opt">
+                <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </scroll-view>
+</view>

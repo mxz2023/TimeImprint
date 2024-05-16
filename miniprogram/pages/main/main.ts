@@ -10,6 +10,8 @@ Page({
   data: {
     title: "叶记时光 🍀",
     opacity: 0,
+    titleImage: "/static/welcome_text_2.png",
+    canMainScroll:true,
 
     currentDay: {},
     currentMonth: {},
@@ -60,6 +62,28 @@ Page({
     // })
   },
 
+  onScrollStart(event: any) {
+    console.log(event)
+  },
+
+  onScrollEnd(event: any) {
+    console.log(event)
+  },
+
+  onScroll(event: any) {
+    console.log(event)
+    let top = event.detail.scrollTop > 30 ? 30 : event.detail.scrollTop
+    if (top > 10) {
+      this.setData({
+        opacity: top / 30
+      })
+    } else {
+      this.setData({
+        opacity: 0
+      })
+    }
+  },
+  
   /************* 系统方法，生命周期 ****************/
   /**
    * 生命周期函数--监听页面加载

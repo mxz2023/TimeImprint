@@ -11,6 +11,7 @@ page {
   --grey-color: #d6d6d6;
   --cyan-color: #50c8c8;
 
+  --view-background-color: var(--white-color)
   --line-color: var(--grey-color);
 
   --day-default-color: var(--black-color);
@@ -26,24 +27,9 @@ page {
   --day-bg-color: #ffffff00;
   --day-bg-today-color: var(--red-color);
   --day-bg-select-color: var(--green-light-color);
-}
 
-view {
-  display: flex;
+  /* 解决page父视图不滚动 */
   overflow: hidden;
-}
-
-.mView {
-  display: flex;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.mBox {
-  width: 100%;
-  height: 100vh;
-  background-color: var(--white-color);
-  flex-direction: column;
 }
 
 
