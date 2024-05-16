@@ -29,10 +29,10 @@
   height: 40px;
 }
 
-.container {
+.details {
+  width: 100%;
   background-color: white;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;

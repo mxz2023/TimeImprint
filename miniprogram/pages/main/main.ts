@@ -12,7 +12,7 @@ Page({
     opacity: 0,
     titleImage: "/static/welcome_text_2.png",
     canMainScroll:true,
-    innerScrollViewHeight:0,
+    stateBarHeight:0,
 
     currentDay: {},
     currentMonth: {},
@@ -63,20 +63,13 @@ Page({
     // })
   },
 
-  onScrollStart(event: any) {
-    console.log(event)
-  },
-
-  onScrollEnd(event: any) {
-    console.log(event)
-  },
-
   onScroll(event: any) {
-    console.log(event)
-    let top = event.detail.scrollTop > 30 ? 30 : event.detail.scrollTop
-    if (top > 10) {
+    // console.log(event)
+    let scrollTop = event.detail.scrollTop
+    let opacityOffset = scrollTop > 30 ? 30 : event.detail.scrollTop
+    if (opacityOffset > 10) {
       this.setData({
-        opacity: top / 30
+        opacity: opacityOffset / 30
       })
     } else {
       this.setData({
@@ -84,30 +77,37 @@ Page({
       })
     }
   },
-  
+
   /************* 系统方法，生命周期 ****************/
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
     this.updateUIData()
+
+    let info = wx.getSystemInfoSync()
+    this.setData({
+      stateBarHeight:info.statusBarHeight
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    const query = wx.createSelectorQuery();
-    query.select('#scrollarea').boundingClientRect();
-    query.select('#header-logo').boundingClientRect();
-    query.exec((res) => {
-      debugger
-      const scrollarea = res[0].height;
-      const header = res[1].height;
-      this.setData({
-        innerScrollViewHeight : scrollarea - header
-      })
-    });
+
+    // 动态获取标签高度
+    // const query = wx.createSelectorQuery();
+    // query.select('#scrollarea').boundingClientRect();
+    // query.select('#header-logo').boundingClientRect();
+    // query.select('#details').boundingClientRect()
+    // query.exec((res) => {
+    //   const scrollarea = res[0].height;
+    //   const details = res[2].height;
+    //   this.setData({
+    //     innerScrollViewHeight : scrollarea - details
+    //   })
+    // });
   },
 
   /**
