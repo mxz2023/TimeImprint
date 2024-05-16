@@ -6,14 +6,14 @@
   </t-navbar>
 
   <!-- 内容区域 -->
-  <scroll-view class="scrollarea" scroll-y="{{canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll">
+  <scroll-view class="scrollarea" id="scrollarea" scroll-y="{{!canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll">
 
     <!--logo-->
-    <view class="header-logo" style="opacity: {{1-opacity}}">
+    <view class="header-logo" id="header-logo" style="opacity: {{1-opacity}}">
       <image class="header-logo-image" src="{{titleImage}}" mode="aspectFit" />
     </view>
 
-    <scroll-view scroll-y="{{!canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll">
+    <scroll-view class="inner-scrollarea" scroll-y="{{canMainScroll}}" type="list" bind:scrollstart="onScrollStart" bind:scrollend="onScrollEnd" bind:scroll="onScroll" style="height: {{innerScrollViewHeight}}px">
 
       <view class="mView">
         <!-- 主日历 -->

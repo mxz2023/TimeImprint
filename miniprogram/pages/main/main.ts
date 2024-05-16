@@ -12,6 +12,7 @@ Page({
     opacity: 0,
     titleImage: "/static/welcome_text_2.png",
     canMainScroll:true,
+    innerScrollViewHeight:0,
 
     currentDay: {},
     currentMonth: {},
@@ -96,7 +97,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    const query = wx.createSelectorQuery();
+    query.select('#scrollarea').boundingClientRect();
+    query.select('#header-logo').boundingClientRect();
+    query.exec((res) => {
+      debugger
+      const scrollarea = res[0].height;
+      const header = res[1].height;
+      this.setData({
+        innerScrollViewHeight : scrollarea - header
+      })
+    });
   },
 
   /**
