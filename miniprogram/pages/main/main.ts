@@ -73,7 +73,7 @@ Page({
     var year = date.getFullYear()
     var month = date.getMonth()
     if (month - 1 == -1) {
-      date.setMonth(12)
+      date.setMonth(11)
       date.setFullYear(year - 1)
     } else {
       date.setMonth(month - 1)

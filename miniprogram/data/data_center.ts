@@ -15,7 +15,6 @@ export class DataCenter {
     // 构建今天的详细信息
     var today = this.calendar.getCurrentDay();
     // 解决引用问题
-    Object.assign(this.today, today);
     Object.assign(this.currentDay, today)
 
     this.threeMonthDays = this.generateShowDays()
