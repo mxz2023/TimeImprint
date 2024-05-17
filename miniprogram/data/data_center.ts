@@ -69,9 +69,6 @@ export class DataCenter {
    * 上一个月
    */
   public prevMonth() {
-    // this.calendar.prevMonth();
-    // this.threeMonthDays = this.generateShowDays()
-
     var day = this.calendar.getCurrentDay()
     var date = new Date(day.date.getFullYear(), day.date.getMonth()-1, day.date.getDate());
     this.updateCurrentDate(date);
@@ -81,9 +78,6 @@ export class DataCenter {
    * 下一个月
    */
   public nextMonth() {
-    // this.calendar.nextMonth();
-    // this.threeMonthDays = this.generateShowDays();
-
     var day = this.calendar.getCurrentDay()
     var date = new Date(day.date.getFullYear(), day.date.getMonth()+1, day.date.getDate());
     this.updateCurrentDate(date);
@@ -112,6 +106,7 @@ export class DataCenter {
     var isSameYear = this.today.date.getFullYear() == this.currentDay.date.getFullYear()
     return (!isSameMonth) || (!isSameYear)
   }
+
   /**
    * 构建
    * @param threeMonthDays 保存界面显示的日期数据

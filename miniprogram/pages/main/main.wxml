@@ -12,13 +12,13 @@
 
   <view class="details" id="details">
     <!-- 日期详细信息 -->
-    <view class="mView view-header">
-      <view class="mView view-header-date">
+    <view class="view-header">
+      <view class="view-header-date">
         <text class="text-header-date">{{currentDay.title1}}</text>
         <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
       </view>
-      <view class="mView view-header-detail">
-        <view class="mView view-header-detail-top">
+      <view class="view-header-detail">
+        <view class="view-header-detail-top">
           <text class="text-header-detail1">{{currentDay.title5}}</text>
           <text class="text-header-detail2">{{currentDay.title2}}</text>
         </view>
@@ -37,7 +37,7 @@
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list">
-    <view class="mView">
+    <view class="view-calendar">
       <!-- 主日历 -->
       <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></mxz-calendar>
     </view>
