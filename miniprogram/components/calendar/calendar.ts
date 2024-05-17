@@ -61,9 +61,9 @@ Component({
     onChangecurrent(event: any) {
       var currentIndex = event.currentTarget.dataset.current;
       var current = event.detail.current
-      // this.setData({
-      //   currentIndex: current,
-      // });
+      this.setData({
+        currentIndex: 1,
+      });
       let isNextMonth = true
       if (currentIndex > current) {
         // gDataCenter.prevMonth();
