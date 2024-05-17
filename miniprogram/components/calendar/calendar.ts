@@ -64,15 +64,17 @@ Component({
       this.setData({
         currentIndex: current,
       });
-  
+      let isNextMonth = true
       if (currentIndex > current) {
-        gDataCenter.prevMonth();
+        // gDataCenter.prevMonth();
+        isNextMonth = false
       } else if (currentIndex < current) {
-        gDataCenter.nextMonth();
+        // gDataCenter.nextMonth();
+        isNextMonth = true
       } else {
         return
       }
-      this.updateUIData();
+      this.sendMothChangeEvent(isNextMonth);
     },
   
     updateUIData() {
@@ -82,6 +84,20 @@ Component({
       }, ()=> {
         this.sendDataChangeEvent();
       });
+    },
+
+    sendMothChangeEvent(isNextMonth: boolean) {
+      // detail对象，提供给事件监听函数
+      var myEventDetail = {
+        "isNextMonth":isNextMonth
+      } 
+      // 触发事件的选项
+      var myEventOption = {} 
+      if (isNextMonth) {
+        this.triggerEvent('updateMonth', myEventDetail, myEventOption)
+      } else {
+        this.triggerEvent('updateMonth', myEventDetail, myEventOption)
+      }
     },
 
     sendDataChangeEvent() {

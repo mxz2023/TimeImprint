@@ -107,6 +107,18 @@
   margin-top: 5px;
 }
 
+.view-iconBtn {
+  color:white;
+  font-size: 28px;
+  background-color: yellowgreen;
+  border-radius: 3px;
+  margin-right: 10px;
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+  justify-content: center;
+  align-items: center;
+}
+
 .view-today {
   width: 2rem;
   aspect-ratio: 1 / 1;
