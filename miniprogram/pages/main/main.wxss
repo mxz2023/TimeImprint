@@ -39,7 +39,7 @@
 }
 
 .view-header {
-  height: 5rem;
+  height: 5.5rem;
   flex-direction: row;
   flex-grow: 1;
   justify-content: flex-start;
@@ -49,7 +49,7 @@
   background-color: var(--yellow-color);
   border-radius: 5px;
   width: 4rem;
-  height: 5rem;
+  height: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
