@@ -110,11 +110,15 @@ export class Calendar {
     // Add days from previous month
     const prevMonthLastDay = new Date(year, month, 0);
     const prevMonthLastDate = prevMonthLastDay.getDate();
-    const prevMonthDays = firstDay.getDay();
+    const prevMonthDays = firstDay.getDay(); //星期x
 
     // 前一个月需要显示的数据个数
-    const prevCount = prevMonthLastDate - prevMonthDays + 1
-    for (let i = prevCount; i <= prevMonthLastDate; i++) {
+    let prevDate = prevMonthLastDate - prevMonthDays + 1
+    if (prevDate > prevMonthLastDate) {
+      // 确保显示的日期一定包含上一个月的日期
+      prevDate = prevDate - 7
+    }
+    for (let i = prevDate; i <= prevMonthLastDate; i++) {
       const prevDateObj = new Date(year, month - 1, i);
       days.push(this.generateDay(prevDateObj))
     }
