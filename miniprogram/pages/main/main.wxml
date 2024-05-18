@@ -23,8 +23,9 @@
           <text class="text-header-detail2">{{currentDay.title2}}</text>
         </view>
         <view class="view-header-detail-bottom">
-          <t-icon class="view-iconBtn" id='forwardIcon' name="{{forwardIcon}}" data-name="{{forwardIcon}}" bind:click="onIconTap" />
-          <t-icon class="view-iconBtn" id='backwardsIcon' name="{{backwardsIcon}}" data-name="{{backwardsIcon}}" bind:click="onIconTap" />
+          <!-- 去掉手动切换功能 -->
+          <!-- <t-icon class="view-iconBtn" id='forwardIcon' name="{{forwardIcon}}" data-name="{{forwardIcon}}" bind:click="onIconTap" />
+          <t-icon class="view-iconBtn" id='backwardsIcon' name="{{backwardsIcon}}" data-name="{{backwardsIcon}}" bind:click="onIconTap" /> -->
 
           <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
             <text class="text-today">今</text>

@@ -138,8 +138,15 @@ export class Calendar {
       }
     }
 
+    // 解决最后一行数量不够问题
+    let count = days.length
+    let lastCount = 7
+    if (count <= 35) {
+      lastCount = 14
+    }
+
     // Add days from next month
-    const nextMonthDays = 7 - lastDay.getDay() - 1;
+    const nextMonthDays = lastCount - lastDay.getDay() - 1;
     for (let i = 1; i <= nextMonthDays; i++) {
       const nextDateObj = new Date(year, month + 1, i);
       days.push(this.generateDay(nextDateObj));

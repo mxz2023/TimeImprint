@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "mxz-calendar": "../../components/calendar/calendar"
-  }
+  },
+  "renderer": "skyline"
 }

@@ -62,19 +62,17 @@ Component({
       var currentIndex = event.currentTarget.dataset.current;
       var current = event.detail.current
       this.setData({
-        currentIndex: 1,
+        currentIndex: current,
       });
-      let isNextMonth = true
+  
       if (currentIndex > current) {
-        // gDataCenter.prevMonth();
-        isNextMonth = false
+        gDataCenter.prevMonth();
       } else if (currentIndex < current) {
-        // gDataCenter.nextMonth();
-        isNextMonth = true
+        gDataCenter.nextMonth();
       } else {
         return
       }
-      this.sendMothChangeEvent(isNextMonth);
+      this.updateUIData();
     },
   
     updateUIData() {
@@ -84,20 +82,6 @@ Component({
       }, ()=> {
         this.sendDataChangeEvent();
       });
-    },
-
-    sendMothChangeEvent(isNextMonth: boolean) {
-      // detail对象，提供给事件监听函数
-      var myEventDetail = {
-        "isNextMonth":isNextMonth
-      } 
-      // 触发事件的选项
-      var myEventOption = {} 
-      if (isNextMonth) {
-        this.triggerEvent('updateMonth', myEventDetail, myEventOption)
-      } else {
-        this.triggerEvent('updateMonth', myEventDetail, myEventOption)
-      }
     },
 
     sendDataChangeEvent() {
@@ -112,13 +96,11 @@ Component({
   lifetimes:{
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
-      
+      this.sendDataChangeEvent();
     },
-    
     moved: function () {
 
     },
-
     detached: function () {
 
     },
@@ -129,7 +111,6 @@ Component({
     show: function () {
 
     },
-
     hide: function () {
 
     },
