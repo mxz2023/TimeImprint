@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "mxz-calendar": "../../components/calendar/calendar"
+    "m-calendar": "../../components/calendar/calendar",
+    "m-date-picker": "../../components/date-picker/date-picker"
   },
   "renderer": "skyline"
 }

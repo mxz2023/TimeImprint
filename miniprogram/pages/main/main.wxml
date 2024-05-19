@@ -30,10 +30,14 @@
           <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
             <text class="text-today">今</text>
           </view>
-
+    
+          <!-- 日期选择器 -->
           <picker class="view-header-opt" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31" data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
             <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
           </picker>
+
+          <!-- 由于暂不支持skyline，继续使用系统 -->
+          <!-- <m-date-picker class="view-option"></m-date-picker> -->
 
         </view>
       </view>
@@ -43,7 +47,7 @@
   <scroll-view class="scrollarea" scroll-y="true" type="list">
     <view class="view-calendar">
       <!-- 主日历 -->
-      <mxz-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></mxz-calendar>
+      <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
     </view>
   </scroll-view>
 </view>

@@ -28,6 +28,10 @@ page {
   --day-bg-today-color: var(--red-color);
   --day-bg-select-color: var(--green-light-color);
 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
   /* 解决page父视图不滚动 */
   overflow: hidden;
 }

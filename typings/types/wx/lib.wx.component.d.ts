@@ -396,7 +396,7 @@ declare namespace WechatMiniprogram.Component {
              *
              * 最低基础库版本：[`1.6.3`](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html)
              */
-            created(): void
+          created(): void
             /**
              * 在组件实例进入页面节点树时执行
              *

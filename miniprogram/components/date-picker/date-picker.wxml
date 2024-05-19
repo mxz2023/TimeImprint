@@ -1,0 +1,5 @@
+<!--components/date-picker/date-picker.wxml-->
+<view class="container">
+  <text class="text-date" bind:tap="showPicker">{{dateTextValue}}</text>
+  <t-date-time-picker title="选择日期" visible="{{isVisible}}" mode="month" value="{{dateValue}}" format="YYYY-M" bindchange="onConfirm" bindcancel="onCancel" start="{{start}}" end="{{end}}" />
+</view>

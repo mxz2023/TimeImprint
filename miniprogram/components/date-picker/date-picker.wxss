@@ -1,0 +1,18 @@
+/* components/date-picker/date-picker.wxss */
+.container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background-color: var(--green-color);
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 2rem;
+  margin-right: 10px;
+}
+
+.text-date {
+  color: aliceblue;
+  line-height: 2rem;
+}
