@@ -1,5 +1,9 @@
 /* pages/main/main.wxss */
 
+.t-tab-bar {
+  flex-direction: row;
+}
+
 .mView {
   display: flex;
   box-sizing: border-box;
@@ -16,6 +20,7 @@
 .scrollarea {
   flex: 1;
   overflow-y: auto;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 60);
 }
 
 .header-logo {

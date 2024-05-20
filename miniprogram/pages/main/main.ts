@@ -8,6 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    value: 'home',
+    list: [
+      { value: 'home', icon: 'home', ariaLabel: '首页' },
+      { value: 'task', icon: 'collection', ariaLabel: '任务' },
+      { value: 'user', icon: 'user', ariaLabel: '我的' },
+    ],
+
     title: "叶记时光 🍀",
     opacity: 0,
     titleImage: "/static/welcome_text_2.png",
@@ -47,6 +54,12 @@ Page({
     } else {
       this.forwardMonth()
     }
+  },
+
+  onChange(e:any) {
+    this.setData({
+      value: e.detail.value,
+    });
   },
 
   // 定位到今天

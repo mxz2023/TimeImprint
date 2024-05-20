@@ -1,6 +1,6 @@
 <!--pages/main/main.wxml-->
 
-<view class="mBox" style="padding-top: {{stateBarHeight}}px;">
+<view wx:if="{{value == 'home'}}" class="mBox" style="padding-top: {{stateBarHeight}}px;">
   <!-- 导航，由于Scroll滚动嵌套原因，暂时去掉导航栏效果 -->
   <!-- <t-navbar style="opacity: {{opacity}}" title="{{title}}">
   </t-navbar> -->
@@ -30,7 +30,7 @@
           <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
             <text class="text-today">今</text>
           </view>
-    
+
           <!-- 日期选择器 -->
           <picker class="view-header-opt" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31" data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
             <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
@@ -51,3 +51,19 @@
     </view>
   </scroll-view>
 </view>
+
+<view wx:elif="{{value == 'app'}}">
+  <text>{{"app"}}</text>
+</view>
+
+<view wx:elif="{{value == 'chat'}}">
+  <text>{{"chat"}}</text>
+</view>
+
+<view wx:else="{{value == 'user'}}">
+  <text>{{"user"}}</text>
+</view>
+
+<t-tab-bar t-class="t-tab-bar" value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+  <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" ariaLabel="{{item.ariaLabel}}"></t-tab-bar-item>
+</t-tab-bar>
