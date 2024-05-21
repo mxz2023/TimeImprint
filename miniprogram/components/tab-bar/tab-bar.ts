@@ -12,9 +12,10 @@ Component({
    * 组件的初始数据
    */
   data: {
+    currentIndex: 0,
     list: [
       { 
-        value: 'home', 
+        value: 'home',
         icon_d: '../../static/tab-bar/tab-bar-home-d.png',
         icon_s: '../../static/tab-bar/tab-bar-home-s.png',
         ariaLabel: '首页' 
@@ -40,6 +41,19 @@ Component({
   methods: {
     onSelectItem(e: any) {
 
+      let tapIndex = e.currentTarget.dataset.index
+      if (tapIndex != this.data.currentIndex) {
+        // detail对象，提供给事件监听函数
+        var myEventDetail = {
+          index: tapIndex
+        } 
+        // 触发事件的选项
+        var myEventOption = {} 
+        this.triggerEvent('updateSelectIndex', myEventDetail, myEventOption)
+        this.setData({
+          currentIndex: tapIndex
+        })
+      }
     }
   }
 })

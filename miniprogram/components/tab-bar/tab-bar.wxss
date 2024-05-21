@@ -5,10 +5,16 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 1rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-bar-item-view {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .tab-bar-item-icon{

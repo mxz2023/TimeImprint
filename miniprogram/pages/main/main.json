@@ -1,9 +1,7 @@
 {
   "usingComponents": {
-    "t-icon": "tdesign-miniprogram/icon/icon",
-    "m-calendar": "../../components/calendar/calendar",
     "m-tab-bar": "../../components/tab-bar/tab-bar",
-    "m-date-picker": "../../components/date-picker/date-picker"
+    "m-home": "../../views/home/home"
   },
   "renderer": "skyline"
 }

@@ -1,8 +1,7 @@
 <!--components/tab-bar/tab-bar.wxml-->
-<view class="container"> 
-  <view class="tab-bar-item-view" wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
-    <view wx:if="{{item.icon_d}}" bind:tap="onSelectItem">
-    <image class="tab-bar-item-icon" src="{{item.icon_d}}" mode="aspectFill" />
-    </view>
+<view class="container">
+  <view class="tab-bar-item-view" wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" 
+    bind:tap="onSelectItem" data-index="{{index}}">
+    <image class="tab-bar-item-icon" src="{{currentIndex == index ? item.icon_s : item.icon_d}}" mode="aspectFill" />
   </view>
 </view>

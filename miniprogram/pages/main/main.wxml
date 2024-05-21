@@ -1,69 +1,13 @@
 <!--pages/main/main.wxml-->
 
-<view wx:if="{{value == 'home'}}" class="mBox" style="padding-top: {{stateBarHeight}}px;">
-  <!-- 导航，由于Scroll滚动嵌套原因，暂时去掉导航栏效果 -->
-  <!-- <t-navbar style="opacity: {{opacity}}" title="{{title}}">
-  </t-navbar> -->
+<m-home wx:if="{{selectIndex == 0}}" class="mBox" style="padding-top: {{stateBarHeight}}px;"></m-home>
 
-  <!-- 内容区域 由于Scroll滚动嵌套原因，暂时去掉导航栏效果-->
-  <view class="header-logo" id="header-logo" style="opacity: {{1-opacity}}">
-    <image class="header-logo-image" src="{{titleImage}}" mode="aspectFit" />
-  </view>
+<view wx:elif="{{selectIndex == 1}}" class="mBox" ></view>
 
-  <view class="details" id="details">
-    <!-- 日期详细信息 -->
-    <view class="view-header">
-      <view class="view-header-date">
-        <text class="text-header-date">{{currentDay.title1}}</text>
-        <!-- <text class="text-header-date-sub">{{currentDay.title4}}</text> -->
-      </view>
-      <view class="view-header-detail">
-        <view class="view-header-detail-top">
-          <text class="text-header-detail1">{{currentDay.title5}}</text>
-          <text class="text-header-detail2">{{currentDay.title2}}</text>
-        </view>
-        <view class="view-header-detail-bottom">
-          <!-- 去掉手动切换功能 -->
-          <!-- <t-icon class="view-iconBtn" id='forwardIcon' name="{{forwardIcon}}" data-name="{{forwardIcon}}" bind:click="onIconTap" />
-          <t-icon class="view-iconBtn" id='backwardsIcon' name="{{backwardsIcon}}" data-name="{{backwardsIcon}}" bind:click="onIconTap" /> -->
+<view wx:elif="{{selectIndex == 2}}" class="mBox" ></view>
 
-          <view class="view-today" wx:if="{{needShowToday}}" bind:tap="onLocationToday">
-            <text class="text-today">今</text>
-          </view>
-
-          <!-- 日期选择器 -->
-          <picker class="view-header-opt" mode="date" value="{{currentMonth.resFormat}}" fields="month" start="1900-01-01" end="2100-12-31" data-day="{{currentDay.title1}}" bindchange="onPickerDateChange">
-            <text class="text-header-opt-bottom">{{currentMonth.res}}</text>
-          </picker>
-
-          <!-- 由于暂不支持skyline，继续使用系统 -->
-          <!-- <m-date-picker class="view-option"></m-date-picker> -->
-
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <scroll-view class="scrollarea" scroll-y="true" type="list">
-    <view class="view-calendar">
-      <!-- 主日历 -->
-      <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
-    </view>
-  </scroll-view>
-</view>
-
-<view wx:elif="{{value == 'app'}}">
-  <text>{{"app"}}</text>
-</view>
-
-<view wx:elif="{{value == 'chat'}}">
-  <text>{{"chat"}}</text>
-</view>
-
-<view wx:else="{{value == 'user'}}">
-  <text>{{"user"}}</text>
-</view>
+<view wx:else class="mBox"></view>
 
 <view class="wrapper">
-  <m-tab-bar bindchange="onChange" list="{{list}}"></m-tab-bar>
+  <m-tab-bar bind:updateSelectIndex="onUpdateSelectIndex" list="{{list}}"></m-tab-bar>
 </view>
