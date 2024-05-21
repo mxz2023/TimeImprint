@@ -64,6 +64,6 @@
   <text>{{"user"}}</text>
 </view>
 
-<t-tab-bar t-class="t-tab-bar" value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
-  <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" ariaLabel="{{item.ariaLabel}}"></t-tab-bar-item>
-</t-tab-bar>
+<view class="wrapper">
+  <m-tab-bar bindchange="onChange" list="{{list}}"></m-tab-bar>
+</view>

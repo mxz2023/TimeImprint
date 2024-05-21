@@ -20,7 +20,7 @@
 .scrollarea {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 60);
+  /* padding-bottom: calc(env(safe-area-inset-bottom) + 60); */
 }
 
 .header-logo {

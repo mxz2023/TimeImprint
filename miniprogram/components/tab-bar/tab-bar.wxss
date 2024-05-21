@@ -1,0 +1,17 @@
+/* components/tab-bar/tab-bar.wxss */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-bar-item-icon{
+  width: 24px;
+  height: 24px;
+}
