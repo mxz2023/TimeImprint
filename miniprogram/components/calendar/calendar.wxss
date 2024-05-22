@@ -1,10 +1,5 @@
 /* compent/calendar/calendar.wxss */
 
-view {
-  display: flex;
-  flex-direction: column;
-}
-
 .container {
   display: flex;
   flex-direction: column;

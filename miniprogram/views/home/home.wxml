@@ -1,5 +1,5 @@
 <!--views/home.wxml-->
-<view class="mBox">
+<view class="view-content">
   <!-- 导航，由于Scroll滚动嵌套原因，暂时去掉导航栏效果 -->
   <!-- <t-navbar style="opacity: {{opacity}}" title="{{title}}">
   </t-navbar> -->

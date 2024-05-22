@@ -1,6 +1,16 @@
 <!--views/mine/mine.wxml-->
-<view class="mBox">
-  <view class="view-header"></view>
-  <view class="view-content"></view>
-  <view class="view-list"></view>
+<view class="mContent">
+  <m-nav></m-nav>
+
+  <view class="view-header">
+    <view class="view-user">
+      <view class="view-user-icon"></view>
+      <text class="view-user-nickname">{{"浮生半日闲"}}</text>
+    </view>
+    
+  </view>
+  <view class="view-content">
+  </view>
+  <view class="view-list">
+  </view>
 </view>

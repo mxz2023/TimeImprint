@@ -1,6 +1,6 @@
 <!--pages/main/main.wxml-->
 
-<view class="mBox" style="padding-top: {{stateBarHeight}}px">
+<view class="mBox">
   <m-home wx:if="{{selectIndex == 0}}"></m-home>
 
   <m-more wx:elif="{{selectIndex == 1}}"></m-more>

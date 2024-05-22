@@ -1,4 +1,4 @@
 <!--views/more/more.wxml-->
-<view class="mBox">
+<view class="mContent">
   <view class="view-content"></view>
 </view>
