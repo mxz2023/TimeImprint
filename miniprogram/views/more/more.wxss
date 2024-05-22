@@ -1,18 +1,5 @@
 /* views/more/more.wxss */
 
-.mView {
-  display: flex;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.mBox {
-  width: 100%;
-  height: 100vh;
-  background-color: var(--white-color);
-  flex-direction: column;
-}
-
 .view-content {
   background-color: darkcyan;
   width: 100%;

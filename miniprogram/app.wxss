@@ -36,4 +36,15 @@ page {
   overflow: hidden;
 }
 
+.mView {
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
+.mBox {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--white-color);
+  flex-direction: column;
+}
