@@ -1,12 +1,15 @@
 <!--pages/main/main.wxml-->
 
-<m-home wx:if="{{selectIndex == 0}}" class="mBox" style="padding-top: {{stateBarHeight}}px;"></m-home>
+<view class="mBox" style="padding-top: {{stateBarHeight}}px">
+  <m-home wx:if="{{selectIndex == 0}}"></m-home>
 
-<view wx:elif="{{selectIndex == 1}}" class="mBox" ></view>
+  <m-more wx:elif="{{selectIndex == 1}}"></m-more>
 
-<view wx:elif="{{selectIndex == 2}}" class="mBox" ></view>
+  <m-mine wx:elif="{{selectIndex == 2}}"></m-mine>
 
-<view wx:else class="mBox"></view>
+  <view wx:else class="mBox"></view>
+</view>
+
 
 <view class="wrapper">
   <m-tab-bar bind:updateSelectIndex="onUpdateSelectIndex" list="{{list}}"></m-tab-bar>
