@@ -4,13 +4,28 @@
 
   <view class="view-header">
     <view class="view-user">
-      <view class="view-user-icon"></view>
+      <t-avatar class="view-user-avatar" shape="round" size="large" image="{{image}}" />
       <text class="view-user-nickname">{{"浮生半日闲"}}</text>
     </view>
-    
+
   </view>
+
   <view class="view-content">
+
   </view>
+
   <view class="view-list">
+    <scroll-view class="scrollarea" scroll-y="true" type="list">
+      <view class="view-list-item" wx:for="{{ listData1 }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+        <t-cell-group theme="card" bordered>
+          <t-cell class="view-t-cell" title="{{item}}" hover arrow />
+        </t-cell-group>
+      </view>
+      <view class="view-list-item" wx:for="{{ listData2 }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+        <t-cell-group theme="card" bordered>
+          <t-cell class="view-t-cell" title="{{item}}" hover arrow />
+        </t-cell-group>
+      </view>
+    </scroll-view>
   </view>
 </view>

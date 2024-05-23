@@ -12,3 +12,10 @@
   height: 100%;
   width: 100%;
 }
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  align-self: center;
+  justify-content: center;
+}
