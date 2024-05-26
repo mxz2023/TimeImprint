@@ -2,7 +2,7 @@
   "component": true,
   "styleIsolation": "isolated",
   "usingComponents": {
-    "m-nav": "../../components/navigation-bar/navigation-bar",
+    "m-nav": "../../components/navigationbar/navigationbar",
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
     "t-avatar": "tdesign-miniprogram/avatar/avatar",

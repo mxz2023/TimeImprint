@@ -109,9 +109,9 @@ Page({
 
   // 发布按钮
   onPublishAction(_: any) {
-    // wx.navigateTo({
-    //   url: '/pages/task/task'
-    // })
+    wx.navigateTo({
+      url: '/pages/task/task'
+    })
   },
 
   onScroll(event: any) {

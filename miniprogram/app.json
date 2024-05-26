@@ -3,7 +3,8 @@
     "pages/welcome/welcome",
     "pages/main/main",
     "pages/demo/demo",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/task/task"
   ],
   "window": {
     "navigationBarTextStyle": "black",

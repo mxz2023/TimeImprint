@@ -43,12 +43,15 @@
     </view>
   </view>
 
-  <scroll-view class="scrollarea" scroll-y="true" type="list">
+  <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
     <view class="view-calendar">
       <!-- 主日历 -->
       <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
     </view>
   </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="view-record">
+    <image class="view-record" src="../../static/btn/btn-fabu.png" bind:tap="onPublishAction"></image>
+  </view>
 </view>
-
-

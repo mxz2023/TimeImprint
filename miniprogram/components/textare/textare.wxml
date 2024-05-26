@@ -1,0 +1,8 @@
+<!--components/textare/textare.wxml-->
+<view class="container">
+  <view class="view-title">
+    <t-icon name="{{content.icon}}" size="28"></t-icon>
+    <text class="text-title">{{content.text}}</text>
+  </view>
+  <t-textarea class="view-content" placeholder="{{content.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{maxlenght}}" bordered="true" />
+</view>
