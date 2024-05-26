@@ -19,10 +19,22 @@ Page({
       url: '../main/main',
     })
   },
+
   onBack() {
     wx.navigateBack ({
       delta:1
     })
+  },
+
+  onBlur(event:WechatMiniprogram.CustomEvent) {
+    debugger
+    if(event?.currentTarget?.dataset?.target == "title") {
+      let title = event.detail.value
+    }
+  },
+
+  onTextareBlur(event:WechatMiniprogram.CustomEvent) {
+    debugger
   },
 
   /**

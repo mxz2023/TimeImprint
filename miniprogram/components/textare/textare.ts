@@ -1,11 +1,13 @@
+import { EventManager } from "XrFrame/xrFrameSystem"
+import { Event } from "../../model/data_event"
+
 // components/textare/textare.ts
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    content: Object,
-    maxlenght: Number
+    item: Object,
   },
 
   /**
@@ -43,6 +45,15 @@ Component({
    * 自定义方法
    */
   methods: {
-
+    onBlur(event:WechatMiniprogram.CustomEvent) {
+      // detail对象，提供给事件监听函数
+      var myEventDetail = {
+        value:event.detail.value,
+        target:event.currentTarget.dataset.target
+      } 
+      // 触发事件的选项
+      var myEventOption = {} 
+      this.triggerEvent('textareBlur', myEventDetail, myEventOption)
+    }
   },
 })

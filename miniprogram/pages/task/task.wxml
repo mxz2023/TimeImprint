@@ -12,7 +12,7 @@
       <t-icon name="letters-h" size="32"></t-icon>
       <text class="text-title" style="font-size: 24px;">标题</text>
     </view>
-    <t-input class="view-header" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true"></t-input>
+    <t-input class="view-header" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true" bind:blur="onBlur"></t-input>
   </view>
 
   <view class="view-time">
@@ -21,12 +21,12 @@
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
     <view class="view-item" wx:for="{{ listData }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-      <m-textare content="{{item}}" maxlenght="{{maxlenght}}"></m-textare>
+      <m-textare item="{{item}}" bind:textareBlur="onTextareBlur"></m-textare>
     </view>
 
-  <!-- 发布按钮 -->
-  <view class="view-record">
-    <image class="img-send" src="../../static/btn/btn-fabu.png" mode="aspectFill"/>
-  </view>
+    <!-- 发布按钮 -->
+    <view class="view-record">
+      <image class="img-send" src="../../static/btn/btn-fabu.png" mode="aspectFill" />
+    </view>
   </scroll-view>
 </view>
