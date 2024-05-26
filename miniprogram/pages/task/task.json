@@ -9,6 +9,7 @@
     "t-checkbox": "tdesign-miniprogram/checkbox/checkbox",
     "t-checkbox-group": "tdesign-miniprogram/checkbox-group/checkbox-group",
     "t-radio": "tdesign-miniprogram/radio/radio",
-    "t-radio-group": "tdesign-miniprogram/radio-group/radio-group"
+    "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
+    "t-button": "tdesign-miniprogram/button/button"
   }
 }

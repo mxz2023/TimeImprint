@@ -1,5 +1,4 @@
 <!--pages/task/task.wxml-->
-
 <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" title="标题文字">
   <view slot="capsule" class="custom-capsule">
     <t-icon size="20" bind:tap="onBack" aria-role="button" aria-label="返回" name="chevron-left" class="custom-capsule__icon back" />
@@ -11,13 +10,13 @@
   <view class="view-title">
     <view class="view-title">
       <t-icon name="letters-h" size="32"></t-icon>
-      <text class="text-title" style="font-size: 32px;">标题</text>
+      <text class="text-title" style="font-size: 24px;">标题</text>
     </view>
     <t-input class="view-header" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true"></t-input>
   </view>
 
   <view class="view-time">
-    <t-input label="打开日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '通讯录' } }}" borderless="true" disabled="true" />
+    <t-input label="打开日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" />
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
@@ -25,9 +24,9 @@
       <m-textare content="{{item}}" maxlenght="{{maxlenght}}"></m-textare>
     </view>
 
-    <!-- 发布按钮 -->
+  <!-- 发布按钮 -->
   <view class="view-record">
-    <!-- <image class="view-record" src="../../static/btn/btn-fabu.png" bind:tap="onPublishAction"></image> -->
+    <image class="img-send" src="../../static/btn/btn-fabu.png" mode="aspectFill"/>
   </view>
   </scroll-view>
 </view>
