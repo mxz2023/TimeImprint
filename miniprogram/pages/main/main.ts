@@ -1,5 +1,6 @@
 // pages/main/main.ts
 import { shareAppMessage, shareTimeline } from '../../utils/share'
+import { tabbar } from '../../data/config_tabbar.js'
 
 Page({
 
@@ -7,31 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    list: tabbar,
     stateBarHeight: 0,
-    selectIndex:0,
-    list: [
-      { 
-        value: 'home',
-        icon_d: '../../static/tab-bar/tab-bar-home-d.png',
-        icon_s: '../../static/tab-bar/tab-bar-home-s.png',
-        ariaLabel: '首页' 
-      },
-    //   { 
-    //     value: 'more', 
-    //     icon_d: '../../static/tab-bar/tab-bar-more-d.png',
-    //     icon_s: '../../static/tab-bar/tab-bar-more-s.png',
-    //     ariaLabel: '任务' 
-    //   },
-    //   { 
-    //     value: 'user', 
-    //     icon_d: '../../static/tab-bar/tab-bar-medal-d.png',
-    //     icon_s: '../../static/tab-bar/tab-bar-medal-s.png',
-    //     ariaLabel: '我的' 
-    //   }
-    ],
+    selectIndex: 0,
   },
 
-  onUpdateSelectIndex(e:any) {
+  onUpdateSelectIndex(e: any) {
     this.setData({
       selectIndex: e.detail.index,
     });
@@ -101,9 +83,9 @@ Page({
 
   },
 
-   /**
-   * 用户点击右上角分享
-   */
+  /**
+  * 用户点击右上角分享
+  */
   onShareAppMessage(res) {
     shareAppMessage(res.from, res.target)
   },

@@ -1,5 +1,5 @@
 // views/home.ts
-import { gDataCenter } from '../../data/data_center'
+import { gDataCenter } from '../../model/data_center'
 
 
 Page({
