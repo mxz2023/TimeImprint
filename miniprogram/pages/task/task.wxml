@@ -1,5 +1,8 @@
 <!--pages/task/task.wxml-->
-<t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" title="标题文字">
+
+<wxs src='./task.wxs' module="utils"></wxs>
+
+<t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" title="{{title}}">
   <view slot="capsule" class="custom-capsule">
     <t-icon size="20" bind:tap="onBack" aria-role="button" aria-label="返回" name="chevron-left" class="custom-capsule__icon back" />
     <t-icon size="20" bind:tap="onGoHome" aria-role="button" aria-label="首页" name="home" class="custom-capsule__icon home" />
@@ -12,11 +15,11 @@
       <t-icon name="letters-h" size="32"></t-icon>
       <text class="text-title" style="font-size: 24px;">标题</text>
     </view>
-    <t-input class="view-header" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true" bind:blur="onBlur"></t-input>
+    <t-input class="view-header" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true" bind:blur="onBlur" value="{{utils.eventTitle(lastEvent)}}"></t-input>
   </view>
 
   <view class="view-time">
-    <t-input label="打开日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" />
+    <t-input label="打卡日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" value="{{lastEvent.showTime}}" />
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">

@@ -1,14 +1,16 @@
 // pages/task/task.ts
 import { task_abcde } from "../../data/config_task"
+import { Event } from '../../model/data_event'
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    testData:"TTTTTT",
     title: "打卡 📌",
-    maxlenght: 30,
-    listData: task_abcde
+    listData: task_abcde,
+    lastEvent: new Event(),
   },
 
   onGoHome() {
@@ -27,21 +29,26 @@ Page({
   },
 
   onBlur(event:WechatMiniprogram.CustomEvent) {
-    debugger
     if(event?.currentTarget?.dataset?.target == "title") {
-      let title = event.detail.value
+      let lastEvent = this.data.lastEvent
+      lastEvent.taskTitle = event.detail.value
+      this.setData({
+        lastTask:lastEvent
+      })
     }
   },
 
   onTextareBlur(event:WechatMiniprogram.CustomEvent) {
     debugger
+    // event?.detail?.target
+    // event?.detail?.value
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    
   },
 
   /**
@@ -55,10 +62,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    let date = new Date()
-    this.setData({
-      date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
-    })
+    
   },
 
   /**

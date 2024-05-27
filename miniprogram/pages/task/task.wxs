@@ -1,0 +1,20 @@
+
+
+var getEventTitle = function(event) {
+  return event.eventTitle
+}
+
+var getEventTime = function(event) {
+  var date = event.eventTime
+  return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
+}
+
+var getTaskTitle = function(task) {
+  return task.taskTitle
+}
+
+module.exports = {
+  eventTitle: getEventTitle,
+  eventTime: getEventTime,
+  taskTitle: getTaskTitle,
+}
