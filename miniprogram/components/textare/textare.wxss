@@ -21,4 +21,5 @@
 
 .text-title {
   font-size: 18px;
+  color: #8b8b8b;
 }

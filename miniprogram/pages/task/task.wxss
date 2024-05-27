@@ -1,5 +1,9 @@
 /* pages/task/task.wxss */
 
+view {
+  --td-input-label-text-color: #8b8b8b
+}
+
 .custom-capsule {
   width: 100%;
   display: flex;
@@ -39,6 +43,7 @@
 
 .text-title {
   font-size: 12px;
+  color: #8b8b8b;
 }
 
 .view-header {

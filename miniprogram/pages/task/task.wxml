@@ -12,19 +12,19 @@
 <view class="main-box">
   <view class="view-title">
     <view class="view-title">
-      <t-icon name="letters-h" size="32"></t-icon>
+      <t-icon name="letters-h" style="color: #8b8b8b;" size="32"></t-icon>
       <text class="text-title" style="font-size: 24px;">标题</text>
     </view>
     <t-input class="view-header" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true" bind:blur="onBlur" value="{{utils.eventTitle(lastEvent)}}"></t-input>
   </view>
 
   <view class="view-time">
-    <t-input label="打卡日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" value="{{lastEvent.showTime}}" />
+    <t-input style="color: #8b8b8b;" label="打卡日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" value="{{utils.eventTime(lastEvent)}}" />
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
     <view class="view-item" wx:for="{{ listData }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-      <m-textare item="{{item}}" bind:textareBlur="onTextareBlur"></m-textare>
+      <m-textare item="{{item}}" itemData="{{utils.eventItemContent(lastEvent, idx)}}" bind:textareBlur="onTextareBlur"></m-textare>
     </view>
 
     <!-- 发布按钮 -->

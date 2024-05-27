@@ -5,9 +5,19 @@ var getEventTitle = function(event) {
 }
 
 var getEventTime = function(event) {
-  var date = event.eventTime
+  var date = getDate()
   return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
 }
+
+var getEventItemContent = function(event, index) {
+
+  contents = event.eventContent
+  item = contents[index]
+  value = item.content
+  console.log(value)
+  return value
+}
+
 
 var getTaskTitle = function(task) {
   return task.taskTitle
@@ -16,5 +26,6 @@ var getTaskTitle = function(task) {
 module.exports = {
   eventTitle: getEventTitle,
   eventTime: getEventTime,
+  eventItemContent: getEventItemContent,
   taskTitle: getTaskTitle,
 }

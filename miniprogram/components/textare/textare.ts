@@ -1,5 +1,3 @@
-import { EventManager } from "XrFrame/xrFrameSystem"
-import { Event } from "../../model/data_event"
 
 // components/textare/textare.ts
 Component({
@@ -8,6 +6,7 @@ Component({
    */
   properties: {
     item: Object,
+    itemData: Object
   },
 
   /**
