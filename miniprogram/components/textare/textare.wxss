@@ -16,10 +16,5 @@
 .view-content {
   display:flex;
   margin-top: 5px;
-  height: 85px;
-}
-
-.text-title {
-  font-size: 18px;
-  color: #8b8b8b;
+  height: 70px;
 }

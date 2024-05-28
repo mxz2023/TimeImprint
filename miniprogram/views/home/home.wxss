@@ -108,7 +108,7 @@
 .view-iconBtn {
   color:var(--white-color);
   font-size: 28px;
-  background-color: var(--green-light-color);
+  background-color: var(--blue-color);
   border-radius: 3px;
   margin-right: 10px;
   width: 2rem;

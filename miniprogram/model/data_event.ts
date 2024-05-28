@@ -1,18 +1,14 @@
+import { formatDate } from "../utils/util"
 
 export class Event {
-  eventId: number = 0;           // 事件id
-  eventTitle: string = "123";        // 标题
-  eventTime: Date = new Date()    // 时间
-  eventTotal: number = 10          // 大于0表示累计
+  eventId: number = 0;                // 事件id
+  eventTitle: string = "123";         // 标题
+  eventTime: string = formatDate(new Date())             // 时间
+  eventTotal: number = 10                       // 大于0表示累计
   eventContent: Array<EventContentItem> = []       // 内容
 
   taskId?: string;  // 活动id，多个事件可以参与一个活动。活动id为0，表示未参与活动。
   taskTitle?: string;  // 活动标题 
-
-  showTime: string
-  constructor() {
-    this.showTime = this.eventTime.getFullYear() + "/" + (this.eventTime.getMonth() + 1) + "/" + this.eventTime.getDate()
-  }
 }
 
 export class EventContentItem {

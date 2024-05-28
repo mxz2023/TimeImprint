@@ -1,8 +1,8 @@
 <!--components/textare/textare.wxml-->
 <view class="container">
   <view class="view-title">
-    <t-icon name="{{item.icon}}" style="color: #8b8b8b;" size="28"></t-icon>
-    <text class="text-title">{{item.text}}</text>
+    <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
+    <text style="color: {{item.color}}; font-size: {{item.size}};">{{item.text}}</text>
   </view>
-  <t-textarea class="view-content" data-target="{{item.target}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{itemData}}" />
+  <t-textarea class="view-content" style="padding: 10px;" data-target="{{item.target}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{itemData}}" />
 </view>

@@ -11,15 +11,20 @@
 
 <view class="main-box">
   <view class="view-title">
-    <view class="view-title">
-      <t-icon name="letters-h" style="color: #8b8b8b;" size="32"></t-icon>
-      <text class="text-title" style="font-size: 24px;">标题</text>
-    </view>
-    <t-input class="view-header" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" borderless="true" bind:blur="onBlur" value="{{utils.eventTitle(lastEvent)}}"></t-input>
-  </view>
+    <view class="view-title-header">
+      <view class="view-left">
+        <t-icon name="letters-h" style="color: var(--black-color);" size="32"></t-icon>
+        <text class="text-title" style="font-size: 24px;">标题</text>
+      </view>
 
-  <view class="view-time">
-    <t-input style="color: #8b8b8b;" label="打卡日期" placeholder="时间" suffixIcon="{{ { name: 'calendar-edit', ariaLabel: '日历' } }}" borderless="true" disabled="true" value="{{utils.eventTime(lastEvent)}}" />
+      <view class="view-right">
+        <text class="text-title">{{utils.eventTime(lastEvent)}}</text>
+        <t-icon name="calendar-edit" style="color: var(--black-color);" size="24"></t-icon>
+      </view>
+    </view>
+    <view class="view-input">
+      <t-input style="width: 100%;" data-target="title" placeholder="请输入标题" clearable="{{true}}" maxcharacter="20" bind:blur="onBlur" value="{{utils.eventTitle(lastEvent)}}"></t-input>
+    </view>
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">

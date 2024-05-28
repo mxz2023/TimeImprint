@@ -3,13 +3,19 @@
 page {
   --white-color: #ffffff;
   --black-color: #000000;
-  --red-color: #d22a2a;
-  --yellow-color: #f7b500;
-  --green-color: #00737f;
-  --green-light-color: #8cc237;
-  --orange-color: #fa6400;
+
+  --blue-color: #618dff;
+  --red-color: #f6685d;
+  --orange-color: #e37318;
+  --green-color: #2ba471;
+  
+  --cyan-color: #41b8f2;
+  --purple-color: #c69cff;
+  --yellow-color: #f5ba18;
+  --pink-color: #ff79cd;
+
   --grey-color: #d6d6d6;
-  --cyan-color: #50c8c8;
+  
 
   --view-background-color: var(--white-color)
   --line-color: var(--grey-color);
@@ -21,12 +27,12 @@ page {
   --day-weekend-color: var(--red-color);
   --day-disable-weekend-color: #dc101033;
 
-  --week-default-color: var(--cyan-color);
+  --week-default-color: var(--green-color);
   --week-weekend-color: var(--red-color);
 
   --day-bg-color: #ffffff00;
   --day-bg-today-color: var(--red-color);
-  --day-bg-select-color: var(--green-light-color);
+  --day-bg-select-color: var(--blue-color);
 
   height: 100vh;
   display: flex;

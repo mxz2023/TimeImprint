@@ -1,4 +1,5 @@
 // pages/task/task.ts
+import { formatDate } from "../../utils/util"
 import { task_abcde } from "../../data/config_task"
 import { Event, EventContentItem, EventContentItemExtend } from '../../model/data_event'
 
@@ -10,14 +11,6 @@ Page({
     testData:"TTTTTT",
     title: "打卡 📌",
     listData: task_abcde,
-    // lastEvent: {
-    //   eventId: 0,
-    //   eventTitle:"打卡",
-    //   eventTime: new Date(),
-    //   eventTotal: 0,
-    //   eventCentent: [],
-    //   showTime:""
-    // },
     lastEvent: new Event()
   },
 
@@ -58,7 +51,7 @@ Page({
   onLoad() {
     let lastEvent = new Event()
     lastEvent.eventTitle = "彤彤打卡"
-    lastEvent.eventTime = new Date()
+    lastEvent.eventTime = formatDate(new Date())
     
     let item1 = new EventContentItem()
     item1.type = 1

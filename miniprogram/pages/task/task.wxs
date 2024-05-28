@@ -1,21 +1,20 @@
 
-
 var getEventTitle = function(event) {
   return event.eventTitle
 }
 
 var getEventTime = function(event) {
-  var date = getDate()
-  return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
+  return event.eventTime
 }
 
 var getEventItemContent = function(event, index) {
-
   contents = event.eventContent
   item = contents[index]
-  value = item.content
-  console.log(value)
-  return value
+  if (item) {
+    value = item.content
+    return value
+  }
+  return ""
 }
 
 
