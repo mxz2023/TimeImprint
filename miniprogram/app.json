@@ -2,9 +2,9 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/main/main",
+    "pages/task/task",
     "pages/demo/demo",
-    "pages/logs/logs",
-    "pages/task/task"
+    "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",

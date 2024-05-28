@@ -11,7 +11,9 @@ Page({
     testData:"TTTTTT",
     title: "打卡 📌",
     listData: task_abcde,
-    lastEvent: new Event()
+    lastEvent: new Event(),
+    activeImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox-checked.png',
+    inActiveImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox.png',
   },
 
   onGoHome() {

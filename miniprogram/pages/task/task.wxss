@@ -24,18 +24,14 @@
   background: #e7e7e7;
 }
 
-.t-input {
-  justify-content: flex-end;
-  --td-input-vertical-padding:5px
-}
-
 view {
-  display: flex;
-  --td-input-label-text-color: #8b8b8b
+  --td-input-label-text-color: #8b8b8b;
+  --td-input-vertical-padding: 5px;
+  --td-checkbox-vertical-padding: 0px;
 }
 
 .main-box {
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: 100%;
   width: calc(100% - 24px);
@@ -43,21 +39,28 @@ view {
 }
 
 .view-title {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
 .view-title-header {
+  display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.view-left {
+  display: flex;
+}
+
 .view-right {
+  display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .text-title {
@@ -67,17 +70,18 @@ view {
 }
 
 .view-input {
+  display: flex;
   flex-direction: row;
   width: 100%;
 }
 
-.scrollarea{
+.scrollarea {
   overflow-y: auto;
   height: calc(100vh - 83px - 60px - 60px - env(safe-area-inset-bottom));
 }
 
 .view-item {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
