@@ -1,7 +1,21 @@
+
 var fontsize = 22
 var maxlength = 30
 
 module.exports = {
+  "task_title": {
+    "icon":"letters-h",
+    "iconSize": "32px",
+    "size": "24px",
+    "color": "var(--cyan-color)",
+    "text": "标题",
+    "tipIcon": "calendar-edit",
+    "tipSize": "24px",
+    "tipColor": "var(--grey10-color)",
+    "tipTextSize": "12px",
+    "tipTextColor": "var(--grey5-color)",
+  },
+
   "task_abcde": [
     {
       "icon": "letters-a",

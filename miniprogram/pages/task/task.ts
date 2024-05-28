@@ -1,6 +1,6 @@
 // pages/task/task.ts
 import { formatDate } from "../../utils/util"
-import { task_abcde } from "../../data/config_task"
+import { task_title, task_abcde } from "../../data/config_task"
 import { Event, EventContentItem, EventContentItemExtend } from '../../model/data_event'
 
 Page({
@@ -10,7 +10,18 @@ Page({
   data: {
     testData:"TTTTTT",
     title: "打卡 📌",
-    listData: task_abcde,
+
+    configTitle: task_title,   // 标题设置
+    configItems: task_abcde,   // 项设置
+
+    mode: "",
+    dateVisible: false,
+    date: new Date().getTime(), // 支持时间戳传入
+
+    // 指定选择区间起始值
+    start: '2000-01-01 00:00:00',
+    end: '2030-09-09 12:12:12',
+
     lastEvent: new Event(),
     activeImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox-checked.png',
     inActiveImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox.png',
@@ -29,6 +40,47 @@ Page({
     wx.navigateBack ({
       delta:1
     })
+  },
+
+  /**
+   * 打开日期设置
+   * @param event WechatMiniprogram.CustomEvent
+   */
+  showPicker(event:WechatMiniprogram.CustomEvent) {
+    const mode = "date";
+    this.setData({
+      mode,
+      [`${mode}Visible`]: true,
+    });
+  },
+
+  /**
+   * 关闭日期设置
+   * @param event 
+   */
+  hidePicker() {
+    const { mode } = this.data;
+    this.setData({
+      [`${mode}Visible`]: false,
+    });
+  },
+
+  onConfirm(event:WechatMiniprogram.CustomEvent) {
+    const { value } = event.detail;
+    const { mode } = this.data;
+    const { lastEvent } = this.data
+    lastEvent.eventTime = value
+
+    this.setData({
+      [mode]: value,
+      lastEvent: lastEvent,
+    });
+
+    this.hidePicker();
+  },
+
+  onColumnChange(event:WechatMiniprogram.CustomEvent) {
+    console.log('pick', event.detail.value);
   },
 
   onBlur(event:WechatMiniprogram.CustomEvent) {

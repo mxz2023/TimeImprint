@@ -14,8 +14,11 @@ page {
   --yellow-color: #f5ba18;
   --pink-color: #ff79cd;
 
-  --grey-color: #d6d6d6;
-  
+  --grey-color: #c6c6c6;
+
+  --grey1-color: #f3f3f3;
+  --grey5-color: #c6c6c6;
+  --grey10-color: #4b4b4b;
 
   --view-background-color: var(--white-color)
   --line-color: var(--grey-color);

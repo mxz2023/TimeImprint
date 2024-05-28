@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/task/task",
     "pages/welcome/welcome",
     "pages/main/main",
-    "pages/task/task",
+   
     "pages/demo/demo",
     "pages/logs/logs"
   ],

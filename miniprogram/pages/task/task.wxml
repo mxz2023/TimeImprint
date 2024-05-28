@@ -13,27 +13,28 @@
   <view class="view-title">
     <view class="view-title-header">
       <view class="view-left">
-        <t-icon name="letters-h" style="color: var(--black-color);" size="32"></t-icon>
-        <text class="text-title" style="font-size: 24px;">标题</text>
+        <t-icon name="{{configTitle.icon}}" style="color: {{configTitle.color}};" size="{{configTitle.iconSize}}"></t-icon>
+        <text class="text-title" style="color: {{configTitle.color}}; font-size: {{configTitle.size}};">{{configTitle.text}}</text>
       </view>
 
       <view class="view-right">
-        <text class="text-title">{{utils.eventTime(lastEvent)}}</text>
-        <t-icon name="calendar-edit" style="color: var(--black-color);" size="24"></t-icon>
+        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{utils.eventTime(lastEvent)}}</text>
+        <t-icon name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="showPicker"></t-icon>
+        <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{date}}" format="YYYY/MM/DD" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
       </view>
     </view>
     <view class="view-input">
       <t-input style="width: 100%;" data-target="title" placeholder="请输入标题" maxcharacter="20" bind:blur="onBlur" value="{{utils.eventTitle(lastEvent)}}"></t-input>
 
       <view class="view-right">
-        <t-checkbox label="累计打卡{{1}}天" icon="{{[activeImage,inActiveImage]}}" default-checked />
+        <t-checkbox label="累计打卡{{1}}天" icon="{{[activeImage,inActiveImage]}}" placement="right" default-checked borderless="true" />
         <!-- <t-icon name="calendar-edit" style="color: var(--black-color);" size="24"></t-icon> -->
       </view>
     </view>
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
-    <view class="view-item" wx:for="{{ listData }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+    <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <m-textare item="{{item}}" itemData="{{utils.eventItemContent(lastEvent, idx)}}" bind:textareBlur="onTextareBlur"></m-textare>
     </view>
 
