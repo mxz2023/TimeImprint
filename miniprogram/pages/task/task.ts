@@ -1,7 +1,9 @@
 // pages/task/task.ts
 import { formatDate } from "../../utils/util"
 import { task_title, task_abcde } from "../../data/config_task"
+import { taskListKey } from "../../data/config_storage"
 import { Event, EventContentItem, EventContentItemExtend } from '../../model/data_event'
+
 
 Page({
   /**
@@ -123,6 +125,20 @@ Page({
       })
     }
   },
+
+  onPushTask(_:WechatMiniprogram.CustomEvent) {
+    try {
+      var taskList:Array<Event> = wx.getStorageSync(taskListKey)
+      if (!taskList) {
+        taskList = new Array<Event>()
+      }
+      taskList.push(this.data.lastEvent)
+      wx.setStorageSync(taskListKey, taskList)
+    } catch (e) {
+      // Do something when catch error
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

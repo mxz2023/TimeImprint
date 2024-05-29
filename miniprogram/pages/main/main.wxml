@@ -1,5 +1,6 @@
 <!--pages/main/main.wxml-->
 
+<!-- 首页 -->
 <m-home class="mBox" wx:if="{{selectIndex == 0}}"></m-home>
 
 <m-more class="mBox" wx:elif="{{selectIndex == 1}}"></m-more>

@@ -2,9 +2,9 @@ import { formatDate } from "../utils/util"
 
 export class Event {
   eventId: number = 0;                // 事件id
-  eventTitle: string = "123";         // 标题
+  eventTitle: string = "";         // 标题
   eventTime: string = formatDate(new Date())             // 时间
-  eventTotal: number = 10                       // 大于0表示累计
+  eventTotal: number = 0                       // 大于0表示累计
   eventContent: Array<EventContentItem> = []       // 内容
 
   taskId?: string;  // 活动id，多个事件可以参与一个活动。活动id为0，表示未参与活动。

@@ -39,7 +39,7 @@
     </view>
 
     <!-- 发布按钮 -->
-    <view class="view-record">
+    <view class="view-record" bind:tap="onPushTask">
       <image class="img-send" src="../../static/btn/btn-fabu.png" mode="aspectFill" />
     </view>
   </scroll-view>
