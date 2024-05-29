@@ -18,9 +18,8 @@ Page({
     dateVisible: false,
     date: new Date().getTime(), // 支持时间戳传入
 
-    // 指定选择区间起始值
-    start: '2000-01-01 00:00:00',
-    end: '2030-09-09 12:12:12',
+    needTotal: true,  // 是否累计
+    total: 1,
 
     lastEvent: new Event(),
     activeImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox-checked.png',
@@ -46,7 +45,7 @@ Page({
    * 打开日期设置
    * @param event WechatMiniprogram.CustomEvent
    */
-  showPicker(event:WechatMiniprogram.CustomEvent) {
+  showPicker(_:WechatMiniprogram.CustomEvent) {
     const mode = "date";
     this.setData({
       mode,
@@ -65,27 +64,47 @@ Page({
     });
   },
 
+  /**
+   * 确定日期
+   * @param event 
+   */
   onConfirm(event:WechatMiniprogram.CustomEvent) {
     const { value } = event.detail;
-    const { mode } = this.data;
     const { lastEvent } = this.data
     lastEvent.eventTime = value
 
     this.setData({
-      [mode]: value,
       lastEvent: lastEvent,
     });
 
     this.hidePicker();
   },
 
-  onColumnChange(event:WechatMiniprogram.CustomEvent) {
-    console.log('pick', event.detail.value);
+  /**
+   * 混动选项回调
+   * @param _ 
+   */
+  onColumnChange(_:WechatMiniprogram.CustomEvent) {
+    
   },
 
+  /**
+   * 是否启动累计打卡
+   * @param event 
+   */
+  onNeedTotal(event:WechatMiniprogram.CustomEvent) {
+    this.setData({
+      needTotal: event.detail.checked
+    })
+  },
+
+  /**
+   * 修改标题
+   * @param event 
+   */
   onBlur(event:WechatMiniprogram.CustomEvent) {
     if(event?.currentTarget?.dataset?.target == "title") {
-      let lastEvent:Event = this.data.lastEvent
+      const { lastEvent } = this.data
       lastEvent.eventTitle = event.detail.value
       this.setData({
         lastTask:lastEvent
@@ -94,9 +113,15 @@ Page({
   },
 
   onTextareBlur(event:WechatMiniprogram.CustomEvent) {
-    debugger
-    // event?.detail?.target
-    // event?.detail?.value
+    const { lastEvent } = this.data
+    const index = event.detail.index
+    const item = lastEvent.eventContent[index]
+    if (item) {
+      item.content = event.detail.value
+      this.setData({
+        lastEvent: lastEvent
+      })
+    }
   },
 
   /**

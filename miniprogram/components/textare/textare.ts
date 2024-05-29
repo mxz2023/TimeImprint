@@ -48,6 +48,7 @@ Component({
       // detail对象，提供给事件监听函数
       var myEventDetail = {
         value:event.detail.value,
+        index:event.currentTarget.dataset.index,
         target:event.currentTarget.dataset.target
       } 
       // 触发事件的选项

@@ -14,6 +14,8 @@ module.exports = {
     "tipColor": "var(--grey10-color)",
     "tipTextSize": "12px",
     "tipTextColor": "var(--grey5-color)",
+    "start": "1984-01-01",
+    "end": "2134-12-31",
   },
 
   "task_abcde": [
@@ -23,6 +25,7 @@ module.exports = {
       "color": "var(--red-color)",
       "text": "事情",
       "target": "event",
+      "index": "0",
       "placeholder": "请输入什么事情",
       "maxlength": maxlength
     },
@@ -32,6 +35,7 @@ module.exports = {
       "color": "var(--yellow-color)",
       "text": "想法",
       "target": "idea",
+      "index": "1",
       "placeholder": "请输入什么想法",
       "maxlength": maxlength
     },
@@ -41,6 +45,7 @@ module.exports = {
       "color": "var(--blue-color)",
       "text": "情绪",
       "target": "feeling",
+      "index": "2",
       "placeholder": "请输入什么情绪",
       "maxlength": maxlength
     },
@@ -50,6 +55,7 @@ module.exports = {
       "color": "var(--green-color)",
       "text": "反驳",
       "target": "oppose",
+      "index": "3",
       "placeholder": "请输入怎么反驳",
       "maxlength": maxlength
     },
@@ -59,6 +65,7 @@ module.exports = {
       "color": "var(--pink-color)",
       "text": "激发",
       "target": "new_feeling",
+      "index": "4",
       "placeholder": "请输入激发情绪",
       "maxlength": maxlength
     }

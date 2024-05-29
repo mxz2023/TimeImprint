@@ -24,12 +24,6 @@
   background: #e7e7e7;
 }
 
-view {
-  --td-input-label-text-color: #8b8b8b;
-  --td-input-vertical-padding: 5px;
-  --td-checkbox-vertical-padding: 0px;
-}
-
 .main-box {
   display: flex;
   flex-direction: column;
