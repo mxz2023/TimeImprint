@@ -143,43 +143,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-    let lastEvent = new Event()
-    lastEvent.eventTitle = "彤彤打卡"
-    lastEvent.eventTime = formatDate(new Date())
-    
-    let item1 = new EventContentItem()
-    item1.type = 1
-    item1.index = 1
-    item1.content = "晚上羽毛球换了教练"
+  onLoad(option) {
+    console.log(option.query)
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.emit('acceptDataFromOpenedPage', {data: 'test'});
 
-    let item2 = new EventContentItem()
-    item2.type = 1
-    item2.index = 2
-    item2.content = "我喜欢这个教练"
-
-    let item3 = new EventContentItem()
-    item3.type = 1
-    item3.index = 3
-    item3.content = "兴奋"
-
-    let item4 = new EventContentItem()
-    item4.type = 1
-    item4.index = 4
-    item4.content = "可能是临时的"
-
-    let item5 = new EventContentItem()
-    item5.type = 1
-    item5.index = 5
-    item5.content = "平静"
-
-    lastEvent.eventContent.push(item1)
-    lastEvent.eventContent.push(item2)
-    lastEvent.eventContent.push(item3)
-    lastEvent.eventContent.push(item4)
-    lastEvent.eventContent.push(item5)
-    this.setData({
-      lastEvent : lastEvent
+    const blockThis = this
+    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+    eventChannel.on('showTaskInfo', function(data) {
+      blockThis.setData({
+        lastEvent:data
+      })
     })
   },
 

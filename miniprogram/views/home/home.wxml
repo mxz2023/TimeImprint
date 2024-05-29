@@ -49,7 +49,7 @@
       <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
     </view>
 
-    <view class="view-item" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+    <view class="view-item" bind:tap="onOpenTaskDetail" data-event-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <view class="view-part">
         <text class="text-title">{{item.eventTitle}}</text>
         <view class="view-part-sub">

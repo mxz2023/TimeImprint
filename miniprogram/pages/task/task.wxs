@@ -8,7 +8,14 @@ var getEventTime = function(event) {
 }
 
 var getEventItemContent = function(event, index) {
-  contents = event.eventContent
+  console.log("mxz" + JSON.stringify(event))
+
+  var contents = event.eventContent
+  console.log( typeof contents );
+
+  if (contents.length == 0) {
+    return ""
+  }
   item = contents[index]
   if (item) {
     value = item.content

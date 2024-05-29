@@ -78,7 +78,7 @@ Component({
     },
 
     // 定位到今天
-    onLocationToday(_: any) {
+    onLocationToday(_: WechatMiniprogram.CustomEvent) {
       // console.log(event);
       var date = new Date();
       gDataCenter.changeCurrentDate(date);
@@ -86,7 +86,7 @@ Component({
     },
 
     // 点击按钮更改月份
-    onIconTap(event: any) {
+    onIconTap(event: WechatMiniprogram.CustomEvent) {
       // console.log(event);
       if (event.currentTarget.id == "forwardIcon") {
         this.forwardMonth()
@@ -126,7 +126,7 @@ Component({
     },
 
     // 调整日历月份
-    onPickerDateChange(event: any) {
+    onPickerDateChange(event: WechatMiniprogram.CustomEvent) {
       // Todo 临时屏蔽picker事件
       var day = event.currentTarget.dataset.day;
       var dateStr = event.detail.value;
@@ -136,13 +136,13 @@ Component({
     },
 
     // 发布按钮
-    onPublishAction(_: any) {
+    onPublishAction(_: WechatMiniprogram.CustomEvent) {
       wx.navigateTo({
         url: '/pages/task/task'
       })
     },
 
-    onScroll(event: any) {
+    onScroll(event: WechatMiniprogram.CustomEvent) {
       // console.log(event)
       let scrollTop = event.detail.scrollTop
       let opacityOffset = scrollTop > 30 ? 30 : event.detail.scrollTop
@@ -156,5 +156,22 @@ Component({
         })
       }
     },
+
+    onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
+      const eventItem = event.currentTarget.dataset.eventItem
+      wx.navigateTo({
+        url: `/pages/task/task?eventid=${eventItem.eventId}`,
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function(data:object) {
+            console.log(data)
+          },
+        },
+        success: function(res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('showTaskInfo', { data: eventItem})
+        }
+      })
+    }
   }
 })
