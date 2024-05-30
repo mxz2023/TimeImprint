@@ -1,14 +1,18 @@
 
 var getTaskItemContent = function(task, index) {
+  console.log(JSON.stringify(task))
   var contents = task.taskContent
   if (!contents || contents.length == 0) {
+    console.log("数据为空1")
     return ""
   }
   item = contents[index]
   if (item) {
     value = item.content
+    console.log("数据")
     return value
   }
+  console.log("数据为空2")
   return ""
 }
 

@@ -1,7 +1,7 @@
 // views/home.ts
 import { gDataCenter } from '../../model/data_center'
 import { taskListKey } from "../../data/config_storage"
-import { Event } from '../../model/data_task'
+import { Task } from '../../model/data_task'
 
 Component({
 
@@ -21,7 +21,7 @@ Component({
     needShowToday: true,
     gridListMonth: gDataCenter.getThreeMonthDays(),
 
-    taskList: Array<Event>(),  // 任务列表
+    taskList: Array<Task>(),  // 任务列表
   },
 
   lifetimes: {
@@ -36,7 +36,7 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      var taskList: Array<Event> = wx.getStorageSync(taskListKey)
+      var taskList: Array<Task> = wx.getStorageSync(taskListKey)
       this.setData({
         taskList: taskList
       })

@@ -6,6 +6,14 @@ export class Task {
   taskTime: string = formatDate(new Date())             // 时间
   taskTotal: number = 0                       // 大于0表示累计
   taskContent: Array<TaskContentItem> = []       // 内容
+
+  constructor() {
+    // 5个占位，如果不占位，后面如果不按照顺序输入，无法保存数据
+    for(var i = 0; i < 5; i++) {
+      var item = new TaskContentItem()
+      this.taskContent.push(item)
+    }
+  }
 }
 
 export class TaskContentItem {

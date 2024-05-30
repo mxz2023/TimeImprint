@@ -1,8 +1,7 @@
 // pages/task/task.ts
-import { formatDate } from "../../utils/util"
 import { task_title, task_abcde } from "../../data/config_task"
 import { taskListKey } from "../../data/config_storage"
-import { Task, TaskContentItem } from '../../model/data_task'
+import { Task } from '../../model/data_task'
 
 
 Page({
@@ -15,9 +14,10 @@ Page({
     configTitle: task_title,   // 标题设置
     configItems: task_abcde,   // 项设置
 
-    mode: "",     // 无用变量，特殊用法，见
-    dateVisible: false,   // picker开关变量
+    mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
+    dateVisible: false,   // picker开关变量 `${mode}Visible`
 
+    canEdit: true,   // 是否可以编辑
     needTotal: true,  // 是否累计
     total: 1,
 
@@ -77,7 +77,7 @@ Page({
       lastTask: lastTask,
     });
 
-    this.hidePicker();
+    this.onHidePicker();
   },
 
   /**
@@ -115,26 +115,32 @@ Page({
   onTextareBlur(event:WechatMiniprogram.CustomEvent) {
     const { lastTask } = this.data
     const index = event.detail.index
-    const item = lastTask.taskContent[index]
-    if (item) {
-      item.content = event.detail.value
-      this.setData({
-        lastTask: lastTask
-      })
+    var item = lastTask.taskContent[index]
+    if (!item) {
+      return
     }
+    item.content = event.detail.value
+    this.setData({
+      lastTask: lastTask
+    })
   },
 
   onPushTask(_:WechatMiniprogram.CustomEvent) {
-    try {
-      var taskList:Array<Task> = wx.getStorageSync(taskListKey)
-      if (!taskList) {
-        taskList = new Array<Task>()
+    // 解决按钮响应时，最后一个输入框文字没有被保存问题
+    setTimeout(()=>{
+      try {
+        var taskList:Array<Task> = wx.getStorageSync(taskListKey)
+        if (!taskList) {
+          taskList = new Array<Task>()
+        }
+        let {lastTask} = this.data
+        taskList.push(lastTask)
+        wx.setStorageSync(taskListKey, taskList)
+        this.onBack()
+      } catch (e) {
+        // Do something when catch error
       }
-      taskList.push(this.data.lastTask)
-      wx.setStorageSync(taskListKey, taskList)
-    } catch (e) {
-      // Do something when catch error
-    }
+    }, 100)
   },
 
 

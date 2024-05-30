@@ -35,7 +35,7 @@ Component({
     hide: function() {
       // 页面被隐藏
     },
-    resize: function(size) {
+    resize: function(_) {
       // 页面尺寸变化
     }
   },
