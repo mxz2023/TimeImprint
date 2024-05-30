@@ -4,5 +4,5 @@
     <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
     <text style="color: {{item.color}}; font-weight: 600; font-size: {{item.size}};">{{item.text}}</text>
   </view>
-  <t-textarea class="view-content" style="padding: 10px;" data-index="{{item.index}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{itemData}}" />
+  <t-textarea class="view-content" style="padding: 10px;" data-index="{{item.index}}" disabled="{{disabled}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{itemData}}" />
 </view>

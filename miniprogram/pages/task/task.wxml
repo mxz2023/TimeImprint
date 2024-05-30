@@ -19,15 +19,15 @@
 
       <view class="view-right">
         <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastTask.taskTime}}</text>
-        <t-icon name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="onShowPicker"></t-icon>
+        <t-icon wx:if="{{!isDisabled}}" name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="onShowPicker"></t-icon>
         <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastTask.taskTime}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
       </view>
     </view>
     <view class="view-input">
-      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
+      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{isDisabled}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
 
       <view class="view-right">
-        <t-checkbox style="--td-checkbox-title-color: {{configTitle.tipTextColor}}; --td-checkbox-vertical-padding: 0px;" label="打卡第{{total}}天" checked="{{needTotal}}" icon="{{[activeImage,inActiveImage]}}" placement="right" borderless="true" bind:change="onNeedTotal" />
+        <t-checkbox disabled="{{isDisabled}}" style="--td-checkbox-title-color: {{configTitle.tipTextColor}}; --td-checkbox-vertical-padding: 0px;" label="打卡第{{total}}天" checked="{{needTotal}}" icon="{{[activeImage,inActiveImage]}}" placement="right" borderless="true" bind:change="onNeedTotal" />
         <!-- <t-icon name="calendar-edit" style="color: var(--black-color);" size="24"></t-icon> -->
       </view>
     </view>
@@ -35,11 +35,11 @@
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
     <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-      <m-textare item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onTextareBlur"></m-textare>
+      <m-textare disabled="{{isDisabled}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare>
     </view>
 
     <!-- 发布按钮 -->
-    <view class="view-record" bind:tap="onPushTask">
+    <view wx:if="{{!isDisabled}}" class="view-record" bind:tap="onPushTask">
       <image class="img-send" src="../../static/btn/btn-fabu.png" mode="aspectFill" />
     </view>
   </scroll-view>
