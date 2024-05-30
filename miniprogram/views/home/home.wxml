@@ -49,18 +49,18 @@
       <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
     </view>
 
-    <view class="view-item" bind:tap="onOpenTaskDetail" data-event-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+    <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <view class="view-part">
-        <text class="text-title">{{item.eventTitle}}</text>
+        <text class="text-title">{{item.taskTitle}}</text>
         <view class="view-part-sub">
           <text class="text-total-tips">第</text>
-          <text class="text-total">{{item.eventTotal}}</text>
+          <text class="text-total">{{item.taskTotal}}</text>
           <text class="text-total-tips">天打卡</text>
         </view>
       </view>
       <view class="view-part">
         <text class="text-type">ABCDE</text>
-        <text class="text-time">{{item.eventTime}}</text>
+        <text class="text-time">{{item.taskTime}}</text>
       </view>
     </view>
   </scroll-view>

@@ -1,19 +1,7 @@
 
-var getEventTitle = function(event) {
-  return event.eventTitle
-}
-
-var getEventTime = function(event) {
-  return event.eventTime
-}
-
-var getEventItemContent = function(event, index) {
-  console.log("mxz" + JSON.stringify(event))
-
-  var contents = event.eventContent
-  console.log( typeof contents );
-
-  if (contents.length == 0) {
+var getTaskItemContent = function(task, index) {
+  var contents = task.taskContent
+  if (!contents || contents.length == 0) {
     return ""
   }
   item = contents[index]
@@ -25,13 +13,6 @@ var getEventItemContent = function(event, index) {
 }
 
 
-var getTaskTitle = function(task) {
-  return task.taskTitle
-}
-
 module.exports = {
-  eventTitle: getEventTitle,
-  eventTime: getEventTime,
-  eventItemContent: getEventItemContent,
-  taskTitle: getTaskTitle,
+  taskItemContent: getTaskItemContent,
 }

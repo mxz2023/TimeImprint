@@ -1,7 +1,7 @@
 // views/home.ts
 import { gDataCenter } from '../../model/data_center'
 import { taskListKey } from "../../data/config_storage"
-import { Event } from '../../model/data_event'
+import { Event } from '../../model/data_task'
 
 Component({
 
@@ -158,9 +158,9 @@ Component({
     },
 
     onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
-      const eventItem = event.currentTarget.dataset.eventItem
+      const taskItem = event.currentTarget.dataset.taskItem
       wx.navigateTo({
-        url: `/pages/task/task?eventid=${eventItem.eventId}`,
+        url: `/pages/task/task?eventid=${taskItem.taskId}`,
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function(data:object) {
@@ -169,7 +169,7 @@ Component({
         },
         success: function(res) {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('showTaskInfo', { data: eventItem})
+          res.eventChannel.emit('showTaskInfo', { data: taskItem})
         }
       })
     }
