@@ -27,15 +27,22 @@
       <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{isDisabled}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
 
       <view class="view-right">
-        <t-checkbox disabled="{{isDisabled}}" style="--td-checkbox-title-color: {{configTitle.tipTextColor}}; --td-checkbox-vertical-padding: 0px;" label="打卡第{{total}}天" checked="{{needTotal}}" icon="{{[activeImage,inActiveImage]}}" placement="right" borderless="true" bind:change="onNeedTotal" />
-        <!-- <t-icon name="calendar-edit" style="color: var(--black-color);" size="24"></t-icon> -->
+        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">打卡第{{total}}天</text>
+
+        <t-checkbox wx:if="{{!isDisabled}}" style="--td-checkbox-title-color: {{configTitle.tipTextColor}}; --td-checkbox-vertical-padding: 0px;" checked="{{needTotal}}" icon="{{[activeImage,inActiveImage]}}" placement="right" borderless="true" bind:change="onNeedTotal" />
       </view>
     </view>
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
     <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-      <m-textare disabled="{{isDisabled}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare>
+      <!-- <m-textare disabled="{{isDisabled}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
+
+      <view class="view-title" style="flex-direction: row; align-items: center; margin-top: 12px;">
+        <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
+        <text style="color: {{item.color}}; font-weight: 600; font-size: {{item.size}};">{{item.text}}</text>
+      </view>
+      <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{isDisabled}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastTask, idx)}}" />
     </view>
 
     <!-- 发布按钮 -->

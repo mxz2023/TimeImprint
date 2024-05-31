@@ -103,15 +103,14 @@ Page({
    * @param event 
    */
   onBlur(event: WechatMiniprogram.CustomEvent) {
+    const { lastTask } = this.data
     if (event?.currentTarget?.dataset?.target == "title") {
-      const { lastTask } = this.data
       lastTask.taskTitle = event.detail.value
       this.setData({
         lastTask: lastTask
       })
     } else {
-      const { lastTask } = this.data
-      const index = event.detail.index
+      const index = event?.currentTarget?.dataset?.index
       var item = lastTask.taskContent[index]
       if (!item) {
         return
@@ -173,6 +172,7 @@ Page({
         lastTask: dataItem.data
       })
     })
+
   },
 
   /**
