@@ -87,12 +87,9 @@
 }
 
 .btn-image {
-  margin-left: 12px;
-  width: 32px;
   height: 32px;
 }
 
 .img-send {
-  width: 48px;
   height: 48px;
 }

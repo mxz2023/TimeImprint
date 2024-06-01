@@ -6,14 +6,14 @@ var maxlength = 30
 
 module.exports = {
   "task_title": {
-    "icon":"letters-h",
+    "icon":"letters-t",
     "iconSize": "32px",
     "size": "24px",
     "color": "var(--cyan-color)",
     "text": "标题",
     "tip": "(必填)",
     "tipIcon": "calendar-edit",
-    "tipSize": "16px",
+    "tipSize": "24px",
     "tipColor": "var(--grey10-color)",
     "tipTextSize": "12px",
     "tipTextColor": "var(--grey5-color)",

@@ -52,7 +52,7 @@
     <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <view class="view-part">
         <text class="text-title">{{item.taskTitle}}</text>
-        <view class="view-part-sub">
+        <view class="view-part-sub" wx:if="{{item.needTotal}}">
           <text class="text-total-tips">第</text>
           <text class="text-total">{{item.taskTotal}}</text>
           <text class="text-total-tips">天打卡</text>

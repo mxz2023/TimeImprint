@@ -10,19 +10,25 @@ Page({
    */
   data: {
     title: "打卡 📌",
-  
+
     configTitle: task_title,   // 标题设置
     configItems: task_abcde,   // 项设置
 
     mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
     dateVisible: false,   // picker开关变量 `${mode}Visible`
 
+    canSend: true,
     isDisabled: false,   // 是否禁止所有输入
     canCancel: false,   // 进入编辑状态后控制取消编辑
     needTotal: true,  // 是否累计
     total: 1,
+    addTotal: false,
 
+    // 展示数据
     lastTask: new Task(),
+    // 保存数据
+    dataTask: new Task(),
+
     activeImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox-checked.png',
     inActiveImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox.png',
   },
@@ -126,51 +132,48 @@ Page({
   onEditTask() {
     this.setData({
       isDisabled: false,
-      canCancel: true
+      canCancel: true,
+      canSend: true
     })
   },
 
   onCancelTask() {
+    var copyData = JSON.parse(JSON.stringify(this.data.dataTask));
     this.setData({
       isDisabled: true,
-      canCancel: false
+      canCancel: false,
+      lastTask: copyData
     })
   },
 
   onPushTask(_: WechatMiniprogram.CustomEvent) {
-    // 解决按钮响应时，最后一个输入框文字没有被保存问题
-    setTimeout(() => {
-      try {
-        var taskList: Array<Task> = wx.getStorageSync(taskListKey)
-        if (!taskList) {
-          taskList = new Array<Task>()
-        }
-        let { lastTask } = this.data
-        if (lastTask.taskTitle.length == 0) {
-          wx.showToast({
-            title: '标题不能为空',
-            icon:'none',
-            duration: 2000
-          })
-          return
-        }
+    var taskList: Array<Task> = wx.getStorageSync(taskListKey)
+    if (!taskList) {
+      taskList = new Array<Task>()
+    }
+    let { lastTask } = this.data
+    if (lastTask.taskTitle.length == 0) {
+      wx.showToast({
+        title: '标题不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
 
-        if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
-          wx.showToast({
-            title: '必填内容不能为空',
-            icon:'none',
-            duration: 2000
-          })
-          return
-        }
+    if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
+      wx.showToast({
+        title: '必填内容不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
 
-        taskList.push(lastTask)
-        wx.setStorageSync(taskListKey, taskList)
-        this.onBack()
-      } catch (e) {
-        // Do something when catch error
-      }
-    }, 100)
+    lastTask.taskTotal = this.data.needTotal ? this.data.total : 0
+    taskList.push(lastTask)
+    wx.setStorageSync(taskListKey, taskList)
+    this.onBack()
   },
 
 
@@ -178,9 +181,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(option) {
-    const { taskid, isShow } = option
+    const { taskId, isShow } = option
     this.setData({
       isDisabled: (isShow == "1")
+    })
+
+    // 为后面请求数据做准备
+    let { lastTask } = this.data
+    lastTask.taskId = Number(taskId)
+    this.setData({
+      lastTask: lastTask
     })
 
     const eventChannel = this.getOpenerEventChannel()
@@ -189,8 +199,12 @@ Page({
     const blockThis = this
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('showTaskInfo', function (dataItem) {
+      var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
+      var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
       blockThis.setData({
-        lastTask: dataItem.data
+        canSend: false,
+        lastTask: copyData1,
+        dataTask: copyData2,
       })
     })
 

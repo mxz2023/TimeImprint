@@ -12,6 +12,7 @@
 <view class="main-box">
   <view class="view-title">
     <view class="view-title-header">
+      <!-- 标题(必填) -->
       <view class="view-left">
         <t-icon name="{{configTitle.icon}}" style="color: {{configTitle.color}};" size="{{configTitle.iconSize}}"></t-icon>
         <text class="text-title" style="color: {{configTitle.color}}; font-size: {{configTitle.size}};">{{configTitle.text}}</text>
@@ -19,15 +20,23 @@
       </view>
 
       <view class="view-right">
+        
+        <!-- 日期 -->
         <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastTask.taskTime}}</text>
+
+        <!-- 日期图标 -->
         <t-icon wx:if="{{!isDisabled}}" name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="onShowPicker"></t-icon>
+
         <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastTask.taskTime}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
       </view>
     </view>
     <view class="view-input">
+
+      <!-- 标题输入框 -->
       <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{isDisabled}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
 
-      <view class="view-right">
+      <!-- 累计打卡 -->
+      <view class="view-right" wx:if="{{lastTask.needTotal || !isDisabled}}">
         <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">打卡第{{total}}天</text>
 
         <t-checkbox wx:if="{{!isDisabled}}" style="--td-checkbox-title-color: {{configTitle.tipTextColor}}; --td-checkbox-vertical-padding: 0px;" checked="{{needTotal}}" icon="{{[activeImage,inActiveImage]}}" placement="right" borderless="true" bind:change="onNeedTotal" />
@@ -53,11 +62,14 @@
 
     <!-- 发布按钮 -->
     <view class="view-record">
+      
+      <t-button wx:if="{{isDisabled}}" class="btn-image" lea theme="primary" icon="edit-2" shape="rectangle" size="small" aria-label="编辑" bind:tap="onEditTask">编辑</t-button>
+      <t-button wx:if="{{canCancel}}" class="btn-image" theme="primary" icon="rollback" shape="rectangle" size="small" aria-label="取消" bind:tap="onCancelTask">取消</t-button>
+
       <!-- 解决按钮不靠右侧问题 -->
-      <t-button wx:if="{{isDisabled}}" class="btn-image" theme="primary" icon="edit-2" shape="square" aria-label="编辑" bind:tap="onEditTask"></t-button>
-      <t-button wx:if="{{canCancel}}" class="btn-image" theme="primary" icon="rollback" shape="square" aria-label="取消" bind:tap="onCancelTask"></t-button>
       <view style="flex-grow: 1;"></view>
-      <t-button disabled="{{canSend}}" class="btn-image" theme="primary" icon="send" shape="square" aria-label="发布" bind:tap="onPushTask"></t-button>
+
+      <t-button wx:if="{{canSend}}" class="btn-image" theme="primary" icon="send" shape="rectangle" size="small" aria-label="发布" bind:tap="onPushTask">发布</t-button>
     </view>
   </scroll-view>
 </view>
