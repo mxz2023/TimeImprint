@@ -1,5 +1,13 @@
 import { formatDate } from "../utils/util"
 
+export enum TaskState {
+  TaskStateDefault = 0,
+  TaskStateShow = 1,
+  TaskStateEdit = 2,
+  TaskStateMore = 3
+}
+
+
 export class Task {
   taskId: number = 0;                // 事件id
   taskTitle: string = "";         // 标题

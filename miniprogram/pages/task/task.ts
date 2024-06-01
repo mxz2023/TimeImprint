@@ -1,7 +1,7 @@
 // pages/task/task.ts
 import { task_title, task_abcde } from "../../data/config_task"
 import { taskListKey } from "../../data/config_storage"
-import { Task } from '../../model/data_task'
+import { Task, TaskState } from '../../model/data_task'
 
 
 Page({
@@ -14,15 +14,17 @@ Page({
     configTitle: task_title,   // 标题设置
     configItems: task_abcde,   // 项设置
 
+    state: TaskState.TaskStateDefault, // 当前状态
+
     mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
     dateVisible: false,   // picker开关变量 `${mode}Visible`
 
-    canSend: true,
-    isDisabled: false,   // 是否禁止所有输入
-    canCancel: false,   // 进入编辑状态后控制取消编辑
-    needTotal: true,  // 是否累计
-    total: 1,
-    addTotal: false,
+    // canSend: true,
+    // isDisabled: false,   // 是否禁止所有输入
+    // canCancel: false,   // 进入编辑状态后控制取消编辑
+    // needTotal: true,  // 是否累计
+    // total: 1,
+    // addTotal: false,
 
     // 展示数据
     lastTask: new Task(),
@@ -95,15 +97,15 @@ Page({
 
   },
 
-  /**
-   * 是否启动累计打卡
-   * @param event 
-   */
-  onNeedTotal(event: WechatMiniprogram.CustomEvent) {
-    this.setData({
-      needTotal: event.detail.checked
-    })
-  },
+  // /**
+  //  * 是否启动累计打卡
+  //  * @param event 
+  //  */
+  // onNeedTotal(event: WechatMiniprogram.CustomEvent) {
+  //   this.setData({
+  //     needTotal: event.detail.checked
+  //   })
+  // },
 
   /**
    * 修改标题
@@ -130,28 +132,58 @@ Page({
   },
 
   onEditTask() {
-    this.setData({
-      isDisabled: false,
-      canCancel: true,
-      canSend: true
-    })
-  },
-
-  onCancelTask() {
-    var copyData = JSON.parse(JSON.stringify(this.data.dataTask));
-    this.setData({
-      isDisabled: true,
-      canCancel: false,
-      lastTask: copyData
-    })
+    var { state } = this.data
+    if (state == TaskState.TaskStateEdit) {
+      var copyData = JSON.parse(JSON.stringify(this.data.dataTask));
+      this.setData({
+        state: TaskState.TaskStateShow,
+        lastTask: copyData
+      })
+    } else if (state == TaskState.TaskStateShow) {
+      this.setData({
+        state: TaskState.TaskStateEdit
+      })
+    }
   },
 
   onPushTask(_: WechatMiniprogram.CustomEvent) {
+    var { state } = this.data
+    switch(state) {
+      case TaskState.TaskStateDefault: {
+        this.handleSaveTask()
+        this.onBack()
+        break;
+      }
+      case TaskState.TaskStateShow: {
+        this.setData({
+          state: TaskState.TaskStateMore
+        })
+        break;
+      }
+      case TaskState.TaskStateEdit: {
+        this.handleSaveTask()
+        this.setData({
+          state: TaskState.TaskStateShow
+        })
+        break;
+      }
+      case TaskState.TaskStateMore: {
+        this.handleSaveTask()
+        this.onBack()
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  },
+
+  handleSaveTask() {
+    var { lastTask, state } = this.data
     var taskList: Array<Task> = wx.getStorageSync(taskListKey)
     if (!taskList) {
       taskList = new Array<Task>()
     }
-    let { lastTask } = this.data
     if (lastTask.taskTitle.length == 0) {
       wx.showToast({
         title: '标题不能为空',
@@ -170,10 +202,13 @@ Page({
       return
     }
 
-    lastTask.taskTotal = this.data.needTotal ? this.data.total : 0
+    if (state == TaskState.TaskStateMore) {
+      lastTask.taskTotal = lastTask.taskTotal + 1
+    } else {
+      lastTask.taskTotal = 1
+    }
     taskList.push(lastTask)
     wx.setStorageSync(taskListKey, taskList)
-    this.onBack()
   },
 
 
@@ -181,20 +216,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(option) {
-    const { taskId, isShow } = option
-    this.setData({
-      isDisabled: (isShow == "1")
-    })
+    const { taskId, state } = option
+    var taskState = Number(state)
 
     // 为后面请求数据做准备
     let { lastTask } = this.data
     lastTask.taskId = Number(taskId)
+
     this.setData({
+      state: taskState,
       lastTask: lastTask
     })
 
     const eventChannel = this.getOpenerEventChannel()
-    eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
+    //eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
 
     const blockThis = this
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
@@ -202,12 +237,11 @@ Page({
       var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
       var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
       blockThis.setData({
-        canSend: false,
+        state: TaskState.TaskStateShow,
         lastTask: copyData1,
         dataTask: copyData2,
       })
     })
-
   },
 
   /**
