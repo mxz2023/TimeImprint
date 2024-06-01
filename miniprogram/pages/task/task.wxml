@@ -51,7 +51,7 @@
     <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
 
       <view wx:if="{{ utils.canShowItem(lastTask, idx) || state != 1 }}">
-        <!-- <m-textare disabled="{{isDisabled}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
+        <!-- <m-textare disabled="{{state != 1}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
 
         <view class="view-title" style="flex-direction: row; align-items: center; margin-top: 12px;">
           <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
@@ -69,12 +69,12 @@
     <!-- 发布按钮 -->
     <view class="view-record">
       
-      <t-button wx:if="{{utils.canShowEdit(state)}}" class="btn-image" lea theme="primary" icon="edit-2" shape="rectangle" size="small" aria-label="编辑" bind:tap="onEditTask">{{utils.getEditText(state)}}</t-button>
+      <t-button wx:if="{{utils.canShowEdit(state)}}" class="btn-image" style="background-color: var(--green-color);" lea theme="primary" icon="edit-2" shape="rectangle" size="small" aria-label="编辑" bind:tap="onEditTask">{{utils.getEditText(state)}}</t-button>
 
       <!-- 解决按钮不靠右侧问题 -->
       <view style="flex-grow: 1;"></view>
 
-      <t-button class="btn-image" theme="primary" icon="send" shape="rectangle" size="small" aria-label="发布" bind:tap="onPushTask">{{utils.getPublishText(state)}}</t-button>
+      <t-button class="btn-image" style="background-color: var(--green-color);" theme="primary" icon="send" shape="rectangle" size="small" aria-label="发布" bind:tap="onPushTask">{{utils.getPublishText(state)}}</t-button>
     </view>
   </scroll-view>
 </view>

@@ -14,22 +14,15 @@ Page({
     configTitle: task_title,   // 标题设置
     configItems: task_abcde,   // 项设置
 
-    state: TaskState.TaskStateDefault, // 当前状态
-
-    mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
-    dateVisible: false,   // picker开关变量 `${mode}Visible`
-
-    // canSend: true,
-    // isDisabled: false,   // 是否禁止所有输入
-    // canCancel: false,   // 进入编辑状态后控制取消编辑
-    // needTotal: true,  // 是否累计
-    // total: 1,
-    // addTotal: false,
-
     // 展示数据
     lastTask: new Task(),
     // 保存数据
     dataTask: new Task(),
+    
+    state: TaskState.TaskStateDefault, // 当前状态
+
+    mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
+    dateVisible: false,   // picker开关变量 `${mode}Visible`
 
     activeImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox-checked.png',
     inActiveImage: 'https://tdesign.gtimg.com/mobile/demos/checkbox.png',
@@ -55,6 +48,7 @@ Page({
    * @param event WechatMiniprogram.CustomEvent
    */
   onShowPicker(_: WechatMiniprogram.CustomEvent) {
+    debugger
     const mode = "date";
     this.setData({
       mode,
@@ -96,16 +90,6 @@ Page({
   onColumnChange(_: WechatMiniprogram.CustomEvent) {
 
   },
-
-  // /**
-  //  * 是否启动累计打卡
-  //  * @param event 
-  //  */
-  // onNeedTotal(event: WechatMiniprogram.CustomEvent) {
-  //   this.setData({
-  //     needTotal: event.detail.checked
-  //   })
-  // },
 
   /**
    * 修改标题
