@@ -10,7 +10,7 @@ Page({
    */
   data: {
     title: "打卡 📌",
-
+  
     configTitle: task_title,   // 标题设置
     configItems: task_abcde,   // 项设置
 
@@ -18,6 +18,7 @@ Page({
     dateVisible: false,   // picker开关变量 `${mode}Visible`
 
     isDisabled: false,   // 是否禁止所有输入
+    canCancel: false,   // 进入编辑状态后控制取消编辑
     needTotal: true,  // 是否累计
     total: 1,
 
@@ -122,18 +123,19 @@ Page({
     }
   },
 
-  // onTextareBlur(event: WechatMiniprogram.CustomEvent) {
-  //   const { lastTask } = this.data
-  //   const index = event.detail.index
-  //   var item = lastTask.taskContent[index]
-  //   if (!item) {
-  //     return
-  //   }
-  //   item.content = event.detail.value
-  //   this.setData({
-  //     lastTask: lastTask
-  //   })
-  // },
+  onEditTask() {
+    this.setData({
+      isDisabled: false,
+      canCancel: true
+    })
+  },
+
+  onCancelTask() {
+    this.setData({
+      isDisabled: true,
+      canCancel: false
+    })
+  },
 
   onPushTask(_: WechatMiniprogram.CustomEvent) {
     // 解决按钮响应时，最后一个输入框文字没有被保存问题
@@ -144,6 +146,24 @@ Page({
           taskList = new Array<Task>()
         }
         let { lastTask } = this.data
+        if (lastTask.taskTitle.length == 0) {
+          wx.showToast({
+            title: '标题不能为空',
+            icon:'none',
+            duration: 2000
+          })
+          return
+        }
+
+        if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
+          wx.showToast({
+            title: '必填内容不能为空',
+            icon:'none',
+            duration: 2000
+          })
+          return
+        }
+
         taskList.push(lastTask)
         wx.setStorageSync(taskListKey, taskList)
         this.onBack()
@@ -162,6 +182,7 @@ Page({
     this.setData({
       isDisabled: (isShow == "1")
     })
+
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
 

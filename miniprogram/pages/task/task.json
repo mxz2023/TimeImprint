@@ -1,12 +1,12 @@
 {
   "usingComponents": {
     "m-textare": "../../components/textare/textare",
-    
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-input": "tdesign-miniprogram/input/input",
     "t-textarea": "tdesign-miniprogram/textarea/textarea",
     "t-checkbox": "tdesign-miniprogram/checkbox/checkbox",
+    "t-button": "tdesign-miniprogram/button/button",
     "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker"
   }
 }

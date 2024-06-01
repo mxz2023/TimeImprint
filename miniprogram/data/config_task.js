@@ -1,5 +1,7 @@
 
 var fontsize = 22
+var tipSize = 14
+var tipColor = "#c6c6c6"
 var maxlength = 30
 
 module.exports = {
@@ -9,8 +11,9 @@ module.exports = {
     "size": "24px",
     "color": "var(--cyan-color)",
     "text": "标题",
+    "tip": "(必填)",
     "tipIcon": "calendar-edit",
-    "tipSize": "24px",
+    "tipSize": "16px",
     "tipColor": "var(--grey10-color)",
     "tipTextSize": "12px",
     "tipTextColor": "var(--grey5-color)",
@@ -24,6 +27,9 @@ module.exports = {
       "size": fontsize,
       "color": "var(--red-color)",
       "text": "事情",
+      "tip": "(必填)",
+      "tipSize": tipSize,
+      "tipColor": tipColor,
       "target": "event",
       "index": 0,
       "placeholder": "请输入什么事情",
@@ -34,6 +40,9 @@ module.exports = {
       "size": fontsize,
       "color": "var(--yellow-color)",
       "text": "想法",
+      "tip": "(必填)",
+      "tipSize": tipSize,
+      "tipColor": tipColor,
       "target": "idea",
       "index": 1,
       "placeholder": "请输入什么想法",
@@ -44,6 +53,9 @@ module.exports = {
       "size": fontsize,
       "color": "var(--blue-color)",
       "text": "情绪",
+      "tip": "(必填)",
+      "tipSize": tipSize,
+      "tipColor": tipColor,
       "target": "feeling",
       "index": 2,
       "placeholder": "请输入什么情绪",
@@ -54,6 +66,9 @@ module.exports = {
       "size": fontsize,
       "color": "var(--green-color)",
       "text": "反驳",
+      "tip": "",
+      "tipSize": tipSize,
+      "tipColor": tipColor,
       "target": "oppose",
       "index": 3,
       "placeholder": "请输入怎么反驳",
@@ -64,6 +79,9 @@ module.exports = {
       "size": fontsize,
       "color": "var(--pink-color)",
       "text": "激发",
+      "tip": "",
+      "tipSize": tipSize,
+      "tipColor": tipColor,
       "target": "new_feeling",
       "index": 4,
       "placeholder": "请输入激发情绪",

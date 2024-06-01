@@ -49,6 +49,7 @@
 
 .view-left {
   display: flex;
+  align-items: center;
 }
 
 .view-right {
@@ -83,6 +84,12 @@
   margin-top: 10px;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+.btn-image {
+  margin-left: 12px;
+  width: 32px;
+  height: 32px;
 }
 
 .img-send {
