@@ -1,4 +1,19 @@
 <!--views/more/more.wxml-->
 <view class="mContent">
-  <view class="view-content"></view>
+  <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
+    <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+      <view class="view-part">
+        <text class="text-title">{{item.taskTitle}}</text>
+        <view class="view-part-sub" wx:if="{{item.taskTotal > 0}}">
+          <text class="text-total-tips">{{item.taskTotal > 1 ? "累计打卡" : "打卡第"}}</text>
+          <text class="text-total">{{item.taskTotal}}</text>
+          <text class="text-total-tips">天</text>
+        </view>
+      </view>
+      <view class="view-part">
+        <text class="text-type">ABCDE</text>
+        <text class="text-time">{{item.taskTime}}</text>
+      </view>
+    </view>
+  </scroll-view>
 </view>

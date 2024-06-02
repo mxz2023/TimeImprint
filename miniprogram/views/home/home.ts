@@ -27,25 +27,27 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
+      var taskList: Array<Task> = wx.getStorageSync(taskListKey)
+      this.setData({
+        taskList: taskList
+      })
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
+
     },
   },
 
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      var taskList: Array<Task> = wx.getStorageSync(taskListKey)
-      this.setData({
-        taskList: taskList
-      })
+      
     },
     hide: function () {
-
+    
     },
     resize: function () {
-
+ 
     },
   },
 

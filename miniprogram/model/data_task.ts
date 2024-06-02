@@ -9,10 +9,10 @@ export enum TaskState {
 
 
 export class Task {
-  taskId: number = 0;                // 事件id
+  taskId: number = 0;             // 事件id
   taskTitle: string = "";         // 标题
-  taskTime: string = formatDate(new Date())             // 时间
-  taskTotal: number = 0                       // 大于0表示累计
+  taskTime: string = formatDate(new Date())      // 时间
+  taskTotal: number = 1           // 累计打卡天数                   
   taskContent: Array<TaskContentItem> = []       // 内容
 
   constructor() {

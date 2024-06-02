@@ -133,24 +133,25 @@ Page({
     var { state } = this.data
     switch (state) {
       case TaskState.TaskStateDefault: {
-        this.handleSaveTask()
-        this.onBack()
+        if (this.handleSaveTask()) {
+          this.onBack()
+        }
         break;
       }
       case TaskState.TaskStateShow: {
-        this.setData({
-          state: TaskState.TaskStateMore
-        })
+        this.handleCleanContent()
         break;
       }
       case TaskState.TaskStateEdit: {
-        this.handleSaveTask()
-        this.onBack()
+        if (this.handleSaveTask()) {
+          this.onBack()
+        }
         break;
       }
       case TaskState.TaskStateMore: {
-        this.handleSaveTask()
-        this.onBack()
+        if (this.handleSaveTask()) {
+          this.onBack()
+        }
         break;
       }
       default: {
@@ -159,7 +160,7 @@ Page({
     }
   },
 
-  handleSaveTask() {
+  handleSaveTask():boolean {
     var { lastTask, state } = this.data
     if (lastTask.taskTitle.length == 0) {
       wx.showToast({
@@ -167,7 +168,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
-      return
+      return false
     }
 
     if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
@@ -176,22 +177,19 @@ Page({
         icon: 'none',
         duration: 2000
       })
-      return
+      return false
     }
 
-    if (state == TaskState.TaskStateMore) {
-      lastTask.taskId = Number(this.generateUniqueId()),
-      lastTask.taskTotal = lastTask.taskTotal + 1
-    } else {
-      lastTask.taskTotal = 1
-    }
+    if (state == TaskState.TaskStateDefault ||state == TaskState.TaskStateMore) {
+      lastTask.taskId = Number(this.generateUniqueId())
+    } 
 
     var taskList: Array<Task> = wx.getStorageSync(taskListKey)
     if (!taskList) {
       taskList = new Array<Task>()
       taskList.push(lastTask)
     } else {
-      if (state == TaskState.TaskStateMore) {
+      if (state == TaskState.TaskStateDefault ||state == TaskState.TaskStateMore) {
         taskList.push(lastTask)
       } else {
         for(var i = 0; i < taskList.length; i++) {
@@ -204,6 +202,19 @@ Page({
       }
     }
     wx.setStorageSync(taskListKey, taskList)
+    return true
+  },
+
+  handleCleanContent() {
+    var { lastTask } = this.data
+    lastTask.taskTotal = lastTask.taskTotal + 1
+    lastTask.taskContent.forEach((item)=>{
+      item.content = ""
+    })
+    this.setData({
+      lastTask: lastTask,
+      state: TaskState.TaskStateMore
+    })
   },
 
   generateUniqueId() {

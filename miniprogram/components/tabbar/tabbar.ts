@@ -20,7 +20,6 @@ Component({
    */
   methods: {
     onSelectItem(e: any) {
-
       let tapIndex = e.currentTarget.dataset.index
       if (tapIndex != this.data.currentIndex) {
         // detail对象，提供给事件监听函数

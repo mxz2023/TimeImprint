@@ -7,13 +7,13 @@
         <!-- 返回上一页 -->
         <block wx:if="{{back}}">
           <view bindtap="back" class="weui-navigation-bar__btn_goback_wrapper" hover-class="weui-active" hover-stay-time="100" aria-role="button" aria-label="返回">
-            <image class="weui-navigation-bar__icon" src="../../static/icon_goback.png" mode="aspectFill"></image>
+            <image class="weui-navigation-bar__icon" src="../../static/btn/btn_back.png" mode="aspectFill"></image>
           </view>
         </block>
         <!-- 返回首页 -->
         <block wx:if="{{homeButton}}">
           <view bindtap="home" class="weui-navigation-bar__btn_home_wrapper" hover-class="weui-active" aria-role="button" aria-label="首页">
-            <image class="weui-navigation-bar__icon" src="../../static/icon_home.png" mode="aspectFill"></image>
+            <image class="weui-navigation-bar__icon" src="../../static/btn/btn-home.png" mode="aspectFill"></image>
           </view>
         </block>
       </block>

@@ -1,7 +1,5 @@
 <!--views/mine/mine.wxml-->
 <view class="mContent">
-  <m-nav></m-nav>
-
   <view class="view-header">
     <view class="view-user">
       <t-avatar class="view-user-avatar" shape="round" size="large" image="{{image}}" />

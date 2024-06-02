@@ -66,7 +66,5 @@
   </scroll-view>
 
   <!-- 发布按钮 -->
-  <view class="view-record">
-    <image class="view-record" src="../../static/btn/btn-fabu.png" bind:tap="onPublishAction"></image>
-  </view>
+  <image class="view-record" src="../../static/btn/btn-fabu.png" bind:tap="onPublishAction"></image>
 </view>
