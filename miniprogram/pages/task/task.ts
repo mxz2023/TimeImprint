@@ -145,9 +145,7 @@ Page({
       }
       case TaskState.TaskStateEdit: {
         this.handleSaveTask()
-        this.setData({
-          state: TaskState.TaskStateShow
-        })
+        this.onBack()
         break;
       }
       case TaskState.TaskStateMore: {
@@ -163,10 +161,6 @@ Page({
 
   handleSaveTask() {
     var { lastTask, state } = this.data
-    var taskList: Array<Task> = wx.getStorageSync(taskListKey)
-    if (!taskList) {
-      taskList = new Array<Task>()
-    }
     if (lastTask.taskTitle.length == 0) {
       wx.showToast({
         title: '标题不能为空',
@@ -186,27 +180,48 @@ Page({
     }
 
     if (state == TaskState.TaskStateMore) {
+      lastTask.taskId = Number(this.generateUniqueId()),
       lastTask.taskTotal = lastTask.taskTotal + 1
     } else {
       lastTask.taskTotal = 1
     }
-    taskList.push(lastTask)
+
+    var taskList: Array<Task> = wx.getStorageSync(taskListKey)
+    if (!taskList) {
+      taskList = new Array<Task>()
+      taskList.push(lastTask)
+    } else {
+      if (state == TaskState.TaskStateMore) {
+        taskList.push(lastTask)
+      } else {
+        for(var i = 0; i < taskList.length; i++) {
+          const item = taskList[i]
+          if (item.taskId == lastTask.taskId) {
+            Object.assign(item, lastTask)
+            break
+          }
+        }
+      }
+    }
     wx.setStorageSync(taskListKey, taskList)
   },
 
+  generateUniqueId() {
+    return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(option) {
-    const { taskId, state } = option
-    if (taskId && state) {
+    const { state } = option
+    if (state) {
       var taskState = Number(state)
-
       // 为后面请求数据做准备
       let { lastTask } = this.data
-      lastTask.taskId = Number(taskId)
-
+      if (taskState == 0) {
+        lastTask.taskId = Number(this.generateUniqueId())
+      }
       this.setData({
         state: taskState,
         lastTask: lastTask

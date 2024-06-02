@@ -138,12 +138,8 @@ Component({
     // 发布按钮
     onPublishAction(_: WechatMiniprogram.CustomEvent) {
       wx.navigateTo({
-        url: `/pages/task/task?taskId=${this.generateUniqueId()}&state=0`
+        url: `/pages/task/task?state=0`
       })
-    },
-
-    generateUniqueId() {
-      return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
     },
 
     onScroll(event: WechatMiniprogram.CustomEvent) {
@@ -164,7 +160,7 @@ Component({
     onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
       const taskItem = event.currentTarget.dataset.taskItem
       wx.navigateTo({
-        url: `/pages/task/task?taskId=${taskItem.taskId}&state=1`,
+        url: `/pages/task/task?state=1`,
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function(data:object) {
