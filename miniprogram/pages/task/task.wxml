@@ -38,7 +38,7 @@
     <view class="view-input">
 
       <!-- 标题输入框 -->
-      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
+      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{!utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
 
       <!-- 累计打卡 -->
       <view class="view-right">
@@ -61,7 +61,7 @@
           <text wx:if="{{state != 1}}" style="margin-left: 5px; color: {{item.tipColor}}; font-weight: 600; font-size: {{item.tipSize}};">{{item.tip}}</text>
         </view>
 
-        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastTask, idx)}}" />
+        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{!utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastTask, idx)}}" />
       </view>
 
     </view>

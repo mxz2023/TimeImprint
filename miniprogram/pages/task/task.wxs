@@ -68,7 +68,7 @@ var getPublishText = function(state) {
       break
     }
     default: {
-      text = "发布"
+      text = ""
     }
   }
   return text

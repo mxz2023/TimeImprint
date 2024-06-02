@@ -138,7 +138,7 @@ Component({
     // 发布按钮
     onPublishAction(_: WechatMiniprogram.CustomEvent) {
       wx.navigateTo({
-        url: `/pages/task/task?taskId=${this.generateUniqueId()}&state=0`,
+        url: `/pages/task/task?taskId=${this.generateUniqueId()}&state=0`
       })
     },
 
@@ -173,7 +173,9 @@ Component({
         },
         success: function(res) {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('showTaskInfo', { data: taskItem})
+          res.eventChannel.emit('showTaskInfo', {
+            data: taskItem,
+          })
         }
       })
     }

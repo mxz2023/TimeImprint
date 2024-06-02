@@ -18,7 +18,7 @@ Page({
     lastTask: new Task(),
     // 保存数据
     dataTask: new Task(),
-    
+
     state: TaskState.TaskStateDefault, // 当前状态
 
     mode: "",     // 无用变量，特殊用法，见onShowPicker和onHidePicker
@@ -48,7 +48,6 @@ Page({
    * @param event WechatMiniprogram.CustomEvent
    */
   onShowPicker(_: WechatMiniprogram.CustomEvent) {
-    debugger
     const mode = "date";
     this.setData({
       mode,
@@ -132,7 +131,7 @@ Page({
 
   onPushTask(_: WechatMiniprogram.CustomEvent) {
     var { state } = this.data
-    switch(state) {
+    switch (state) {
       case TaskState.TaskStateDefault: {
         this.handleSaveTask()
         this.onBack()
@@ -201,31 +200,35 @@ Page({
    */
   onLoad(option) {
     const { taskId, state } = option
-    var taskState = Number(state)
+    if (taskId && state) {
+      var taskState = Number(state)
 
-    // 为后面请求数据做准备
-    let { lastTask } = this.data
-    lastTask.taskId = Number(taskId)
+      // 为后面请求数据做准备
+      let { lastTask } = this.data
+      lastTask.taskId = Number(taskId)
 
-    this.setData({
-      state: taskState,
-      lastTask: lastTask
-    })
+      this.setData({
+        state: taskState,
+        lastTask: lastTask
+      })
+    }
 
     const eventChannel = this.getOpenerEventChannel()
-    //eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
+    if (eventChannel.on) {
+      // 先父页面发送信息
+      //eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
 
-    const blockThis = this
-    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('showTaskInfo', function (dataItem) {
-      var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
-      var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
-      blockThis.setData({
-        state: TaskState.TaskStateShow,
-        lastTask: copyData1,
-        dataTask: copyData2,
+      const blockThis = this
+      eventChannel.on('showTaskInfo', function (dataItem) {
+        var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
+        var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
+        blockThis.setData({
+          state: TaskState.TaskStateShow,
+          lastTask: copyData1,
+          dataTask: copyData2,
+        })
       })
-    })
+    }
   },
 
   /**
