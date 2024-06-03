@@ -1,5 +1,10 @@
 <!--views/more/more.wxml-->
 <view class="mContent">
+  <m-nav back="{{false}}">
+    <view slot="left" class="view-custom-title">
+      <text class="text-custom-title">历史记录</text>
+    </view>
+  </m-nav>
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
     <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <view class="view-part">

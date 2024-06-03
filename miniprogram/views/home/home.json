@@ -4,7 +4,7 @@
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "m-calendar": "../../components/calendar/calendar",
-    "m-date-picker": "../../components/datepicker/datepicker"
+    "m-date-picker": "../../components/date-picker/date-picker"
   },
   "renderer": "skyline"
 }

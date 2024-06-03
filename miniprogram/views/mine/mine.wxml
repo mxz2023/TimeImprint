@@ -1,14 +1,25 @@
 <!--views/mine/mine.wxml-->
 <view class="mContent">
   <view class="view-header">
-    <view class="view-user">
-      <t-avatar class="view-user-avatar" shape="round" size="large" image="{{image}}" />
-      <text class="view-user-nickname">{{"浮生半日闲"}}</text>
+    <view class="view-content">
+      <view class="view-part">
+        <text class="text-number">10</text>
+        <text class="text-title">累计打卡</text>
+      </view>
+      <view class="view-part">
+        <text class="text-number">3</text>
+        <text class="text-title">累计最长</text>
+      </view>
     </view>
 
-  </view>
-
-  <view class="view-content">
+    <view class="view-user">
+      <t-avatar class="view-user-avatar" shape="round" size="large" image="{{image}}" />
+      <view class="view-nick">
+        <text class="text-user-nickname">{{"浮生半日闲"}}</text>
+        <text class="text-user-id">{{"000001"}}</text>
+      </view>
+      
+    </view>
 
   </view>
 

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "m-tab-bar": "../../components/tabbar/tabbar",
+    "m-tab-bar": "../../components/tab-bar/tab-bar",
     "m-home": "../../views/home/home",
     "m-more": "../../views/more/more",
     "m-mine": "../../views/mine/mine"

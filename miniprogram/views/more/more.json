@@ -1,5 +1,8 @@
 {
   "component": true,
   "styleIsolation": "apply-shared",
-  "usingComponents": {}
+  "usingComponents": {
+    "m-nav": "../../components/navigation-bar/navigation-bar",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar"
+  }
 }
