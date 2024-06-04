@@ -1,6 +1,19 @@
 <!--views/mine/mine.wxml-->
 <view class="mContent">
   <view class="view-header">
+    <view class="view-user">
+      <view class="avatar-wrapper">
+        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="nickname-wrapper">
+          <text class="text-user-nickname">{{userInfo.nickName}}</text>
+          <text class="text-user-id">{{userInfo.id}}</text>
+        </view>
+      </view>
+      <view class="setting-wrapper">
+        <t-icon name="setting-1" size="48rpx" data-name="setting-1" bind:click="onOpenSetting" />
+      </view>
+    </view>
+
     <view class="view-content">
       <view class="view-part">
         <text class="text-number">10</text>
@@ -11,16 +24,6 @@
         <text class="text-title">累计最长</text>
       </view>
     </view>
-
-    <view class="view-user">
-      <t-avatar class="view-user-avatar" shape="round" size="large" image="{{image}}" />
-      <view class="view-nick">
-        <text class="text-user-nickname">{{"浮生半日闲"}}</text>
-        <text class="text-user-id">{{"000001"}}</text>
-      </view>
-      
-    </view>
-
   </view>
 
   <view class="view-list">
@@ -37,4 +40,5 @@
       </view>
     </scroll-view>
   </view>
+
 </view>

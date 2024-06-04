@@ -3,6 +3,7 @@
     "pages/welcome/welcome",
     "pages/main/main",
     "pages/task/task",
+    "pages/setting/setting",
     "pages/demo/demo",
     "pages/logs/logs"
   ],

@@ -10,7 +10,7 @@ Page({
   data: {
     list: tabbar,
     stateBarHeight: 0,
-    selectIndex: 0,
+    selectIndex: 2,
   },
 
   onUpdateSelectIndex(e: any) {
