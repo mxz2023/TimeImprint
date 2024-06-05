@@ -1,6 +1,5 @@
 // views/more/more.ts
-import { taskListKey } from "../../data/config_storage"
-import { Task } from '../../model/data_task'
+import { Task, TaskManager } from '../../model/data_task'
 
 Component({
 
@@ -21,7 +20,7 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      var taskList: Array<Task> = wx.getStorageSync(taskListKey)
+      var taskList: Array<Task> = TaskManager.getInstance().getTaskList()
       this.setData({
         taskList: taskList
       })

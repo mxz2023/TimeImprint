@@ -1,1 +1,78 @@
 /* pages/setting/setting.wxss */
+
+.main-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: calc(100% - 24px);
+  padding: 12px
+}
+
+.userinfo {
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+  height: 250px;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 100px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.nickname-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
+}
+
+.view-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.scrollarea{
+  overflow-y: auto;
+  height: calc(100vh - 83px - 250px - env(safe-area-inset-bottom));
+}
+
+.view-t-cell {
+  flex-direction: row;
+}

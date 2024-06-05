@@ -17,7 +17,7 @@
       </view>
       <view class="view-part">
         <text class="text-type">ABCDE</text>
-        <text class="text-time">{{item.taskTime}}</text>
+        <text class="text-time">{{item.taskCreateTime}}</text>
       </view>
     </view>
   </scroll-view>

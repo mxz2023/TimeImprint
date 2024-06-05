@@ -44,11 +44,12 @@
   </view>
 
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
+    <!-- 主日历 -->
     <view class="view-calendar">
-      <!-- 主日历 -->
       <m-calendar viewStyle="2" gridListMonth="{{ gridListMonth }}" bind:updateCurrentDay="onUpdateCurrentDay" bind:updateMonth="onUpdateMonth"></m-calendar>
     </view>
 
+    <!-- 打卡 -->
     <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
       <view class="view-part">
         <text class="text-title">{{item.taskTitle}}</text>
@@ -60,7 +61,7 @@
       </view>
       <view class="view-part">
         <text class="text-type">ABCDE</text>
-        <text class="text-time">{{item.taskTime}}</text>
+        <text class="text-time">{{item.taskCreateTime}}</text>
       </view>
     </view>
   </scroll-view>

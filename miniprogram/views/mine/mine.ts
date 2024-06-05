@@ -21,9 +21,7 @@ Component({
       nickName: '游客',
       id: '******'
     },
-    canIUseGetUserProfile: wx.canIUse('getUserProfile'),
 
-    image: 'https://tdesign.gtimg.com/mobile/demos/avatar1.png',
     listData1: ["🔥 情绪ABC介绍", "关于"],
     // listData2:[1,2,3,4,5,6,7]
   },

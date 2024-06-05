@@ -1,4 +1,5 @@
 // pages/setting/setting.ts
+import { userInfoKey } from "../../data/config_storage"
 
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
@@ -8,12 +9,32 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: "设置 📌",
+
     userInfo: {
       avatarUrl: defaultAvatarUrl,
       nickName: '游客',
       id: '******'
     },
+
+    listData: ["🔥 情绪ABC介绍", "关于"],
+
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
+  },
+
+  onGoHome() {
+    // wx.reLaunch({
+    //   url: '../main/main',
+    // })
+    wx.redirectTo({
+      url: '../main/main',
+    })
+  },
+
+  onBack() {
+    wx.navigateBack({
+      delta: 1
+    })
   },
 
   loginRequest() {
@@ -34,7 +55,6 @@ Page({
       return
     }
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    debugger
     wx.getUserProfile({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
@@ -79,7 +99,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    var userInfo = wx.getStorageSync(userInfoKey)
+    if (userInfo) {
+      this.setData({
+        userInfo: userInfo,
+      })
+    }
   },
 
   /**

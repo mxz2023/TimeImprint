@@ -1,7 +1,6 @@
 // pages/task/task.ts
 import { task_title, task_abcde } from "../../data/config_task"
-import { taskListKey } from "../../data/config_storage"
-import { Task, TaskState } from '../../model/data_task'
+import { Task, TaskState, TaskManager } from '../../model/data_task'
 
 
 Page({
@@ -73,7 +72,7 @@ Page({
   onConfirm(event: WechatMiniprogram.CustomEvent) {
     const { value } = event.detail;
     const { lastTask } = this.data
-    lastTask.taskTime = value
+    lastTask.taskCreateTime = value
 
     this.setData({
       lastTask: lastTask,
@@ -180,28 +179,11 @@ Page({
       return false
     }
 
-    if (state == TaskState.TaskStateDefault ||state == TaskState.TaskStateMore) {
-      lastTask.taskId = Number(this.generateUniqueId())
-    } 
-
-    var taskList: Array<Task> = wx.getStorageSync(taskListKey)
-    if (!taskList) {
-      taskList = new Array<Task>()
-      taskList.push(lastTask)
+    if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
+      TaskManager.getInstance().createTask(lastTask)
     } else {
-      if (state == TaskState.TaskStateDefault ||state == TaskState.TaskStateMore) {
-        taskList.push(lastTask)
-      } else {
-        for(var i = 0; i < taskList.length; i++) {
-          const item = taskList[i]
-          if (item.taskId == lastTask.taskId) {
-            Object.assign(item, lastTask)
-            break
-          }
-        }
-      }
+      TaskManager.getInstance().modifyTask(lastTask)
     }
-    wx.setStorageSync(taskListKey, taskList)
     return true
   },
 
@@ -217,10 +199,6 @@ Page({
     })
   },
 
-  generateUniqueId() {
-    return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -230,9 +208,6 @@ Page({
       var taskState = Number(state)
       // 为后面请求数据做准备
       let { lastTask } = this.data
-      if (taskState == 0) {
-        lastTask.taskId = Number(this.generateUniqueId())
-      }
       this.setData({
         state: taskState,
         lastTask: lastTask
