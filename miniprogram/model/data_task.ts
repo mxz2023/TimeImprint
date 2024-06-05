@@ -51,32 +51,36 @@ export class TaskManager {
     }
   }
 
-  static getInstance() {
+  static getInstance():TaskManager {
     if (!TaskManager.instance) {
       TaskManager.instance = new TaskManager()
     }
     return TaskManager.instance
   }
 
-  getTaskList() {
+  getTaskList():Array<Task> {
     // 正序插入，反序显示
     let taskList = new Array<Task>()
     Object.assign(taskList, this.taskList)
     return taskList.reverse()
   }
 
-  getLastTask() {
+  getLastTask():Task {
     let length = this.taskList.length
     return this.taskList[length-1]
   }
 
-  createTask(item:Task) {
+  getTaskCount():number {
+    return this.taskList.length
+  }
+
+  createTask(item:Task):void {
     item.taskId = this.generateUniqueId()
     this.taskList.push(item)
     wx.setStorageSync(taskListKey, this.taskList)
   }
 
-  modifyTask(item: Task) {
+  modifyTask(item: Task):void {
     this.taskList = this.taskList.map((data)=>{
       if (data.taskId == item.taskId) {
         data = item
@@ -86,14 +90,14 @@ export class TaskManager {
     wx.setStorageSync(taskListKey, this.taskList)
   }
 
-  deleteTask(takeId: string) {
+  deleteTask(takeId: string):void {
     this.taskList = this.taskList.filter((item)=>{
       return item.taskId != takeId
     })
     wx.setStorageSync(taskListKey, this.taskList)
   }
 
-  generateUniqueId() {
+  generateUniqueId():string {
     return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
   }
 }

@@ -16,11 +16,11 @@
 
     <view class="view-content">
       <view class="view-part">
-        <text class="text-number">10</text>
+        <text class="text-number">{{taskCount}}</text>
         <text class="text-title">累计打卡</text>
       </view>
       <view class="view-part">
-        <text class="text-number">3</text>
+        <text class="text-number">1</text>
         <text class="text-title">累计最长</text>
       </view>
     </view>
