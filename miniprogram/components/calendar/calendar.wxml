@@ -17,6 +17,7 @@
   <swiper class="swiper-view" scroll-with-animation="{{ scrollWithAnimation }}" bindchange="onChangecurrent" current="{{ currentIndex }}" data-current="{{currentIndex}}">
     <swiper-item class="swiper-view-item" wx:for="{{ gridListMonth }}" wx:key="index" wx:for-index="idx" wx:for-item="itemDays">
       <view class="swiper-view-content">
+        <image src="../../static/welcome_icon.png" style="position: absolute; opacity: 0.1; width: 100%; height: 100%;" mode="aspectFit"/>
         <view class="view-date-warpper" wx:for="{{ itemDays.days }}" wx:key="key" data-item="{{item}}" data-index1="{{idx}}" data-index2="{{index}}" bind:tap="onSelectDay">
           <view class="view-date" style="background-color: {{item.bgColor}}">
             <text class="text-date" style="color: {{item.color}}; {{utils.dateTitleSyle(viewStyle)}}">{{ item.title1 }}</text>

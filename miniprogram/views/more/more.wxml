@@ -5,20 +5,35 @@
       <text class="text-custom-title">历史记录</text>
     </view>
   </m-nav>
-  <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
-    <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-      <view class="view-part">
-        <text class="text-title">{{item.taskTitle}}</text>
-        <view class="view-part-sub" wx:if="{{item.taskTotal > 0}}">
-          <text class="text-total-tips">{{item.taskTotal > 1 ? "累计打卡" : "打卡第"}}</text>
-          <text class="text-total">{{item.taskTotal}}</text>
-          <text class="text-total-tips">天</text>
+
+  <view class="view-scrollarea" wx:if="{{taskList.length > 0}}">
+    <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
+      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+        <view class="view-cell-bg">
+          <image src="../../static/welcome_icon.png" style="opacity: 0.1; height: 60px; width: 60px; margin-right: 28px;" mode="aspectFit" />
+        </view>
+
+        <view class="view-part">
+          <text class="text-title">{{item.taskTitle}}</text>
+          <view class="view-part-sub" wx:if="{{item.taskTotal > 0}}">
+            <text class="text-total-tips">{{item.taskTotal > 1 ? "累计打卡" : "打卡第"}}</text>
+            <text class="text-total">{{item.taskTotal}}</text>
+            <text class="text-total-tips">天</text>
+          </view>
+        </view>
+        <view class="view-part">
+          <text class="text-type">ABCDE</text>
+          <text class="text-time">{{item.taskCreateTime}}</text>
         </view>
       </view>
-      <view class="view-part">
-        <text class="text-type">ABCDE</text>
-        <text class="text-time">{{item.taskCreateTime}}</text>
-      </view>
-    </view>
-  </scroll-view>
+    </scroll-view>
+  </view>
+  <view class="view-scrollarea" style="justify-content: center; align-items: center;" wx:else>
+    <text class="text-no-history">暂无记录，去打一次卡吧</text>
+    <image src="../../static/welcome_icon.png" style="opacity: 0.1;" mode="aspectFit" />
+
+  </view>
+
+  <!-- 发布按钮 -->
+  <image class="view-record" src="../../static/btn/btn-fabu.png" bind:tap="onPublishAction"></image>
 </view>

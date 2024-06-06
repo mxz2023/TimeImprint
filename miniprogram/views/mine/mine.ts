@@ -28,6 +28,7 @@ Component({
 
     listData1: ["🔥 情绪ABC介绍", "关于"],
     // listData2:[1,2,3,4,5,6,7]
+    text: 'Copyright © 2024-2025 Time Imprint. All Rights Reserved.',
   },
 
   /**

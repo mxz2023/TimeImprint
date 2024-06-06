@@ -12,6 +12,11 @@
   font-weight: 600;
 }
 
+.view-scrollarea {
+  width: 100%;
+  height: 100%;
+}
+
 .scrollarea {
   flex: 1;
   overflow-y: auto;
@@ -26,6 +31,15 @@
   border-radius: 3px;
   padding: 12px 20px;
   margin: 12px 12px 0px 12px;
+}
+
+.view-cell-bg {
+  display: flex;
+  position: absolute;
+  width: calc(100% - 24px);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .view-part {
@@ -50,6 +64,7 @@
   font-size: var(--font-title2);
   font-weight: var(--font-weight-normal);
 }
+
 .text-time {
   color: var(--grey-color);
   font-size: var(--font-title2);
@@ -68,4 +83,20 @@
   color: var(--grey-color);
   font-size: var(--font-title2);
   font-weight: var(--font-weight-normal);
+}
+
+.text-no-history {
+  color: var(--grey-color);
+  font-size: var(--font-title3);
+  font-weight: var(--font-weight-normal);
+}
+
+.view-record {
+  position: absolute;
+  bottom: 12px;
+  transform: translateX(-50%);
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem; 
 }

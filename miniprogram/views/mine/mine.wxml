@@ -41,4 +41,5 @@
     </scroll-view>
   </view>
 
+  <t-footer style="margin-bottom: 12px;" text="{{text}}"></t-footer>
 </view>
