@@ -156,6 +156,7 @@ Component({
       })
     },
 
+    // 滚动处理
     onScroll(event: WechatMiniprogram.CustomEvent) {
       // console.log(event)
       let scrollTop = event.detail.scrollTop
@@ -171,6 +172,7 @@ Component({
       }
     },
 
+    // 打开详情页
     onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
       const taskItem = event.currentTarget.dataset.taskItem
       wx.navigateTo({

@@ -20,7 +20,7 @@
         <text class="text-title">累计打卡</text>
       </view>
       <view class="view-part">
-        <text class="text-number">1</text>
+        <text class="text-number">{{maxTotal}}</text>
         <text class="text-title">累计最长</text>
       </view>
     </view>

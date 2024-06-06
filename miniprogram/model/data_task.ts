@@ -39,6 +39,7 @@ export class TaskContentItemExtend {
 
 export class TaskManager {
   taskList: Array<Task>
+  maxTotal: number
 
   static instance: TaskManager
 
@@ -49,6 +50,10 @@ export class TaskManager {
     } else {
       this.taskList = new Array<Task>()
     }
+    this.maxTotal = 1
+    this.taskList.forEach((item) => {
+      this.maxTotal = Math.max(this.maxTotal, item.taskTotal)
+    })
   }
 
   static getInstance():TaskManager {
@@ -72,6 +77,10 @@ export class TaskManager {
 
   getTaskCount():number {
     return this.taskList.length
+  }
+
+  getMaxTotal() {
+    return this.maxTotal
   }
 
   createTask(item:Task):void {

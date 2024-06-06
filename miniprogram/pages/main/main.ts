@@ -8,9 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    selectIndex: 0,
     list: tabbar,
     stateBarHeight: 0,
-    selectIndex: 0,
   },
 
   onUpdateSelectIndex(e: any) {

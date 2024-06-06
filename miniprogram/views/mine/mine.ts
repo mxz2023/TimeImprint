@@ -1,6 +1,6 @@
 // views/mine/mine.ts
 import { userInfoKey } from "../../data/config_storage"
-import { TaskManager } from "../../model/data_task"
+import { Task, TaskManager } from "../../model/data_task"
 
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
@@ -24,6 +24,7 @@ Component({
     },
 
     taskCount: 0,
+    maxTotal: 1,
 
     listData1: ["🔥 情绪ABC介绍", "关于"],
     // listData2:[1,2,3,4,5,6,7]
@@ -36,8 +37,10 @@ Component({
     attached: function () {
       // 在组件实例进入页面节点树时执行
       var count = TaskManager.getInstance().getTaskCount()
+      var max = TaskManager.getInstance().getMaxTotal()
       this.setData({
         taskCount: count,
+        maxTotal: max,
       })
       var userInfo = wx.getStorageSync(userInfoKey)
       if (userInfo) {

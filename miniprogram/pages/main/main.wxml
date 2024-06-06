@@ -9,4 +9,4 @@
 
 <view class="mBox" wx:else class="mBox"></view>
 
-<m-tab-bar wx:if="{{list.length > 1}}" bind:updateSelectIndex="onUpdateSelectIndex" list="{{list}}"></m-tab-bar>
+<m-tab-bar wx:if="{{list.length > 1}}" bind:updateSelectIndex="onUpdateSelectIndex" index="{{selectIndex}}" list="{{list}}"></m-tab-bar>

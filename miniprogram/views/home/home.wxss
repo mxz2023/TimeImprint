@@ -166,6 +166,14 @@
   box-sizing: border-box;
 }
 
+.view-last-task {
+  justify-content: flex-start;
+  padding: 12px;
+}
+.text-last-task {
+  font-size: var(--font-title2);
+}
+
 .view-item{
   background-color: var(--grey1-color);
   height: 88px;
