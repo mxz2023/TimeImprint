@@ -87,7 +87,7 @@
 
 .text-no-history {
   color: var(--grey-color);
-  font-size: var(--font-title3);
+  font-size: var(--font-title2);
   font-weight: var(--font-weight-normal);
 }
 

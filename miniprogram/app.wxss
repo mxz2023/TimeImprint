@@ -97,3 +97,10 @@ page {
   height: 36rpx;
   background: #e7e7e7;
 }
+
+.logo_small {
+  width: 60px;
+  height: 60px;
+  opacity: 0.1;
+  src: local('./static/welcome_icon.png');
+}
