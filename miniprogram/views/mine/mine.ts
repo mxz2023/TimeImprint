@@ -55,6 +55,24 @@ Component({
     },
   },
 
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () {
+      var userInfo = wx.getStorageSync(userInfoKey)
+      if (userInfo) {
+        this.setData({
+          userInfo: userInfo,
+        })
+      }
+    },
+    hide: function () {
+    
+    },
+    resize: function () {
+ 
+    },
+  },
+
   /**
    * 组件的方法列表
    */
