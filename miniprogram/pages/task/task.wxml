@@ -78,3 +78,5 @@
     </view>
   </scroll-view>
 </view>
+
+<canvas class="view-canvas" type="2d" canvas-id="shareContent" id="myCanvas"></canvas>

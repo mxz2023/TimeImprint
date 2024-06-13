@@ -69,3 +69,10 @@
 .img-send {
   height: 48px;
 }
+
+.view-canvas {
+  position: absolute;
+  right: 99999px;
+  width: 500px;
+  height: 400px;
+}

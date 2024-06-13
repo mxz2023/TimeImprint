@@ -1,0 +1,5 @@
+<!--pages/demo/demo.wxml-->
+<view class="container" style="padding-top: {{safeAreaTop}}px;">
+  <canvas class="view-canvas" type="2d" canvas-id="shareContent" id="myCanvas"></canvas>
+  <image class="view-img" id="shareContent" src="{{pic}}" mode="aspectFit" />
+</view>

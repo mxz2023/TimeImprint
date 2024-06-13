@@ -1,7 +1,7 @@
 // pages/task/task.ts
 import { task_title, task_abcde } from "../../data/config_task"
 import { Task, TaskState, TaskManager } from '../../model/data_task'
-
+import { shareABCDEMessage } from '../../utils/share'
 
 Page({
   /**
@@ -277,7 +277,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage(res):Promise<WechatMiniprogram.Page.ICustomShareContent> {
+    return shareABCDEMessage(this.data.lastTask, res.from, res.target)
+  },
 })

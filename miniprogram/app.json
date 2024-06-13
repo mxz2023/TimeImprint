@@ -3,9 +3,8 @@
     "pages/welcome/welcome",
     "pages/main/main",
     "pages/task/task",
-    "pages/setting/setting",
-    "pages/demo/demo",
-    "pages/logs/logs"
+    "pages/canvas/canvas",
+    "pages/setting/setting"
   ],
   "window": {
     "navigationBarTextStyle": "black",
