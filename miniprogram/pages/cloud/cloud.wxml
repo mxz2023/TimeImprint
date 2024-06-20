@@ -1,0 +1,18 @@
+<!--pages/cloud/cloud.wxml-->
+
+<t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" title="{{title}}">
+  <view slot="capsule" class="custom-capsule">
+    <t-icon size="20" bind:tap="onBack" aria-role="button" aria-label="返回" name="chevron-left" class="custom-capsule__icon back" />
+    <t-icon size="20" bind:tap="onGoHome" aria-role="button" aria-label="首页" name="home" class="custom-capsule__icon home" />
+  </view>
+</t-navbar>
+
+<view class="main-box">
+  <scroll-view class="scrollarea" scroll-y="true" type="list">
+    <t-cell-group style="margin-bottom: 10px;" theme="card" bordered wx:for="{{ listData }}" wx:key="index" wx:for-index="idx" wx:for-item="itemList">
+      <view class="view-list-item" wx:for="{{ itemList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+        <t-cell class="view-t-cell" title="{{item.name}}" data-item="{{item}}" bind:tap="onHandleOption" hover arrow />
+      </view>
+    </t-cell-group>
+  </scroll-view>
+</view>

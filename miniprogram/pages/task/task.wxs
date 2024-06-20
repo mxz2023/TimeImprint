@@ -1,5 +1,4 @@
-
-var getTaskItemContent = function(task, index) {
+var getTaskItemContent = function (task, index) {
   var contents = task.taskContent
   if (!contents || contents.length == 0) {
     console.error("数据为空")
@@ -14,12 +13,12 @@ var getTaskItemContent = function(task, index) {
   return ""
 }
 
-var canShowItem = function(task, index) {
+var canShowItem = function (task, index) {
   var content = getTaskItemContent(task, index)
   return content.length > 0
 }
 
-var getTotalText = function(total) {
+var getTotalText = function (total) {
   if (total == 1) {
     return "打卡第1天"
   } else {
@@ -28,29 +27,29 @@ var getTotalText = function(total) {
 }
 
 // 是否可以修改标题
-var canEditTitle = function(state) {
+var canEditTitle = function (state) {
   return state == 0
 }
 
 // 是否可以修改时间
-var canEditTime = function(state) {
+var canEditTime = function (state) {
   return state == 0 || state == 3
 }
 
 // 是否可以修改内容
-var canEditContent = function(state) {
+var canEditContent = function (state) {
   return state != 1
 }
 
 // 是否显示编辑按钮
-var canShowEdit = function(state) {
+var canShowEdit = function (state) {
   return state == 1 || state == 2
 }
 
 // 打开按钮文案
-var getPublishText = function(state) {
+var getPublishText = function (state) {
   var text = ""
-  switch(state) {
+  switch (state) {
     case 0: {
       text = "发布"
       break
@@ -75,9 +74,9 @@ var getPublishText = function(state) {
 }
 
 // 编辑按钮文案
-var getEditText= function(state) {
+var getEditText = function (state) {
   var text = ""
-  switch(state) {
+  switch (state) {
     case 0: {
       text = ""
       break

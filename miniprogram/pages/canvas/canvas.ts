@@ -1,4 +1,4 @@
-// pages/demo/demo.ts
+// pages/canvas/canvas.ts
 
 import { Task } from '../../model/data_task'
 import { shareAppMessage, initShareCanvas } from '../../utils/share'

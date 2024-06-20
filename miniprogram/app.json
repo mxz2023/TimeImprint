@@ -4,6 +4,7 @@
     "pages/main/main",
     "pages/task/task",
     "pages/canvas/canvas",
+    "pages/cloud/cloud",
     "pages/setting/setting"
   ],
   "window": {

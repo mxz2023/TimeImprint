@@ -1,11 +1,11 @@
-import { formatDate } from "../utils/util"
 import { taskListKey } from "../data/config_storage"
+import { formatDate } from "../utils/util"
 
 export enum TaskState {
   TaskStateDefault = 0,
-  TaskStateShow = 1,
-  TaskStateEdit = 2,
-  TaskStateMore = 3
+  TaskStateShow = 1,    // 展示打卡内容
+  TaskStateEdit = 2,    // 创建-编辑打卡
+  TaskStateMore = 3     // 再次打卡
 }
 
 export class Task {

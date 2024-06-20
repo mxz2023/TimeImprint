@@ -1,4 +1,4 @@
-/* pages/demo/demo.wxss */
+/* pages/canvas/canvas.wxss */
 
 .container {
   display: flex;

@@ -70,6 +70,7 @@ Page({
    * @param event 
    */
   onConfirm(event: WechatMiniprogram.CustomEvent) {
+    debugger
     const { value } = event.detail;
     const { lastTask } = this.data
     lastTask.taskCreateTime = value
@@ -159,7 +160,7 @@ Page({
     }
   },
 
-  handleSaveTask():boolean {
+  handleSaveTask(): boolean {
     var { lastTask, state } = this.data
     if (lastTask.taskTitle.length == 0) {
       wx.showToast({
@@ -190,7 +191,7 @@ Page({
   handleCleanContent() {
     var { lastTask } = this.data
     lastTask.taskTotal = lastTask.taskTotal + 1
-    lastTask.taskContent.forEach((item)=>{
+    lastTask.taskContent.forEach((item) => {
       item.content = ""
     })
     this.setData({
@@ -204,15 +205,18 @@ Page({
    */
   onLoad(option) {
     const { state } = option
-    if (state) {
-      var taskState = Number(state)
-      // 为后面请求数据做准备
-      let { lastTask } = this.data
-      this.setData({
-        state: taskState,
-        lastTask: lastTask
-      })
+    if (state == undefined) {
+      console.error("state 未知")
+      return
     }
+
+    var taskState = Number(state)
+    // 为后面请求数据做准备
+    let { lastTask } = this.data
+    this.setData({
+      state: taskState,
+      lastTask: lastTask
+    })
 
     const eventChannel = this.getOpenerEventChannel()
     if (eventChannel.on) {
@@ -277,7 +281,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage(res):Promise<WechatMiniprogram.Page.ICustomShareContent> {
+  onShareAppMessage(res): Promise<WechatMiniprogram.Page.ICustomShareContent> {
     return shareABCDEMessage(this.data.lastTask, res.from, res.target)
   },
 })

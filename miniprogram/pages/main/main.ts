@@ -86,14 +86,14 @@ Page({
   /**
   * 用户点击右上角分享
   */
-  onShareAppMessage(res):Promise<WechatMiniprogram.Page.ICustomShareContent> {
+  onShareAppMessage(res) {
     return shareAppMessage()
   },
 
   /**
    * 自定义分享到朋友圈
    */
-  onShareTimeline: function () {
+  onShareTimeline() {
     shareTimeline()
   },
 })

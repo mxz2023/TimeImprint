@@ -1,6 +1,19 @@
 import { Task } from '../model/data_task'
 import { DrawTools } from './drawTools'
 
+export function shareAppMessage() {
+  return {
+    title: '叶记时光',
+  }
+}
+
+export function shareTimeline() {
+  return {
+    title: '自定义转发标题',
+    query: 'id=123'
+  }
+}
+
 export function shareABCDEMessage(data:Task, from?:string, target?:string):Promise<WechatMiniprogram.Page.ICustomShareContent> {
   if (from === 'button') {
     // 来自页面内转发按钮
@@ -17,13 +30,6 @@ export function shareABCDEMessage(data:Task, from?:string, target?:string):Promi
       reject(err)
     })
   })
-}
-
-export function shareTimeline() {
-  return {
-    title: '自定义转发标题',
-    query: 'id=123'
-  }
 }
 
 /**
