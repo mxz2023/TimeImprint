@@ -1,6 +1,9 @@
 
+import { Task } from "../model/data_task";
+import { formatDate } from "../utils/util"
+
 export interface DataBaseTask {
-  taskId: string
+  _id: string
   taskTitle: string
   taskCreateTime: Date
   taskModifyTime: Date
@@ -34,10 +37,97 @@ export class DataBase {
     return DataBase.instance;
   }
 
-  // 添加任务
-  public addTask(task:DataBaseTask): void {
-    this.db.collection("taskList").add({
-      data:task
+  convertToDBItem(task:Task) :DataBaseTask {
+    let dataTask: DataBaseTask = {
+      _id: task.taskId,
+      taskTitle: task.taskTitle,
+      taskCreateTime: new Date(),
+      taskModifyTime: new Date(),
+      taskTotal: task.taskTotal,
+      taskContent: task.taskContent
+    }
+    return dataTask
+  }
+
+  converToTask(item:DataBaseTask) :Task {
+    let task = new Task()
+    task.taskId = item._id
+    task.taskTitle = item.taskTitle
+    task.taskCreateTime = formatDate(item.taskCreateTime)
+    task.taskModifyTime = formatDate(item.taskModifyTime)
+    task.taskContent = item.taskContent
+    return task
+  }
+
+  // 增加任务
+  public addTask(task:Task): Promise<boolean> {
+    let dbItem = this.convertToDBItem(task)
+    return new Promise((resolve, reject)=>{
+      this.db.collection("taskList").add({
+        data:dbItem
+      }).then((res)=>{
+        resolve(true)
+      }).catch((err: object)=>{
+        reject(err)
+      })
+    })
+  }
+
+  // 删除任务
+  public deleteTask(taskId:string): Promise<boolean> {
+    debugger
+    return new Promise((resolve, reject)=>{
+      this.db.collection("taskList").doc(taskId).remove().then((res)=>{
+        resolve(true)
+      }).catch((err: object)=>{
+        reject(err)
+      })
+    })
+  }
+
+  // 修改任务
+  public changeTask(task:Task): Promise<boolean> {
+    debugger
+    let dbItem = this.convertToDBItem(task)
+    return new Promise((resolve, reject)=>{
+      this.db.collection("taskList").doc(dbItem._id).update({
+        data: dbItem
+      }).then((res)=>{
+        resolve(true)
+      }).catch((err: object)=>{
+        reject(err)
+      })
+    })
+  }
+
+  // 查询任务
+  public queryTask(taskId:string): Promise<Task> {
+    debugger
+    return new Promise((resolve, reject)=>{
+      this.db.collection("taskList").doc(taskId).get().then((res)=>{
+        console.log(res)
+        // let task = this.converToTask(res.data)
+        // resolve(task)
+      }).catch((err: object)=>{
+        reject(err)
+      })
+    })
+  }
+
+  // 获取全部任务
+  public getTasks(): Promise<Array<Task>> {
+    return new Promise((resolve, reject)=>{
+      this.db.collection("taskList").get().then((res)=>{
+        let dataList = res.data
+        let taskList = new Array()
+        dataList.forEach((item)=>{
+          let task = this.converToTask(item as DataBaseTask)
+          taskList.push(task)
+        })
+        resolve(taskList)
+      }).catch((err: object)=>{
+        reject(err)
+      })
     })
   }
 }

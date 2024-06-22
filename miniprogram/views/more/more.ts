@@ -20,9 +20,10 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      var taskList: Array<Task> = TaskManager.getInstance().getTaskList()
-      this.setData({
-        taskList: taskList
+      TaskManager.getInstance().getTaskList().then((taskList)=>{
+        this.setData({
+          taskList: taskList
+        })
       })
     },
     detached: function () {
@@ -34,9 +35,10 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      var taskList: Array<Task> = TaskManager.getInstance().getTaskList()
-      this.setData({
-        taskList: taskList
+      TaskManager.getInstance().getTaskList().then((taskList)=>{
+        this.setData({
+          taskList: taskList
+        })
       })
     },
     hide: function () {

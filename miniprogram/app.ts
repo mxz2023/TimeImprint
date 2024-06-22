@@ -1,6 +1,8 @@
 // app.ts
 App<IAppOption>({
-  globalData: {},
+  globalData: {
+    
+  },
   onLaunch() {
     if (wx.cloud) {
       wx.cloud.init({
@@ -10,7 +12,6 @@ App<IAppOption>({
     } else {
       console.error("无法使用云")
     }
-
     this.globalData = {}
   },
 })

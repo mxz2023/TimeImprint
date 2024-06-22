@@ -48,10 +48,9 @@ Page({
     switch(data.option) {
       case "add":{
         DataBase.getInstance().addTask({
-          "taskId":"",
           "taskTitle":"坚持情绪打卡",
-          "taskCreateTime": new Date(),
-          "taskModifyTime": new Date(),
+          "taskCreateTime": formatDate(new Date()),
+          "taskModifyTime": formatDate(new Date()),
           "taskTotal": 1,
           "taskContent": [
             {
