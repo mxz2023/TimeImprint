@@ -27,14 +27,15 @@ Component({
     attached: function () {
       // 在组件实例进入页面节点树时执行
       let { taskList } = this.data
-      var task = TaskManager.getInstance().getLastTask()
-      if (task) {
-        taskList.splice(0, taskList.length)
-        taskList.push(task)
-        this.setData({
-          taskList: taskList
-        })
-      }
+      TaskManager.getInstance().getLastTask().then((task)=>{
+        if (task) {
+          taskList.splice(0, taskList.length)
+          taskList.push(task)
+          this.setData({
+            taskList: taskList
+          })
+        }
+      })
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
@@ -46,14 +47,15 @@ Component({
     // 组件所在页面的生命周期函数
     show: function () {
       let { taskList } = this.data
-      var task = TaskManager.getInstance().getLastTask()
-      if (task) {
-        taskList.splice(0, taskList.length)
-        taskList.push(task)
-        this.setData({
-          taskList: taskList
-        })
-      }
+      TaskManager.getInstance().getLastTask().then((task)=>{
+        if (task) {
+          taskList.splice(0, taskList.length)
+          taskList.push(task)
+          this.setData({
+            taskList: taskList
+          })
+        }
+      })
     },
     hide: function () {
     

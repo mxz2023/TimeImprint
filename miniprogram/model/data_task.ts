@@ -63,6 +63,23 @@ export class TaskManager {
     return TaskManager.instance
   }
 
+  /**
+   * 获取任务数
+   */
+  getTaskCount(): number {
+    return this.taskList.length
+  }
+
+  /**
+   * 获取最大持续数
+   */
+  getMaxTotal() {
+    return this.maxTotal
+  }
+
+  /**
+   * 获取打卡列表数据
+   */
   getTaskList(): Promise<Array<Task>> {
     return new Promise((resolve) => {
       // 本地缓存
@@ -93,19 +110,30 @@ export class TaskManager {
     })
   }
 
-  getLastTask(): Task {
-    let length = this.taskList.length
-    return this.taskList[length - 1]
+  /**
+   * 获取最新打卡
+   */
+  getLastTask(): Promise<Task> {
+    return new Promise((resolve)=>{
+      let length = this.taskList.length
+      if (length > 0) {
+        resolve(this.taskList[length - 1])
+      }
+      if (this.isSync) {
+        this.getTaskList().then((listData)=>{
+          let length = listData.length
+          if (length > 0) {
+            resolve(listData[length - 1])
+          }
+        })
+      }
+    })
   }
 
-  getTaskCount(): number {
-    return this.taskList.length
-  }
-
-  getMaxTotal() {
-    return this.maxTotal
-  }
-
+  /**
+   * 
+   * @param item 创建任务
+   */
   createTask(item: Task): void {
     this.taskList.push(item)
     wx.setStorageSync(taskListKey, this.taskList)
@@ -114,6 +142,10 @@ export class TaskManager {
     }
   }
 
+  /**
+   * 删除任务
+   * @param takeId
+   */
   destoryTask(takeId: string): void {
     this.taskList = this.taskList.filter((item) => {
       return item.taskId != takeId
@@ -124,19 +156,33 @@ export class TaskManager {
     }
   }
 
-  modifyTask(item: Task): void {
-    this.taskList = this.taskList.map((data) => {
-      if (data.taskId == item.taskId) {
-        data = item
+  /**
+   * 修改任务
+   * @param item 
+   */
+  modifyTask(item: Task): Promise<void> {
+    return new Promise((resolve)=>{
+      this.taskList = this.taskList.map((data) => {
+        if (data.taskId == item.taskId) {
+          data = item
+        }
+        return data
+      })
+      wx.setStorageSync(taskListKey, this.taskList)
+      resolve()
+
+      if (this.isSync) {
+        DataBase.getInstance().changeTask(item).then(()=>{
+          resolve()
+        })
       }
-      return data
     })
-    wx.setStorageSync(taskListKey, this.taskList)
-    if (this.isSync) {
-      DataBase.getInstance().changeTask(item)
-    }
   }
 
+  /**
+   * 查询任务
+   * @param taskId 
+   */
   searchTask(taskId: string): Task | undefined {
     let task = this.taskList.find((data) => {
       return data.taskId == taskId
