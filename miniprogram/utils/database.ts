@@ -3,12 +3,15 @@ import { Task } from "../model/data_task";
 import { formatDate } from "../utils/util"
 
 export interface DataBaseTask {
-  _id: string
   taskTitle: string
   taskCreateTime: Date
   taskModifyTime: Date
   taskTotal: number   
   taskContent: Array<DataBaseTaskContentItem> 
+}
+
+export interface DataCreateTask extends DataBaseTask {
+  _id: string    // 只有创建时为非空
 }
 
 export interface DataBaseTaskContentItem {
@@ -39,6 +42,17 @@ export class DataBase {
 
   convertToDBItem(task:Task) :DataBaseTask {
     let dataTask: DataBaseTask = {
+      taskTitle: task.taskTitle,
+      taskCreateTime: new Date(),
+      taskModifyTime: new Date(),
+      taskTotal: task.taskTotal,
+      taskContent: task.taskContent
+    }
+    return dataTask
+  }
+
+  convertToDBCreateItem(task:Task) :DataCreateTask {
+    let dataTask:DataCreateTask = {
       _id: task.taskId,
       taskTitle: task.taskTitle,
       taskCreateTime: new Date(),
@@ -51,7 +65,6 @@ export class DataBase {
 
   converToTask(item:DataBaseTask) :Task {
     let task = new Task()
-    task.taskId = item._id
     task.taskTitle = item.taskTitle
     task.taskCreateTime = formatDate(item.taskCreateTime)
     task.taskModifyTime = formatDate(item.taskModifyTime)
@@ -61,7 +74,7 @@ export class DataBase {
 
   // 增加任务
   public addTask(task:Task): Promise<boolean> {
-    let dbItem = this.convertToDBItem(task)
+    let dbItem = this.convertToDBCreateItem(task)
     return new Promise((resolve, reject)=>{
       this.db.collection("taskList").add({
         data:dbItem
@@ -87,10 +100,9 @@ export class DataBase {
 
   // 修改任务
   public changeTask(task:Task): Promise<boolean> {
-    debugger
     let dbItem = this.convertToDBItem(task)
     return new Promise((resolve, reject)=>{
-      this.db.collection("taskList").doc(dbItem._id).update({
+      this.db.collection("taskList").doc(task.taskId).set({
         data: dbItem
       }).then((res)=>{
         resolve(true)
