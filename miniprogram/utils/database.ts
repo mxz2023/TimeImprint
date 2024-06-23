@@ -43,7 +43,7 @@ export class DataBase {
   convertToDBItem(task:Task) :DataBaseTask {
     let dataTask: DataBaseTask = {
       taskTitle: task.taskTitle,
-      taskCreateTime: new Date(),
+      taskCreateTime: new Date(task.taskCreateTime),
       taskModifyTime: new Date(),
       taskTotal: task.taskTotal,
       taskContent: task.taskContent
@@ -63,8 +63,8 @@ export class DataBase {
     return dataTask
   }
 
-  converToTask(item:DataBaseTask) :Task {
-    let task = new Task()
+  converToTask(item:DataCreateTask) :Task {
+    let task = new Task(item._id)
     task.taskTitle = item.taskTitle
     task.taskCreateTime = formatDate(item.taskCreateTime)
     task.taskModifyTime = formatDate(item.taskModifyTime)
@@ -100,11 +100,15 @@ export class DataBase {
 
   // 修改任务
   public changeTask(task:Task): Promise<boolean> {
+    debugger
     let dbItem = this.convertToDBItem(task)
     return new Promise((resolve, reject)=>{
-      this.db.collection("taskList").doc(task.taskId).set({
+      this.db.collection("taskList").doc(task.taskId).update({
         data: dbItem
       }).then((res)=>{
+        let {stats, errMsg} = res
+        console.log(stats.updated)
+        console.log(errMsg)
         resolve(true)
       }).catch((err: object)=>{
         reject(err)
@@ -133,7 +137,7 @@ export class DataBase {
         let dataList = res.data
         let taskList = new Array()
         dataList.forEach((item)=>{
-          let task = this.converToTask(item as DataBaseTask)
+          let task = this.converToTask(item as DataCreateTask)
           taskList.push(task)
         })
         resolve(taskList)

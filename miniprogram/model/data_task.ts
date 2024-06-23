@@ -17,8 +17,8 @@ export class Task {
   taskTotal: number = 1           // 累计打卡天数                   
   taskContent: Array<TaskContentItem> = []       // 内容
 
-  constructor() {
-    this.taskId = this.generateUniqueId()
+  constructor(taskId?: string) {
+    this.taskId = taskId ?? this.generateUniqueId()
     // 5个占位，如果不占位，后面如果不按照顺序输入，无法保存数据
     for (var i = 0; i < 5; i++) {
       var item = new TaskContentItem()
@@ -46,13 +46,13 @@ export class TaskContentItemExtend {
 export class TaskManager {
   private taskList: Array<Task>
   private maxTotal: number
-  private isSync: boolean
+  private isSyncData: boolean   // 是否开启同步数据能力
 
   static instance: TaskManager
 
   private constructor() {
     this.taskList = new Array<Task>()
-    this.isSync = true
+    this.isSyncData = true
     this.maxTotal = 1
   }
 
@@ -82,19 +82,7 @@ export class TaskManager {
    */
   getTaskList(): Promise<Array<Task>> {
     return new Promise((resolve) => {
-      // 本地缓存
-      var taskList = wx.getStorageSync(taskListKey)
-      if (typeof taskList == 'object') {
-        this.taskList = taskList
-        this.taskList.forEach((item) => {
-          this.maxTotal = Math.max(this.maxTotal, item.taskTotal)
-        })
-        // 正序插入，反序显示
-        Object.assign(taskList, this.taskList)
-        resolve(taskList.reverse())
-      }
-
-      if (this.isSync) {
+      if (this.isSyncData) {
         DataBase.getInstance().getTasks().then((res) => {
           this.taskList = res
           this.taskList.forEach((item) => {
@@ -106,6 +94,18 @@ export class TaskManager {
           Object.assign(tempList, this.taskList)
           resolve(tempList.reverse())
         })
+      } else {
+        // 本地缓存
+        var taskList = wx.getStorageSync(taskListKey)
+        if (typeof taskList == 'object') {
+          this.taskList = taskList
+          this.taskList.forEach((item) => {
+            this.maxTotal = Math.max(this.maxTotal, item.taskTotal)
+          })
+          // 正序插入，反序显示
+          Object.assign(taskList, this.taskList)
+          resolve(taskList.reverse())
+        }
       }
     })
   }
@@ -115,17 +115,18 @@ export class TaskManager {
    */
   getLastTask(): Promise<Task> {
     return new Promise((resolve)=>{
-      let length = this.taskList.length
-      if (length > 0) {
-        resolve(this.taskList[length - 1])
-      }
-      if (this.isSync) {
+      if (this.isSyncData) {
         this.getTaskList().then((listData)=>{
           let length = listData.length
           if (length > 0) {
             resolve(listData[length - 1])
           }
         })
+      } else {
+        let length = this.taskList.length
+        if (length > 0) {
+          resolve(this.taskList[length - 1])
+        }
       }
     })
   }
@@ -134,12 +135,21 @@ export class TaskManager {
    * 
    * @param item 创建任务
    */
-  createTask(item: Task): void {
-    this.taskList.push(item)
-    wx.setStorageSync(taskListKey, this.taskList)
-    if (this.isSync) {
-      DataBase.getInstance().addTask(item)
-    }
+  createTask(item: Task): Promise<void> {
+    return new Promise((resolve)=>{
+      if (this.isSyncData) {
+        DataBase.getInstance().addTask(item).then(()=>{
+          this.taskList.push(item)
+          wx.setStorageSync(taskListKey, this.taskList)
+          resolve()
+        })
+      } else {
+        this.taskList.push(item)
+        wx.setStorageSync(taskListKey, this.taskList)
+        resolve()
+      }
+    })
+    
   }
 
   /**
@@ -147,12 +157,18 @@ export class TaskManager {
    * @param takeId
    */
   destoryTask(takeId: string): void {
-    this.taskList = this.taskList.filter((item) => {
-      return item.taskId != takeId
-    })
-    wx.setStorageSync(taskListKey, this.taskList)
-    if (this.isSync) {
-      DataBase.getInstance().deleteTask(takeId)
+    if (this.isSyncData) {
+      DataBase.getInstance().deleteTask(takeId).then(()=>{
+        this.taskList = this.taskList.filter((item) => {
+          return item.taskId != takeId
+        })
+        wx.setStorageSync(taskListKey, this.taskList)
+      })
+    } else {
+      this.taskList = this.taskList.filter((item) => {
+        return item.taskId != takeId
+      })
+      wx.setStorageSync(taskListKey, this.taskList)
     }
   }
 
@@ -162,19 +178,26 @@ export class TaskManager {
    */
   modifyTask(item: Task): Promise<void> {
     return new Promise((resolve)=>{
-      this.taskList = this.taskList.map((data) => {
-        if (data.taskId == item.taskId) {
-          data = item
-        }
-        return data
-      })
-      wx.setStorageSync(taskListKey, this.taskList)
-      resolve()
-
-      if (this.isSync) {
+      if (this.isSyncData) {
         DataBase.getInstance().changeTask(item).then(()=>{
+          this.taskList = this.taskList.map((data) => {
+            if (data.taskId == item.taskId) {
+              data = item
+            }
+            return data
+          })
+          wx.setStorageSync(taskListKey, this.taskList)
           resolve()
         })
+      } else {
+        this.taskList = this.taskList.map((data) => {
+          if (data.taskId == item.taskId) {
+            data = item
+          }
+          return data
+        })
+        wx.setStorageSync(taskListKey, this.taskList)
+        resolve()
       }
     })
   }
@@ -187,7 +210,7 @@ export class TaskManager {
     let task = this.taskList.find((data) => {
       return data.taskId == taskId
     })
-    if (task == undefined && this.isSync) {
+    if (task == undefined && this.isSyncData) {
       DataBase.getInstance().queryTask(taskId)
     }
     return task
