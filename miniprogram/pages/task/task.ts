@@ -190,16 +190,27 @@ Page({
         return
       }
   
-      debugger
       if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
         TaskManager.getInstance().createTask(lastTask).then((res)=>{
           util.log(res)
           resolve(true)
+        }).catch(()=>{
+          wx.showToast({
+            title: '创建任务失败',
+            icon: 'none',
+            duration: 2000
+          })
         })
       } else {
         TaskManager.getInstance().modifyTask(lastTask).then((res)=>{
           util.log(res)
           resolve(true)
+        }).catch(()=>{
+          wx.showToast({
+            title: '修改任务失败',
+            icon: 'none',
+            duration: 2000
+          })
         })
       }
     })
