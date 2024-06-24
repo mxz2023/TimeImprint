@@ -1,6 +1,6 @@
 
 import { Task } from "../model/data_task";
-import { formatDate } from "../utils/util"
+import * as util from "../utils/util"
 
 export interface DataBaseTask {
   taskTitle: string
@@ -66,8 +66,8 @@ export class DataBase {
   converToTask(item:DataCreateTask) :Task {
     let task = new Task(item._id)
     task.taskTitle = item.taskTitle
-    task.taskCreateTime = formatDate(item.taskCreateTime)
-    task.taskModifyTime = formatDate(item.taskModifyTime)
+    task.taskCreateTime = util.formatDate(item.taskCreateTime)
+    task.taskModifyTime = util.formatDate(item.taskModifyTime)
     task.taskContent = item.taskContent
     return task
   }
@@ -79,6 +79,7 @@ export class DataBase {
       this.db.collection("taskList").add({
         data:dbItem
       }).then((res)=>{
+        util.log(res)
         resolve(true)
       }).catch((err: object)=>{
         reject(err)
@@ -91,6 +92,7 @@ export class DataBase {
     debugger
     return new Promise((resolve, reject)=>{
       this.db.collection("taskList").doc(taskId).remove().then((res)=>{
+        util.log(res)
         resolve(true)
       }).catch((err: object)=>{
         reject(err)
@@ -100,15 +102,14 @@ export class DataBase {
 
   // 修改任务
   public changeTask(task:Task): Promise<boolean> {
-    debugger
     let dbItem = this.convertToDBItem(task)
     return new Promise((resolve, reject)=>{
       this.db.collection("taskList").doc(task.taskId).update({
         data: dbItem
       }).then((res)=>{
         let {stats, errMsg} = res
-        console.log(stats.updated)
-        console.log(errMsg)
+        util.log(stats.updated)
+        util.log(errMsg)
         resolve(true)
       }).catch((err: object)=>{
         reject(err)
@@ -121,7 +122,7 @@ export class DataBase {
     debugger
     return new Promise((resolve, reject)=>{
       this.db.collection("taskList").doc(taskId).get().then((res)=>{
-        console.log(res)
+        util.log(res)
         // let task = this.converToTask(res.data)
         // resolve(task)
       }).catch((err: object)=>{

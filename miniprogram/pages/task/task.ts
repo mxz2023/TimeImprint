@@ -2,6 +2,8 @@
 import { task_title, task_abcde } from "../../data/config_task"
 import { Task, TaskState, TaskManager } from '../../model/data_task'
 import { shareABCDEMessage } from '../../utils/share'
+import * as util from '../../utils/util'
+
 
 Page({
   /**
@@ -70,7 +72,6 @@ Page({
    * @param event 
    */
   onConfirm(event: WechatMiniprogram.CustomEvent) {
-    debugger
     const { value } = event.detail;
     const { lastTask } = this.data
     lastTask.taskCreateTime = value
@@ -133,9 +134,11 @@ Page({
     var { state } = this.data
     switch (state) {
       case TaskState.TaskStateDefault: {
-        if (this.handleSaveTask()) {
-          this.onBack()
-        }
+        this.handleSaveTask().then((res)=>{
+          if (res) {
+            this.onBack()
+          }
+        })
         break;
       }
       case TaskState.TaskStateShow: {
@@ -143,15 +146,19 @@ Page({
         break;
       }
       case TaskState.TaskStateEdit: {
-        if (this.handleSaveTask()) {
-          this.onBack()
-        }
+        this.handleSaveTask().then((res)=>{
+          if (res) {
+            this.onBack()
+          }
+        })
         break;
       }
       case TaskState.TaskStateMore: {
-        if (this.handleSaveTask()) {
-          this.onBack()
-        }
+        this.handleSaveTask().then((res)=>{
+          if (res) {
+            this.onBack()
+          }
+        })
         break;
       }
       default: {
@@ -160,32 +167,41 @@ Page({
     }
   },
 
-  handleSaveTask(): boolean {
-    var { lastTask, state } = this.data
-    if (lastTask.taskTitle.length == 0) {
-      wx.showToast({
-        title: '标题不能为空',
-        icon: 'none',
-        duration: 2000
-      })
-      return false
-    }
-
-    if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
-      wx.showToast({
-        title: '必填内容不能为空',
-        icon: 'none',
-        duration: 2000
-      })
-      return false
-    }
-
-    if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
-      TaskManager.getInstance().createTask(lastTask)
-    } else {
-      TaskManager.getInstance().modifyTask(lastTask)
-    }
-    return true
+  handleSaveTask(): Promise<boolean> {
+    return new Promise((resolve)=>{
+      var { lastTask, state } = this.data
+      if (lastTask.taskTitle.length == 0) {
+        wx.showToast({
+          title: '标题不能为空',
+          icon: 'none',
+          duration: 2000
+        })
+        resolve(false)
+        return
+      }
+  
+      if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
+        wx.showToast({
+          title: '必填内容不能为空',
+          icon: 'none',
+          duration: 2000
+        })
+        resolve(false)
+        return
+      }
+  
+      if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
+        TaskManager.getInstance().createTask(lastTask).then((res)=>{
+          util.log(res)
+          resolve(true)
+        })
+      } else {
+        TaskManager.getInstance().modifyTask(lastTask).then((res)=>{
+          util.log(res)
+          resolve(true)
+        })
+      }
+    })
   },
 
   handleCleanContent() {

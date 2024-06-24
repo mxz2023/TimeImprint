@@ -1,6 +1,7 @@
 // compent/calendar/calendar.ts
 
 import { gDataCenter } from '../../model/data_center'
+import * as util from '../../utils/util'
 
 Component({
 
@@ -41,19 +42,19 @@ Component({
     },
   
     onPrevMonth(_: any) {
-      // console.log(event);
+      // util.log(event);
       gDataCenter.prevMonth();
       this.updateUIData();
     },
   
     onNextMonth(_: any) {
-      // console.log(event);
+      // util.log(event);
       gDataCenter.nextMonth();
       this.updateUIData();
     },
   
-    onLocationToday(_: any) {
-      // console.log(event);
+    onLocationToday(event: any) {
+      util.log(event);
       gDataCenter.locationToday();
       this.updateUIData();
     },

@@ -1,6 +1,7 @@
 // pages/cloud/cloud.ts
+import { Task } from "../../model/data_task";
 import { DataBase } from "../../utils/database"
-import { formatDate } from "../../utils/util"
+import * as util from "../../utils/util"
 
 Page({
 
@@ -47,35 +48,10 @@ Page({
     let data = event.currentTarget.dataset.item;
     switch(data.option) {
       case "add":{
-        DataBase.getInstance().addTask({
-          "taskTitle":"坚持情绪打卡",
-          "taskCreateTime": formatDate(new Date()),
-          "taskModifyTime": formatDate(new Date()),
-          "taskTotal": 1,
-          "taskContent": [
-            {
-              "type":1,
-              "index":1,
-              "content":"程序要上线了"
-            },
-            {
-              "type":1,
-              "index":2,
-              "content":"终于有自己的小程序了"
-            },
-            {
-              "type":1,
-              "index":3,
-              "content":"开心"
-            }
-          ]
-        })
+        var task = new Task("123")
+        task.taskTitle = "坚持情绪打卡"
+        DataBase.getInstance().addTask(task)
         break
-      }
-      case "get":{
-        // db.collection("taskList").get().then((res)=>{
-        //   console.log(res)
-        // })
       }
     }
   },

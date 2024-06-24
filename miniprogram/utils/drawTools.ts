@@ -1,5 +1,8 @@
+import * as util from '../utils/util'
+
 type CRC2D = WechatMiniprogram.CanvasRenderingContext.CanvasRenderingContext2D;
 type Canvas = WechatMiniprogram.Canvas
+
 
 export class DrawTools {
   canvas: Canvas
@@ -133,7 +136,7 @@ export class DrawTools {
           resolve(tempFilePath)
         },
         fail: (err) => {
-          console.log(err)
+          util.error(err)
           reject(err)
         },
       })

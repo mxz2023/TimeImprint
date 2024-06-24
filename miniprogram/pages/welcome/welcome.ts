@@ -1,4 +1,6 @@
 // pages/welcome/welcome.ts
+import * as util from '../../utils/util'
+
 Page({
 
   /**
@@ -31,15 +33,15 @@ Page({
         url: '../main/main',
         success: function (_) {
           // success
-          console.log("reLaunch success")
+          util.log("reLaunch success")
         },
         fail: function (err) {
           // fail
-          console.log(err)
+          util.warn(err)
         },
         complete: function (_) {
           // complete
-          console.log("reLaunch complete")
+          util.log("reLaunch complete")
         }
       })
     }, 1000)

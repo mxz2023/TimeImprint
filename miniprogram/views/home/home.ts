@@ -1,6 +1,7 @@
 // views/home.ts
 import { gDataCenter } from '../../model/data_center'
 import { Task, TaskManager } from '../../model/data_task'
+import * as util from '../../utils/util'
 
 Component({
 
@@ -29,6 +30,7 @@ Component({
       let { taskList } = this.data
       TaskManager.getInstance().getLastTask().then((task)=>{
         if (task) {
+          util.log("attached", task)
           taskList.splice(0, taskList.length)
           taskList.push(task)
           this.setData({
@@ -49,6 +51,7 @@ Component({
       let { taskList } = this.data
       TaskManager.getInstance().getLastTask().then((task)=>{
         if (task) {
+          util.log("show", task)
           taskList.splice(0, taskList.length)
           taskList.push(task)
           this.setData({
@@ -80,7 +83,7 @@ Component({
 
     // 日历更新，通知主页面事件响应
     onUpdateCurrentDay(_: any) {
-      // console.log(event);
+      // util.log(event);
       this.updateUIData()
     },
 
@@ -95,7 +98,7 @@ Component({
 
     // 定位到今天
     onLocationToday(_: WechatMiniprogram.CustomEvent) {
-      // console.log(event);
+      // util.log(event);
       var date = new Date();
       gDataCenter.changeCurrentDate(date);
       this.updateUIData()
@@ -103,7 +106,7 @@ Component({
 
     // 点击按钮更改月份
     onIconTap(event: WechatMiniprogram.CustomEvent) {
-      // console.log(event);
+      // util.log(event);
       if (event.currentTarget.id == "forwardIcon") {
         this.forwardMonth()
       } else {
@@ -160,7 +163,7 @@ Component({
 
     // 滚动处理
     onScroll(event: WechatMiniprogram.CustomEvent) {
-      // console.log(event)
+      // util.log(event)
       let scrollTop = event.detail.scrollTop
       let opacityOffset = scrollTop > 30 ? 30 : event.detail.scrollTop
       if (opacityOffset > 10) {
@@ -182,7 +185,7 @@ Component({
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function(data:object) {
-            console.log(data)
+            util.log(data)
           },
         },
         success: function(res) {

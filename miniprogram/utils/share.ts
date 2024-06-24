@@ -1,5 +1,6 @@
 import { Task } from '../model/data_task'
 import { DrawTools } from './drawTools'
+import * as util from '../utils/util'
 
 export function shareAppMessage() {
   return {
@@ -17,7 +18,7 @@ export function shareTimeline() {
 export function shareABCDEMessage(data:Task, from?:string, target?:string):Promise<WechatMiniprogram.Page.ICustomShareContent> {
   if (from === 'button') {
     // 来自页面内转发按钮
-    console.log(target)
+    util.log(target)
   }
   return new Promise((resolve, reject) => {
     initABCDECanvas(data).then((res:string)=>{
@@ -93,7 +94,7 @@ export function initABCDECanvas(data:Task): Promise<string> {
 
           // 最终生成文件地址
           const imageurl = await draw.canvasToTempFilePath()
-          console.log(imageurl)
+          util.log(imageurl)
           resolve(imageurl)
         } catch (error) {
           reject(error)
@@ -121,7 +122,7 @@ export function initShareTask(task:Task): Promise<string> {
 
           // 最终生成文件地址
           const imageurl = await draw.canvasToTempFilePath()
-          console.log(imageurl)
+          util.log(imageurl)
           resolve(imageurl)
         } catch (error) {
           reject(error)

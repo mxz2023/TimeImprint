@@ -27,3 +27,15 @@ const formatNumber = (n: number) => {
   const s = n.toString()
   return s[1] ? s : '0' + s
 }
+
+export function log(...args: any[]) {
+  console.log(`[Mxz]`, ...args);
+}
+
+export function warn(...args: any[]) {
+  console.warn(`[Mxz]`, ...args);
+}
+
+export function error(...args: any[]) {
+  console.error(`[Mxz]`, ...args);
+}

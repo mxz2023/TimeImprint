@@ -2,6 +2,8 @@
 
 import { Task } from '../../model/data_task'
 import { shareAppMessage, initShareCanvas } from '../../utils/share'
+import * as util from '../../utils/util'
+
 const shareBgImg = '../../static/welcome_icon.png'
 
 Page({
@@ -40,7 +42,7 @@ Page({
     var that = this
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res.safeArea); // 包含top, right, bottom, left的对象
+        util.log(res.safeArea); // 包含top, right, bottom, left的对象
         that.setData({
           safeAreaTop: res.safeArea.top + 44
         })

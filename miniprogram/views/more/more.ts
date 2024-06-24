@@ -1,5 +1,6 @@
 // views/more/more.ts
 import { Task, TaskManager } from '../../model/data_task'
+import * as util from '../../utils/util'
 
 Component({
 
@@ -68,7 +69,7 @@ Component({
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function (data: object) {
-            console.log(data)
+            util.log(data)
           },
         },
         success: function (res) {

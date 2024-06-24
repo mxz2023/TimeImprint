@@ -1,5 +1,6 @@
 // pages/setting/setting.ts
 import { userInfoKey } from "../../data/config_storage"
+import * as util from "../../utils/util"
 
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
@@ -43,7 +44,7 @@ Page({
         if (res.code) {
           // 获取到登录凭证 res.code
         } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
+          util.log('获取用户登录态失败！' + res.errMsg)
         }
       }
     });
@@ -58,7 +59,7 @@ Page({
     wx.getUserProfile({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log(res)
+        util.log(res)
         let data = res.userInfo
         let { userInfo } = this.data
         userInfo.avatarUrl = data.avatarUrl
@@ -70,7 +71,7 @@ Page({
         })
       },
       fail:(err) =>{
-        console.log(err)
+        util.error(err)
       }
     })
   },
