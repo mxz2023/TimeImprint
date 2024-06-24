@@ -1,7 +1,7 @@
 var getTaskItemContent = function (task, index) {
   var contents = task.taskContent
   if (!contents || contents.length == 0) {
-    console.error("数据为空")
+    util.error("数据为空")
     return ""
   }
   item = contents[index]
@@ -9,7 +9,7 @@ var getTaskItemContent = function (task, index) {
     value = item.content
     return value
   }
-  console.error("未提前创建占位项")
+  util.error("未提前创建占位项")
   return ""
 }
 

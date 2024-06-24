@@ -1,5 +1,5 @@
+import * as util from "../utils/util"
 import { taskListKey } from "../data/config_storage"
-import { formatDate } from "../utils/util"
 import { DataBase } from "../utils/database"
 
 export enum TaskState {
@@ -12,8 +12,8 @@ export enum TaskState {
 export class Task {
   taskId: string = ""
   taskTitle: string = "";         // 标题
-  taskCreateTime: string = formatDate(new Date())           // 创建时间
-  taskModifyTime: string = formatDate(new Date())      // 修改时间
+  taskCreateTime: string = util.formatDate(new Date())      // 创建时间
+  taskModifyTime: string = util.formatDate(new Date())      // 修改时间
   taskTotal: number = 1           // 累计打卡天数                   
   taskContent: Array<TaskContentItem> = []       // 内容
 
@@ -92,6 +92,7 @@ export class TaskManager {
           // 正序插入，反序显示
           let tempList = new Array<Task>()
           Object.assign(tempList, this.taskList)
+          util.log(tempList)
           resolve(tempList.reverse())
         })
       } else {
@@ -188,6 +189,8 @@ export class TaskManager {
           })
           wx.setStorageSync(taskListKey, this.taskList)
           resolve()
+        }).catch((err)=>{
+          util.error(err)
         })
       } else {
         this.taskList = this.taskList.map((data) => {

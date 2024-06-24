@@ -190,6 +190,7 @@ Page({
         return
       }
   
+      debugger
       if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
         TaskManager.getInstance().createTask(lastTask).then((res)=>{
           util.log(res)
@@ -206,12 +207,11 @@ Page({
 
   handleCleanContent() {
     var { lastTask } = this.data
-    lastTask.taskTotal = lastTask.taskTotal + 1
-    lastTask.taskContent.forEach((item) => {
-      item.content = ""
-    })
+    var task = new Task()
+    task.taskTitle = lastTask.taskTitle
+    task.taskTotal = lastTask.taskTotal + 1
     this.setData({
-      lastTask: lastTask,
+      lastTask: task,
       state: TaskState.TaskStateMore
     })
   },
@@ -222,16 +222,16 @@ Page({
   onLoad(option) {
     const { state } = option
     if (state == undefined) {
-      console.error("state 未知")
+      util.error("state 未知")
       return
     }
 
     var taskState = Number(state)
     // 为后面请求数据做准备
-    let { lastTask } = this.data
+    // let { lastTask } = this.data
     this.setData({
       state: taskState,
-      lastTask: lastTask
+      // lastTask: lastTask
     })
 
     const eventChannel = this.getOpenerEventChannel()
@@ -241,6 +241,7 @@ Page({
 
       const blockThis = this
       eventChannel.on('showTaskInfo', function (dataItem) {
+        util.log(dataItem.data)
         var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
         var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
         blockThis.setData({

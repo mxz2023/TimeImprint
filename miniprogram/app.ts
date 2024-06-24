@@ -1,4 +1,6 @@
 // app.ts
+import * as util from './utils/util'
+
 App<IAppOption>({
   globalData: {
     
@@ -10,7 +12,7 @@ App<IAppOption>({
         traceUser:true
       })
     } else {
-      console.error("无法使用云")
+      util.error("无法使用云")
     }
     this.globalData = {}
   },

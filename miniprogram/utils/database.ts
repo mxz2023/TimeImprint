@@ -68,6 +68,7 @@ export class DataBase {
     task.taskTitle = item.taskTitle
     task.taskCreateTime = util.formatDate(item.taskCreateTime)
     task.taskModifyTime = util.formatDate(item.taskModifyTime)
+    task.taskTotal = item.taskTotal
     task.taskContent = item.taskContent
     return task
   }
@@ -81,7 +82,8 @@ export class DataBase {
       }).then((res)=>{
         util.log(res)
         resolve(true)
-      }).catch((err: object)=>{
+      }).catch((err)=>{
+        util.error(err)
         reject(err)
       })
     })
@@ -94,7 +96,8 @@ export class DataBase {
       this.db.collection("taskList").doc(taskId).remove().then((res)=>{
         util.log(res)
         resolve(true)
-      }).catch((err: object)=>{
+      }).catch((err)=>{
+        util.error(err)
         reject(err)
       })
     })
@@ -111,7 +114,8 @@ export class DataBase {
         util.log(stats.updated)
         util.log(errMsg)
         resolve(true)
-      }).catch((err: object)=>{
+      }).catch((err)=>{
+        util.error(err)
         reject(err)
       })
     })
@@ -123,9 +127,11 @@ export class DataBase {
     return new Promise((resolve, reject)=>{
       this.db.collection("taskList").doc(taskId).get().then((res)=>{
         util.log(res)
-        // let task = this.converToTask(res.data)
-        // resolve(task)
-      }).catch((err: object)=>{
+        debugger
+        let task = this.converToTask(res.data)
+        resolve(task)
+      }).catch((err)=>{
+        util.error(err)
         reject(err)
       })
     })
@@ -142,7 +148,8 @@ export class DataBase {
           taskList.push(task)
         })
         resolve(taskList)
-      }).catch((err: object)=>{
+      }).catch((err)=>{
+        util.error(err)
         reject(err)
       })
     })
