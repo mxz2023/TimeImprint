@@ -4,7 +4,7 @@ var tipSize = 14
 var tipColor = "#c6c6c6"
 var maxlength = 30
 
-export var task_title = {
+export var event_title = {
   "icon": "letters-t",
   "iconSize": "32px",
   "size": "24px",
@@ -20,7 +20,7 @@ export var task_title = {
   "end": "2134-12-31",
 }
 
-export const task_abcde = [
+export const event_abcde = [
   {
     "icon": "letters-a",
     "size": fontsize,

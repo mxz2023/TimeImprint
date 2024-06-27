@@ -7,6 +7,9 @@ export enum TaskState {
   TaskStateMore = 3     // 再次打卡
 }
 
+/**
+ * 事件，每个事件对应一个任务，一个任务可以有多个事件
+ */
 export class Event {
   taskId: string  // 任务ID
   eventId: string // 事件ID

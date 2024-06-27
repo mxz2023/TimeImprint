@@ -1,5 +1,5 @@
 // pages/task/task.ts
-import { task_title, task_abcde } from "../../data/config_task"
+import { event_title, event_abcde } from "../../data/config_task"
 import { Event, TaskState } from '../../model/data_event'
 
 
@@ -16,8 +16,8 @@ Page({
   data: {
     title: "打卡 📌",
 
-    configTitle: task_title,   // 标题设置
-    configItems: task_abcde,   // 项设置
+    configTitle: event_title,   // 标题设置
+    configItems: event_abcde,   // 项设置
 
     // 展示数据
     lastEvent: new Event(util.generateUniqueId()),
@@ -138,7 +138,7 @@ Page({
     var { state } = this.data
     switch (state) {
       case TaskState.TaskStateDefault: {
-        this.handleSaveTask().then((res)=>{
+        this.handleSaveEvent().then((res)=>{
           if (res) {
             this.onBack()
           }
@@ -150,7 +150,7 @@ Page({
         break;
       }
       case TaskState.TaskStateEdit: {
-        this.handleSaveTask().then((res)=>{
+        this.handleSaveEvent().then((res)=>{
           if (res) {
             this.onBack()
           }
@@ -158,7 +158,7 @@ Page({
         break;
       }
       case TaskState.TaskStateMore: {
-        this.handleSaveTask().then((res)=>{
+        this.handleSaveEvent().then((res)=>{
           if (res) {
             this.onBack()
           }
@@ -171,7 +171,7 @@ Page({
     }
   },
 
-  handleSaveTask(): Promise<boolean> {
+  handleSaveEvent(): Promise<boolean> {
     return new Promise((resolve)=>{
       var { lastEvent, state } = this.data
       if (lastEvent.title.length == 0) {
@@ -195,7 +195,7 @@ Page({
       }
   
       if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
-        TaskManager.getInstance().createTask(lastEvent).then((res)=>{
+        TaskManager.getInstance().createEvent(lastEvent).then((res)=>{
           util.log(res)
           resolve(true)
         }).catch(()=>{
@@ -206,7 +206,7 @@ Page({
           })
         })
       } else {
-        TaskManager.getInstance().modifyTask(lastEvent).then((res)=>{
+        TaskManager.getInstance().updateEvent(lastEvent).then((res)=>{
           util.log(res)
           resolve(true)
         }).catch(()=>{

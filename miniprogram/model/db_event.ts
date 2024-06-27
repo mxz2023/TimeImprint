@@ -69,8 +69,39 @@ export class EventDataBase {
     return task
   }
 
+  // 获取事件数量
+  public getCount(): Promise<number> {
+    debugger
+    return new Promise((resolve, reject)=>{
+      this.db.collection(this.tableName).count().then((res)=>{
+        resolve(res.total)
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
+  // 获取最新的事件
+  public getLastEvent(): Promise<Event> {
+    return new Promise((resolve, reject)=>{
+      this.db.collection(this.tableName).orderBy('modifyTime','desc').limit(1).get().then((res)=>{
+        if (res.data.length > 0) {
+          let event:Event = this.converToEvent(res.data[0] as DBEvent)
+          resolve(event)
+        } else {
+          util.warn("未获取到数据")
+        }
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
+  // 增删改查（CRUD）
   // 增加事件
-  public addEvent(item: Event): Promise<boolean> {
+  public createEvent(item: Event): Promise<boolean> {
     let dbItem = this.convertToDBEvent(item)
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).add({
@@ -85,8 +116,28 @@ export class EventDataBase {
     })
   }
 
+  // 查询任务
+  public readEvent(eventIds: Array<string>): Promise<Array<Event>> {
+    debugger
+    return new Promise((resolve, reject) => {
+      this.db.collection(this.tableName).where({
+        eventId: this.db.command.in(eventIds)
+      }).get().then((res) => {
+        util.log(res)
+        let dbItems = res.data
+        let eventList: Array<Event> = dbItems.map((item)=>{
+          return this.converToEvent(item as DBEvent)
+        })
+        resolve(eventList)
+      }).catch((err) => {
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
   // 修改事件
-  public changeTask(item: Event): Promise<boolean> {
+  public updateEvent(item: Event): Promise<boolean> {
     debugger
     let dbItem = this.convertToDBEvent(item)
     return new Promise((resolve, reject) => {
@@ -106,21 +157,10 @@ export class EventDataBase {
     })
   }
 
-  // 查询任务
-  public queryTask(eventId: string): Promise<Array<Event>> {
-    debugger
-    return new Promise((resolve, reject) => {
-      this.db.collection(this.tableName).where({
-        eventId: eventId
-      }).get().then((res) => {
-        util.log(res)
-        debugger
-        let event = res
-        resolve(event)
-      }).catch((err) => {
-        util.error(err)
-        reject(err)
-      })
+  // 删除
+  public deleteEvent(eventId:string): Promise<boolean> {
+    return new Promise((resolve, reject)=>{
+
     })
   }
 }

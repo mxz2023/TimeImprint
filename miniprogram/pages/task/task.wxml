@@ -38,7 +38,7 @@
     <view class="view-input">
 
       <!-- 标题输入框 -->
-      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{!utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastEvent.taskTitle}}"></t-input>
+      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{!utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastEvent.title}}"></t-input>
 
       <!-- 累计打卡 -->
       <view class="view-right">

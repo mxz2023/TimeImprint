@@ -9,6 +9,7 @@ export interface DBTask {
   createTime: Date
   modifyTime: Date
   
+  total: number
   eventIdList: Array<string>
 }
 
@@ -39,6 +40,7 @@ export class TaskDataBase {
       title: item.title,
       createTime: new Date(item.createTime),
       modifyTime: new Date(item.modifyTime),
+      total: item.eventIdList.length,
       eventIdList: item.eventIdList
     }
     return dataTask
@@ -53,7 +55,7 @@ export class TaskDataBase {
   }
 
   // 获取全部任务
-  public getTask(): Promise<Array<Task>> {
+  public getListInfo(): Promise<Array<Task>> {
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).get().then((res) => {
         let dataList = res.data
@@ -70,8 +72,38 @@ export class TaskDataBase {
     })
   }
 
-  // 增加事件
-  public addTask(item: Task): Promise<boolean> {
+  // 获取全部任务数量
+  public getCount(): Promise<number> {
+    return new Promise((resolve, reject)=>{
+      this.db.collection(this.tableName).count().then((res)=>{
+        resolve(res.total)
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
+  // 获取事件最多的任务
+  public getEventMaxTotal(): Promise<number> {
+    return new Promise((resolve, reject)=>{
+      this.db.collection(this.tableName).orderBy('total','desc').limit(1).get().then((res)=>{
+        if (res.data.length > 0) {
+          let dbItem = res.data[0] as DBTask
+          resolve(dbItem.total)
+        } else {
+          resolve(1)
+        }
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
+  // 增删改查（CRUD）
+  // 增加任务
+  public createTask(item: Task): Promise<boolean> {
     let dbItem = this.convertToDBTask(item)
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).add({
@@ -83,6 +115,41 @@ export class TaskDataBase {
         util.error(err)
         reject(err)
       })
+    })
+  }
+
+  // 查询任务
+  public readTask(taskId: string): Promise<Task | undefined> {
+    debugger
+    return new Promise((resolve, reject)=>{
+      this.db.collection(this.tableName).where({
+        taskId:taskId
+      }).get().then((res)=>{
+        util.log(res)
+        if (res.data.length > 0) {
+          let task = this.converToTask(res.data[0] as DBTask)
+          resolve(task)
+        } else {
+          resolve(undefined)
+        }
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
+    })
+  }
+
+  // 修改任务
+  public updateTask(task:Task): Promise<boolean> {
+    return new Promise((resolve, reject)=>{
+
+    })
+  }
+
+  // 删除任务
+  public deleteTask(): Promise<boolean> {
+    return new Promise((resolve, reject)=>{
+
     })
   }
 }

@@ -1,22 +1,16 @@
-import { Task } from '../model/data_event'
-import { Event } from '../model/data_task';
-import { TaskDataBase } from "../model/db_event"
-import { EventDataBase } from "../model/db_task";
-import { taskListKey, eventListKey } from "../data/config_storage"
+import { Event } from '../model/data_event'
+import { Task } from '../model/data_task';
+import { EventDataBase } from "../model/db_event"
+import { TaskDataBase } from "../model/db_task";
 
 import * as util from './util'
 
 
-
 export class TaskManager {
-  private eventList: Array<Event>
-  private maxTotal: number
-
   static instance: TaskManager
 
   private constructor() {
-    this.eventList = new Array<Event>()
-    this.maxTotal = 1
+
   }
 
   static getInstance(): TaskManager {
@@ -27,168 +21,169 @@ export class TaskManager {
   }
 
   /**
-   * 获取事件数
+   * 获取任务数
    */
-  getEventCount(): number {
-    return this.eventList.length
+  getTaskCount(): Promise<number> {
+    return TaskDataBase.getInstance().getEventMaxTotal()
   }
 
   /**
-   * 获取任务数
+   * 获取事件数
    */
-  getTaskCount(): number {
-    let count = 0
-    this.eventList.forEach((item)=>{
-      count += item.taskList.length
-    })
-    return count
+  getEventCount(): Promise<number> {
+    return EventDataBase.getInstance().getCount()
   }
 
   /**
    * 获取最大持续数
    */
-  getMaxTotal() {
-    return this.maxTotal
+  getMaxTotal(): Promise<number>{
+    return TaskDataBase.getInstance().getEventMaxTotal()
   }
 
   /**
-   * 获取事件列表数据
+   * 获取任务列表信息
    */
-  getEventList(): Promise<Array<Event>> {
-    return new Promise((resolve, reject)=>{
-      EventDataBase.getInstance().getEvents().then((res) => {
-        this.eventList = res
-        wx.setStorageSync(eventListKey, this.eventList)
-        resolve(this.eventList)
-      }).catch((err)=>{
-        reject(err)
-      })
-    })
-  }
-
-  /**
-   * 获取打卡列表数据
-   */
-  getTaskList(eventId: string): Promise<Array<Task>> {
+  getTaskList(): Promise<Array<Task>> {
+    debugger
     return new Promise((resolve, reject) => {
-      TaskDataBase.getInstance().queryTask(eventId).then((res) => {
+      TaskDataBase.getInstance().getListInfo().then((res) => {
         resolve(res)
-      }).catch((err)=>{
+      }).catch((err) => {
         reject(err)
       })
     })
   }
 
   /**
-   * 获取最新打卡
+   * 根据任务id获取事件列表信息
+   * @param taskId 任务id
    */
-  getLastTask(): Promise<Task> {
-    return new Promise((resolve) => {
-      this.getTaskList().then((listData) => {
-        let length = listData.length
-        if (length > 0) {
-          resolve(listData[0])
+  getEventList(taskId: string): Promise<Array<Event>> {
+    return new Promise((resolve, reject) => {
+      TaskDataBase.getInstance().readTask(taskId).then((res) => {
+        if (res) {
+          EventDataBase.getInstance().readEvent(res.eventIdList).then((res)=>{
+            resolve(res)
+          }).catch((err)=>{
+            util.error(err)
+            reject(err)
+          })
+        } else {
+          resolve([])
         }
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
 
+  /**
+   * 获取最新事件
+   */
+  getLastEvent(): Promise<Event> {
+    return new Promise((resolve, reject) => {
+      EventDataBase.getInstance().getLastEvent().then((res) => {
+        util.log(res)
+        resolve(res)
+      }).catch((err) => {
+        util.error(err)
+        reject(reject)
+      })
+    })
+  }
+
+  // 增删改查 CRUD
   /**
    * 
    * @param item 创建任务
    */
-  createTask(item: Task): Promise<void> {
+  createEvent(item: Event): Promise<boolean> {
     debugger
-    let event = new Event()
-    event.eventTitle = item.taskTitle
-    event.eventCreateTime = item.taskCreateTime
-    event.eventModifyTime = item.taskModifyTime
-    event.taskList.push(item.taskId)
-
-    return new Promise((resolve) => {
-      if (this.isSyncData) {
-        EventDataBase.getInstance().addEvent(event).then(() => {
-          TaskDataBase.getInstance().addTask(item).then(() => {
-            this.eventList.push(event)
-            wx.setStorageSync(eventListKey, this.eventList)
-            this.taskList.push(item)
-            wx.setStorageSync(taskListKey, this.taskList)
-            resolve()
+    return new Promise((resolve, reject) => {
+      EventDataBase.getInstance().createEvent(item).then((res) => {
+        if (res) {
+          TaskDataBase.getInstance().readTask(item.taskId).then((res)=>{
+            if (res) {
+              res.eventIdList.push(item.eventId)
+              res.total = res.total+1
+              TaskDataBase.getInstance().updateTask(res).then((res)=>{
+                resolve(res)
+              })
+            } else {
+              let task = new Task(item.taskId)
+              task.title = item.title
+              task.createTime = item.createTime
+              task.modifyTime = item.modifyTime
+              task.eventIdList.push(item.eventId)
+              task.total = 1
+              TaskDataBase.getInstance().createTask(task).then((res)=>{
+                resolve(res)
+              }).catch((err)=>{
+                util.error(err)
+                reject(err)
+              })
+            }
+          }).catch((err)=>{
+            util.error(err)
+            reject(err)
           })
-        })
-      } else {
-        this.eventList.push(event)
-        wx.setStorageSync(eventListKey, this.eventList)
-        this.taskList.push(item)
-        wx.setStorageSync(taskListKey, this.taskList)
-        resolve()
-      }
+        } else {
+          resolve(false)
+        }
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
+      })
     })
   }
 
   /**
-   * 删除任务
-   * @param takeId
+   * 查询事件
+   * @param taskId 
    */
-  destoryTask(takeId: string): void {
-    if (this.isSyncData) {
-      TaskDataBase.getInstance().deleteTask(takeId).then(() => {
-        this.taskList = this.taskList.filter((item) => {
-          return item.taskId != takeId
-        })
-        wx.setStorageSync(taskListKey, this.taskList)
+  readEvent(eventId: string): Promise<Event | undefined> {
+    return new Promise((resolve, reject)=>{
+      EventDataBase.getInstance().readEvent([eventId]).then((res)=>{
+        if (res.length > 0) {
+          resolve(res[0])
+        } else {
+          resolve(undefined)
+        }
+      }).catch((err)=>{
+        util.error(err)
+        reject(err)
       })
-    } else {
-      this.taskList = this.taskList.filter((item) => {
-        return item.taskId != takeId
-      })
-      wx.setStorageSync(taskListKey, this.taskList)
-    }
+    })
   }
 
   /**
    * 修改任务
    * @param item 
    */
-  modifyTask(item: Task): Promise<void> {
-    return new Promise((resolve) => {
-      if (this.isSyncData) {
-        TaskDataBase.getInstance().changeTask(item).then(() => {
-          this.taskList = this.taskList.map((data) => {
-            if (data.taskId == item.taskId) {
-              data = item
-            }
-            return data
-          })
-          wx.setStorageSync(taskListKey, this.taskList)
-          resolve()
-        }).catch((err) => {
-          util.error(err)
-        })
-      } else {
-        this.taskList = this.taskList.map((data) => {
-          if (data.taskId == item.taskId) {
-            data = item
-          }
-          return data
-        })
-        wx.setStorageSync(taskListKey, this.taskList)
-        resolve()
-      }
+  updateEvent(item: Event): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      EventDataBase.getInstance().updateEvent(item).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        util.error(err)
+        reject(err)
+      })
     })
   }
 
   /**
-   * 查询任务
-   * @param taskId 
+   * 删除任务
+   * @param eventId
    */
-  searchTask(taskId: string): Task | undefined {
-    let task = this.taskList.find((data) => {
-      return data.taskId == taskId
+  deleteEvent(eventId: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      EventDataBase.getInstance().deleteEvent(eventId).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        util.error(err)
+        reject(err)
+      })
     })
-    if (task == undefined && this.isSyncData) {
-      TaskDataBase.getInstance().queryTask(taskId)
-    }
-    return task
   }
 }

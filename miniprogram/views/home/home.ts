@@ -1,6 +1,6 @@
 // views/home.ts
 import { gDataCenter } from '../../model/data_center'
-import { Task } from '../../model/data_event'
+import { Event } from '../../model/data_event'
 import { TaskManager } from '../../utils/task'
 import * as util from '../../utils/util'
 
@@ -22,20 +22,20 @@ Component({
     needShowToday: true,
     gridListMonth: gDataCenter.getThreeMonthDays(),
 
-    taskList: Array<Task>(),  // 任务列表
+    eventList: Array<Event>(),  // 事件
   },
 
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      let { taskList } = this.data
-      TaskManager.getInstance().getLastTask().then((task)=>{
-        if (task) {
-          util.log("attached", task)
-          taskList.splice(0, taskList.length)
-          taskList.push(task)
+      let { eventList } = this.data
+      TaskManager.getInstance().getLastEvent().then((event)=>{
+        if (event) {
+          util.log("attached", event)
+          eventList.splice(0, eventList.length)
+          eventList.push(event)
           this.setData({
-            taskList: taskList
+            eventList: eventList
           })
         }
       })
@@ -50,9 +50,9 @@ Component({
     // 组件所在页面的生命周期函数
     show: function () {
       let { taskList } = this.data
-      TaskManager.getInstance().getLastTask().then((task)=>{
-        if (task) {
-          util.log("show", task)
+      TaskManager.getInstance().getLastEvent().then((event)=>{
+        if (event) {
+          util.log("show", event)
           taskList.splice(0, taskList.length)
           taskList.push(task)
           this.setData({
