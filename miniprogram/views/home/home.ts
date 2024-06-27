@@ -49,14 +49,14 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      let { taskList } = this.data
+      let { eventList } = this.data
       TaskManager.getInstance().getLastEvent().then((event)=>{
         if (event) {
           util.log("show", event)
-          taskList.splice(0, taskList.length)
-          taskList.push(task)
+          eventList.splice(0, eventList.length)
+          eventList.push(event)
           this.setData({
-            taskList: taskList
+            eventList: eventList
           })
         }
       })

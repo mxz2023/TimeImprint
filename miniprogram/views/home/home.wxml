@@ -54,19 +54,19 @@
       <text class="text-last-task">最近一次打卡 📌</text>
     </view>
 
-    <view wx:if="{{taskList.length > 0}}">
-      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+    <view wx:if="{{eventList.length > 0}}">
+      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ eventList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
         <view class="view-part">
-          <text class="text-title">{{item.taskTitle}}</text>
-          <view class="view-part-sub" wx:if="{{item.taskTotal > 0}}">
-            <text class="text-total-tips">{{item.taskTotal > 1 ? "累计打卡" : "打卡第"}}</text>
-            <text class="text-total">{{item.taskTotal}}</text>
+          <text class="text-title">{{item.title}}</text>
+          <view class="view-part-sub" wx:if="{{item.total > 0}}">
+            <text class="text-total-tips">{{item.total > 1 ? "累计打卡" : "打卡第"}}</text>
+            <text class="text-total">{{item.total}}</text>
             <text class="text-total-tips">天</text>
           </view>
         </view>
         <view class="view-part">
           <text class="text-type">ABCDE</text>
-          <text class="text-time">{{item.taskCreateTime}}</text>
+          <text class="text-time">{{item.createTime}}</text>
         </view>
       </view>
     </view>
