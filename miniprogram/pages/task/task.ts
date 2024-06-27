@@ -1,6 +1,10 @@
 // pages/task/task.ts
 import { task_title, task_abcde } from "../../data/config_task"
-import { Task, TaskState, TaskManager } from '../../model/data_task'
+import { Event, TaskState } from '../../model/data_event'
+
+
+import { TaskManager } from '../../utils/task'
+
 import { shareABCDEMessage } from '../../utils/share'
 import * as util from '../../utils/util'
 
@@ -16,9 +20,9 @@ Page({
     configItems: task_abcde,   // 项设置
 
     // 展示数据
-    lastTask: new Task(),
+    lastEvent: new Event(util.generateUniqueId()),
     // 保存数据
-    dataTask: new Task(),
+    dataEvent: new Event(util.generateUniqueId()),
 
     state: TaskState.TaskStateDefault, // 当前状态
 
@@ -73,11 +77,11 @@ Page({
    */
   onConfirm(event: WechatMiniprogram.CustomEvent) {
     const { value } = event.detail;
-    const { lastTask } = this.data
-    lastTask.taskCreateTime = value
+    const { lastEvent } = this.data
+    lastEvent.createTime = value
 
     this.setData({
-      lastTask: lastTask,
+      lastEvent: lastEvent,
     });
 
     this.onHidePicker();
@@ -96,21 +100,21 @@ Page({
    * @param event 
    */
   onBlur(event: WechatMiniprogram.CustomEvent) {
-    const { lastTask } = this.data
+    const { lastEvent } = this.data
     if (event?.currentTarget?.dataset?.target == "title") {
-      lastTask.taskTitle = event.detail.value
+      lastEvent.title = event.detail.value
       this.setData({
-        lastTask: lastTask
+        lastEvent: lastEvent
       })
     } else {
       const index = event?.currentTarget?.dataset?.index
-      var item = lastTask.taskContent[index]
+      var item = lastEvent.content[index]
       if (!item) {
         return
       }
       item.content = event.detail.value
       this.setData({
-        lastTask: lastTask
+        lastEvent: lastEvent
       })
     }
   },
@@ -118,10 +122,10 @@ Page({
   onEditTask() {
     var { state } = this.data
     if (state == TaskState.TaskStateEdit) {
-      var copyData = JSON.parse(JSON.stringify(this.data.dataTask));
+      var copyData = JSON.parse(JSON.stringify(this.data.dataEvent));
       this.setData({
         state: TaskState.TaskStateShow,
-        lastTask: copyData
+        lastEvent: copyData
       })
     } else if (state == TaskState.TaskStateShow) {
       this.setData({
@@ -169,8 +173,8 @@ Page({
 
   handleSaveTask(): Promise<boolean> {
     return new Promise((resolve)=>{
-      var { lastTask, state } = this.data
-      if (lastTask.taskTitle.length == 0) {
+      var { lastEvent, state } = this.data
+      if (lastEvent.title.length == 0) {
         wx.showToast({
           title: '标题不能为空',
           icon: 'none',
@@ -180,7 +184,7 @@ Page({
         return
       }
   
-      if (lastTask.taskContent[0].content.length == 0 || lastTask.taskContent[1].content.length == 0 || lastTask.taskContent[2].content.length == 0) {
+      if (lastEvent.content[0].content.length == 0 || lastEvent.content[1].content.length == 0 || lastEvent.content[2].content.length == 0) {
         wx.showToast({
           title: '必填内容不能为空',
           icon: 'none',
@@ -191,7 +195,7 @@ Page({
       }
   
       if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
-        TaskManager.getInstance().createTask(lastTask).then((res)=>{
+        TaskManager.getInstance().createTask(lastEvent).then((res)=>{
           util.log(res)
           resolve(true)
         }).catch(()=>{
@@ -202,7 +206,7 @@ Page({
           })
         })
       } else {
-        TaskManager.getInstance().modifyTask(lastTask).then((res)=>{
+        TaskManager.getInstance().modifyTask(lastEvent).then((res)=>{
           util.log(res)
           resolve(true)
         }).catch(()=>{
@@ -217,12 +221,12 @@ Page({
   },
 
   handleCleanContent() {
-    var { lastTask } = this.data
-    var task = new Task()
-    task.taskTitle = lastTask.taskTitle
-    task.taskTotal = lastTask.taskTotal + 1
+    var { lastEvent } = this.data
+    var task = new Event(util.generateUniqueId())
+    task.title = lastEvent.title
+    task.total = lastEvent.total + 1
     this.setData({
-      lastTask: task,
+      lastEvent: task,
       state: TaskState.TaskStateMore
     })
   },
@@ -239,10 +243,10 @@ Page({
 
     var taskState = Number(state)
     // 为后面请求数据做准备
-    // let { lastTask } = this.data
+    // let { lastEvent } = this.data
     this.setData({
       state: taskState,
-      // lastTask: lastTask
+      // lastEvent: lastEvent
     })
 
     const eventChannel = this.getOpenerEventChannel()
@@ -257,8 +261,8 @@ Page({
         var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
         blockThis.setData({
           state: TaskState.TaskStateShow,
-          lastTask: copyData1,
-          dataTask: copyData2,
+          lastEvent: copyData1,
+          dataEvent: copyData2,
         })
       })
     }
@@ -310,6 +314,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage(res): Promise<WechatMiniprogram.Page.ICustomShareContent> {
-    return shareABCDEMessage(this.data.lastTask, res.from, res.target)
+    return shareABCDEMessage(this.data.lastEvent, res.from, res.target)
   },
 })

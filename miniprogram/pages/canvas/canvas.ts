@@ -1,6 +1,6 @@
 // pages/canvas/canvas.ts
 
-import { Task } from '../../model/data_task'
+import { Task } from '../../model/data_event'
 import { shareAppMessage, initShareCanvas } from '../../utils/share'
 import * as util from '../../utils/util'
 

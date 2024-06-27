@@ -1,5 +1,5 @@
-var getTaskItemContent = function (task, index) {
-  var contents = task.taskContent
+var getEventItemContent = function (event, index) {
+  var contents = event.content
   if (!contents || contents.length == 0) {
     util.error("数据为空")
     return ""
@@ -13,8 +13,8 @@ var getTaskItemContent = function (task, index) {
   return ""
 }
 
-var canShowItem = function (task, index) {
-  var content = getTaskItemContent(task, index)
+var canShowItem = function (event, index) {
+  var content = getEventItemContent(event, index)
   return content.length > 0
 }
 
@@ -101,7 +101,7 @@ var getEditText = function (state) {
 }
 
 module.exports = {
-  taskItemContent: getTaskItemContent,
+  taskItemContent: getEventItemContent,
   canShowItem: canShowItem,
   getTotalText: getTotalText,
 

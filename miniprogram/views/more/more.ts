@@ -1,5 +1,7 @@
 // views/more/more.ts
-import { Task, TaskManager } from '../../model/data_task'
+import { Event } from '../../model/data_task'
+import { TaskManager } from '../../utils/task'
+
 import * as util from '../../utils/util'
 
 Component({
@@ -15,15 +17,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-    taskList: Array<Task>(),  // 任务列表
+    eventList: Array<Event>(),  // 事件列表
   },
 
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      TaskManager.getInstance().getTaskList().then((taskList)=>{
+      TaskManager.getInstance().getEventList().then((dataList)=>{
         this.setData({
-          taskList: taskList
+          eventList: dataList
         })
       })
     },
@@ -36,9 +38,9 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      TaskManager.getInstance().getTaskList().then((taskList)=>{
+      TaskManager.getInstance().getEventList().then((dataList)=>{
         this.setData({
-          taskList: taskList
+          eventList: dataList
         })
       })
     },

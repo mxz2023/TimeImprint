@@ -1,6 +1,6 @@
 // views/mine/mine.ts
 import { userInfoKey } from "../../data/config_storage"
-import { TaskManager } from "../../model/data_task"
+import { TaskManager } from "../../model/data_event"
 
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 

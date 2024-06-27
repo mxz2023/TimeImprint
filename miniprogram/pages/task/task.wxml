@@ -27,22 +27,22 @@
       <view class="view-right">
         
         <!-- 日期 -->
-        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastTask.taskCreateTime}}</text>
+        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastEvent.createTime}}</text>
 
         <!-- 日期图标 -->
         <t-icon wx:if="{{utils.canEditTime(state)}}" name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="onShowPicker"></t-icon>
 
-        <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastTask.taskCreateTime}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
+        <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastEvent.createTime}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
       </view>
     </view>
     <view class="view-input">
 
       <!-- 标题输入框 -->
-      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{!utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastTask.taskTitle}}"></t-input>
+      <t-input style="--td-input-vertical-padding: 5px;" data-target="title" placeholder="请输入标题" maxcharacter="20" disabled="{{!utils.canEditTitle(state)}}" bind:blur="onBlur" value="{{lastEvent.taskTitle}}"></t-input>
 
       <!-- 累计打卡 -->
       <view class="view-right">
-        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{utils.getTotalText(lastTask.taskTotal)}}</text>
+        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{utils.getTotalText(lastEvent.total)}}</text>
       </view>
     </view>
   </view>
@@ -50,8 +50,8 @@
   <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true" show-scrollbar="{{false}}">
     <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
 
-      <view wx:if="{{ utils.canShowItem(lastTask, idx) || state != 1 }}">
-        <!-- <m-textare disabled="{{state != 1}}" item="{{item}}" itemData="{{utils.taskItemContent(lastTask, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
+      <view wx:if="{{ utils.canShowItem(lastEvent, idx) || state != 1 }}">
+        <!-- <m-textare disabled="{{state != 1}}" item="{{item}}" itemData="{{utils.taskItemContent(lastEvent, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
 
         <view class="view-title" style="flex-direction: row; align-items: center; margin-top: 12px;">
           <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
@@ -61,7 +61,7 @@
           <text wx:if="{{state != 1}}" style="margin-left: 5px; color: {{item.tipColor}}; font-weight: 600; font-size: {{item.tipSize}};">{{item.tip}}</text>
         </view>
 
-        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{!utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastTask, idx)}}" />
+        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{!utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastEvent, idx)}}" />
       </view>
 
     </view>

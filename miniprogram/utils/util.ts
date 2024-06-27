@@ -39,3 +39,7 @@ export function warn(...args: any[]) {
 export function error(...args: any[]) {
   console.error(`[Mxz]`, ...args);
 }
+
+export function generateUniqueId(): string {
+  return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
+}

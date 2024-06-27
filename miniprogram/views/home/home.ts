@@ -1,6 +1,7 @@
 // views/home.ts
 import { gDataCenter } from '../../model/data_center'
-import { Task, TaskManager } from '../../model/data_task'
+import { Task } from '../../model/data_event'
+import { TaskManager } from '../../utils/task'
 import * as util from '../../utils/util'
 
 Component({

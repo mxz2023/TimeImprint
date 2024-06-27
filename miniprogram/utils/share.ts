@@ -1,4 +1,4 @@
-import { Task } from '../model/data_task'
+import { Task } from '../model/data_event'
 import { DrawTools } from './drawTools'
 import * as util from '../utils/util'
 
