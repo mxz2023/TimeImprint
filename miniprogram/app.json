@@ -2,7 +2,7 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/main/main",
-    "pages/task/task",
+    "pages/abc/abc",
     "pages/canvas/canvas",
     "pages/cloud/cloud",
     "pages/setting/setting"

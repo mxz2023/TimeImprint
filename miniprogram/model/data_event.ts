@@ -15,11 +15,13 @@ export class Event {
   eventId: string // 事件ID
   
   title: string = "";         // 标题
-  createTime: string = util.formatDate(new Date())      // 创建时间
-  modifyTime: string = util.formatDate(new Date())      // 修改时间
+  date: string = util.formatDate(new Date())
   total: number = 1           // 累计打卡天数                   
   content: Array<EventContentItem> = []       // 内容
 
+  createTime: Date = new Date() // 创建时间
+  modifyTime: Date = new Date() // 修改时间
+  
   constructor(eventId: string, taskId?: string) {
     this.eventId = eventId
     this.taskId = taskId ?? util.generateUniqueId()

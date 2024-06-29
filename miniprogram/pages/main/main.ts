@@ -1,6 +1,7 @@
 // pages/main/main.ts
 import { shareAppMessage, shareTimeline } from '../../utils/share'
 import { tabbar } from '../../data/config_tabbar.js'
+import { UserInfo } from '../../utils/userinfo';
 
 Page({
 
@@ -28,6 +29,8 @@ Page({
     this.setData({
       stateBarHeight: info.statusBarHeight
     })
+
+    UserInfo.getInstance().getOpenId()
   },
 
   /**

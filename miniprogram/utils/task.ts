@@ -113,8 +113,6 @@ export class TaskManager {
             } else {
               let task = new Task(item.taskId)
               task.title = item.title
-              task.createTime = item.createTime
-              task.modifyTime = item.modifyTime
               task.eventIdList.push(item.eventId)
               task.total = 1
               TaskDataBase.getInstance().createTask(task).then((res)=>{

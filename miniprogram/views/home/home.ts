@@ -158,7 +158,7 @@ Component({
     // 发布按钮
     onPublishAction(_: WechatMiniprogram.CustomEvent) {
       wx.navigateTo({
-        url: `/pages/task/task?state=0`
+        url: `/pages/abc/abc?state=0`
       })
     },
 
@@ -182,7 +182,7 @@ Component({
     onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
       const taskItem = event.currentTarget.dataset.taskItem
       wx.navigateTo({
-        url: `/pages/task/task?state=1`,
+        url: `/pages/abc/abc?state=1`,
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function(data:object) {
@@ -191,7 +191,7 @@ Component({
         },
         success: function(res) {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('showTaskInfo', {
+          res.eventChannel.emit('showABCInfo', {
             data: taskItem,
           })
         }

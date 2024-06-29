@@ -49,8 +49,10 @@ export class TaskDataBase {
   converToTask(item: DBTask): Task {
     let task = new Task(item.taskId)
     task.title = item.title
-    task.createTime = util.formatDate(item.createTime)
-    task.modifyTime = util.formatDate(item.modifyTime)
+    task.date = util.formatDate(item.createTime)
+    task.eventIdList = item.eventIdList
+    task.createTime = item.createTime
+    task.modifyTime = item.modifyTime
     return task
   }
 
@@ -120,7 +122,6 @@ export class TaskDataBase {
 
   // 查询任务
   public readTask(taskId: string): Promise<Task | undefined> {
-    debugger
     return new Promise((resolve, reject)=>{
       this.db.collection(this.tableName).where({
         taskId:taskId
@@ -141,8 +142,32 @@ export class TaskDataBase {
 
   // 修改任务
   public updateTask(task:Task): Promise<boolean> {
-    return new Promise((resolve, reject)=>{
+    debugger
+    return new Promise(async (resolve, reject)=>{
+      this.db.collection(this.tableName).where({
+        taskId: task.taskId
+      }).get().then((res) => {
+        const promises = res.data.map((item)=>{
+          if (item._id) {
+            return this.db.collection(this.tableName).doc(item._id).update({
+              data: {
+                total: task.eventIdList.length,
+                eventIdList: task.eventIdList,
+                modifyTime: new Date()
+              },
+            });
+          } else {
+            return
+          }
+        })
 
+        Promise.all(promises).then(()=>{
+          resolve(true)
+        }).catch((err)=>{
+          util.error(err)
+          reject(err)
+        })
+      })
     })
   }
 

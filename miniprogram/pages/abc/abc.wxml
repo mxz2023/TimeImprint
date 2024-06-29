@@ -1,6 +1,6 @@
 <!--pages/task/task.wxml-->
 
-<wxs src='./task.wxs' module="utils"></wxs>
+<wxs src='./abc.wxs' module="utils"></wxs>
 
 <!-- 导航栏 -->
 <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" title="{{title}}">
@@ -27,12 +27,12 @@
       <view class="view-right">
         
         <!-- 日期 -->
-        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastEvent.createTime}}</text>
+        <text class="text-title" style="font-size: {{configTitle.tipTextSize}}; color: {{configTitle.tipTextColor}};">{{lastEvent.date}}</text>
 
         <!-- 日期图标 -->
         <t-icon wx:if="{{utils.canEditTime(state)}}" name="{{configTitle.tipIcon}}" style="color: {{configTitle.tipColor}};" size="{{configTitle.tipSize}}" bind:tap="onShowPicker"></t-icon>
 
-        <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastEvent.createTime}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
+        <t-date-time-picker title="选择日期" visible="{{dateVisible}}" mode="date" defaultValue="{{lastEvent.date}}" format="YYYY/MM/DD" bind:change="onConfirm" bind:pick="onColumnChange" bind:cancel="oHidePicker" start="{{configTitle.start}}" end="{{configTitle.end}}" />
       </view>
     </view>
     <view class="view-input">

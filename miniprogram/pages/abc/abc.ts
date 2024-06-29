@@ -78,8 +78,15 @@ Page({
   onConfirm(event: WechatMiniprogram.CustomEvent) {
     const { value } = event.detail;
     const { lastEvent } = this.data
-    lastEvent.createTime = value
+    lastEvent.date = value
 
+    // 拼时间字符串
+    let localTime = `${value.replace(/\//g,'-')}T${util.formatTime(new Date())}+08:00`
+    
+    // 目前只有创建事件时可以修改时间
+    lastEvent.createTime = new Date(localTime)
+    lastEvent.modifyTime = new Date(localTime)
+    
     this.setData({
       lastEvent: lastEvent,
     });
@@ -120,6 +127,7 @@ Page({
   },
 
   onEditTask() {
+    debugger
     var { state } = this.data
     if (state == TaskState.TaskStateEdit) {
       var copyData = JSON.parse(JSON.stringify(this.data.dataEvent));
@@ -138,7 +146,7 @@ Page({
     var { state } = this.data
     switch (state) {
       case TaskState.TaskStateDefault: {
-        this.handleSaveEvent().then((res)=>{
+        this.handleSaveEvent().then((res) => {
           if (res) {
             this.onBack()
           }
@@ -150,7 +158,7 @@ Page({
         break;
       }
       case TaskState.TaskStateEdit: {
-        this.handleSaveEvent().then((res)=>{
+        this.handleSaveEvent().then((res) => {
           if (res) {
             this.onBack()
           }
@@ -158,7 +166,7 @@ Page({
         break;
       }
       case TaskState.TaskStateMore: {
-        this.handleSaveEvent().then((res)=>{
+        this.handleSaveEvent().then((res) => {
           if (res) {
             this.onBack()
           }
@@ -172,7 +180,7 @@ Page({
   },
 
   handleSaveEvent(): Promise<boolean> {
-    return new Promise((resolve)=>{
+    return new Promise((resolve) => {
       var { lastEvent, state } = this.data
       if (lastEvent.title.length == 0) {
         wx.showToast({
@@ -183,7 +191,7 @@ Page({
         resolve(false)
         return
       }
-  
+
       if (lastEvent.content[0].content.length == 0 || lastEvent.content[1].content.length == 0 || lastEvent.content[2].content.length == 0) {
         wx.showToast({
           title: '必填内容不能为空',
@@ -193,12 +201,23 @@ Page({
         resolve(false)
         return
       }
-  
-      if (state == TaskState.TaskStateDefault || state == TaskState.TaskStateMore) {
-        TaskManager.getInstance().createEvent(lastEvent).then((res)=>{
+
+      if (state == TaskState.TaskStateDefault) {
+        TaskManager.getInstance().createEvent(lastEvent).then((res) => {
           util.log(res)
           resolve(true)
-        }).catch(()=>{
+        }).catch(() => {
+          wx.showToast({
+            title: '创建任务失败',
+            icon: 'none',
+            duration: 2000
+          })
+        })
+      } else if (state == TaskState.TaskStateMore) {
+        TaskManager.getInstance().createEvent(lastEvent).then((res) => {
+          util.log(res)
+          resolve(true)
+        }).catch(() => {
           wx.showToast({
             title: '创建任务失败',
             icon: 'none',
@@ -206,10 +225,11 @@ Page({
           })
         })
       } else {
-        TaskManager.getInstance().updateEvent(lastEvent).then((res)=>{
+        debugger
+        TaskManager.getInstance().updateEvent(lastEvent).then((res) => {
           util.log(res)
           resolve(true)
-        }).catch(()=>{
+        }).catch(() => {
           wx.showToast({
             title: '修改任务失败',
             icon: 'none',
@@ -222,7 +242,7 @@ Page({
 
   handleCleanContent() {
     var { lastEvent } = this.data
-    var task = new Event(util.generateUniqueId())
+    var task = new Event(util.generateUniqueId(), lastEvent.taskId)
     task.title = lastEvent.title
     task.total = lastEvent.total + 1
     this.setData({
@@ -255,7 +275,7 @@ Page({
       //eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
 
       const blockThis = this
-      eventChannel.on('showTaskInfo', function (dataItem) {
+      eventChannel.on('showABCInfo', function (dataItem) {
         util.log(dataItem.data)
         var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
         var copyData2 = JSON.parse(JSON.stringify(dataItem.data));

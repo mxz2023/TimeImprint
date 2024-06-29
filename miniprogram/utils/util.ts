@@ -1,15 +1,12 @@
-export const formatTime = (date: Date) => {
+export const formatDateAndTime = (date: Date) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-
   return (
-    [year, month, day].map(formatNumber).join('/') +
-    ' ' +
-    [hour, minute, second].map(formatNumber).join(':')
+    [year, month, day, hour, minute, second].map(formatNumber).join('/')
   )
 }
 
@@ -20,6 +17,16 @@ export const formatDate = (date: Date) => {
 
   return (
     [year, month, day].map(formatNumber).join('/')
+  )
+}
+
+export const formatTime = (date: Date) => {
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return (
+    [hour, minute, second].map(formatNumber).join(':')
   )
 }
 

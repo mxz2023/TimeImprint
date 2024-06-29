@@ -2,7 +2,8 @@
 import { Event } from "./data_event";
 import * as util from "../utils/util"
 
-export interface DBEvent{
+
+export interface DBEvent {
   eventId: string
   taskId: string
 
@@ -51,8 +52,8 @@ export class EventDataBase {
       eventId: item.eventId,
 
       title: item.title,
-      createTime: new Date(item.createTime),
-      modifyTime: new Date(item.modifyTime),
+      createTime: item.createTime,
+      modifyTime: item.modifyTime,
       total: item.total,
       content: item.content
     }
@@ -62,20 +63,21 @@ export class EventDataBase {
   converToEvent(item: DBEvent): Event {
     let task = new Event(item.eventId, item.taskId)
     task.title = item.title
-    task.createTime = util.formatDate(item.createTime)
-    task.modifyTime = util.formatDate(item.modifyTime)
+    task.date = util.formatDate(item.modifyTime)
     task.total = item.total
     task.content = item.content
+    task.createTime = item.createTime
+    task.modifyTime = item.modifyTime
     return task
   }
 
   // 获取事件数量
   public getCount(): Promise<number> {
     debugger
-    return new Promise((resolve, reject)=>{
-      this.db.collection(this.tableName).count().then((res)=>{
+    return new Promise((resolve, reject) => {
+      this.db.collection(this.tableName).count().then((res) => {
         resolve(res.total)
-      }).catch((err)=>{
+      }).catch((err) => {
         util.error(err)
         reject(err)
       })
@@ -84,15 +86,15 @@ export class EventDataBase {
 
   // 获取最新的事件
   public getLastEvent(): Promise<Event> {
-    return new Promise((resolve, reject)=>{
-      this.db.collection(this.tableName).orderBy('modifyTime','desc').limit(1).get().then((res)=>{
+    return new Promise((resolve, reject) => {
+      this.db.collection(this.tableName).orderBy('_openid', 'desc').limit(1).get().then((res) => {
         if (res.data.length > 0) {
-          let event:Event = this.converToEvent(res.data[0] as DBEvent)
+          let event: Event = this.converToEvent(res.data[0] as DBEvent)
           resolve(event)
         } else {
           util.warn("未获取到数据")
         }
-      }).catch((err)=>{
+      }).catch((err) => {
         util.error(err)
         reject(err)
       })
@@ -125,7 +127,7 @@ export class EventDataBase {
       }).get().then((res) => {
         util.log(res)
         let dbItems = res.data
-        let eventList: Array<Event> = dbItems.map((item)=>{
+        let eventList: Array<Event> = dbItems.map((item) => {
           return this.converToEvent(item as DBEvent)
         })
         resolve(eventList)
@@ -158,8 +160,8 @@ export class EventDataBase {
   }
 
   // 删除
-  public deleteEvent(eventId:string): Promise<boolean> {
-    return new Promise((resolve, reject)=>{
+  public deleteEvent(eventId: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
 
     })
   }

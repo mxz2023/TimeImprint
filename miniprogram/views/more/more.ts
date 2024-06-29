@@ -76,7 +76,7 @@ Component({
         },
         success: function (res) {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('showTaskInfo', {
+          res.eventChannel.emit('showABCInfo', {
             data: taskItem,
           })
         }

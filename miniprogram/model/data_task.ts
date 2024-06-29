@@ -7,11 +7,13 @@ import * as util from "../utils/util"
 export class Task {
   taskId: string
   title: string = ""
-  createTime: string = util.formatDate(new Date())  // 创建时间
-  modifyTime: string = util.formatDate(new Date())  // 修改时间
+  date: string = util.formatDate(new Date())
 
   total: number = 0
   eventIdList: Array<string> = []
+
+  createTime: Date = new Date() // 创建时间
+  modifyTime: Date = new Date() // 修改时间
 
   constructor(taskId: string) {
     this.taskId = taskId
