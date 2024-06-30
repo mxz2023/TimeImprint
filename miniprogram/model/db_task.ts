@@ -142,7 +142,6 @@ export class TaskDataBase {
 
   // 修改任务
   public updateTask(task:Task): Promise<boolean> {
-    debugger
     return new Promise(async (resolve, reject)=>{
       this.db.collection(this.tableName).where({
         taskId: task.taskId

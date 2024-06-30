@@ -45,7 +45,6 @@ export class TaskManager {
    * 获取任务列表信息
    */
   getTaskList(): Promise<Array<Task>> {
-    debugger
     return new Promise((resolve, reject) => {
       TaskDataBase.getInstance().getListInfo().then((res) => {
         resolve(res)
@@ -99,7 +98,6 @@ export class TaskManager {
    * @param item 创建任务
    */
   createEvent(item: Event): Promise<boolean> {
-    debugger
     return new Promise((resolve, reject) => {
       EventDataBase.getInstance().createEvent(item).then((res) => {
         if (res) {

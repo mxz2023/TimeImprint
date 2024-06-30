@@ -73,7 +73,6 @@ export class EventDataBase {
 
   // 获取事件数量
   public getCount(): Promise<number> {
-    debugger
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).count().then((res) => {
         resolve(res.total)
@@ -120,7 +119,6 @@ export class EventDataBase {
 
   // 查询任务
   public readEvent(eventIds: Array<string>): Promise<Array<Event>> {
-    debugger
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).where({
         eventId: this.db.command.in(eventIds)
@@ -140,19 +138,28 @@ export class EventDataBase {
 
   // 修改事件
   public updateEvent(item: Event): Promise<boolean> {
-    debugger
     let dbItem = this.convertToDBEvent(item)
     return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).where({
         eventId: item.eventId
-      }).update({
-        data: dbItem
-      }).then((res) => {
-        let { stats, errMsg } = res
-        util.log(stats.updated)
-        util.log(errMsg)
-        resolve(true)
-      }).catch((err) => {
+      }).get().then((res)=>{
+        let item = res.data[0]
+        if (item._id) {
+          this.db.collection(this.tableName).doc(item._id).update({
+            data: dbItem,
+          }).then((res)=>{
+            let { stats, errMsg } = res
+            util.log(stats.updated)
+            util.log(errMsg)
+            resolve(true)
+          }).catch((err)=>{
+            util.error(err)
+            reject(err)
+          });
+        } else {
+          resolve(false)
+        }
+      }).catch((err)=>{
         util.error(err)
         reject(err)
       })

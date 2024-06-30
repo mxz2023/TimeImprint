@@ -87,7 +87,6 @@ Page({
     lastEvent.createTime = new Date(localTime)
     lastEvent.modifyTime = new Date(localTime)
     
-    debugger
     this.setData({
       lastEvent: lastEvent,
     });
@@ -127,7 +126,6 @@ Page({
   onEditTask() {
     var { state } = this.data
     if (state == TaskState.TaskStateEdit) {
-      debugger
       var copyData: Event = JSON.parse(JSON.stringify(this.data.dataEvent));
       copyData.createTime = new Date(copyData.createTime)
       copyData.modifyTime = new Date(copyData.modifyTime)
@@ -225,7 +223,6 @@ Page({
           })
         })
       } else {
-        debugger
         TaskManager.getInstance().updateEvent(lastEvent).then((res) => {
           util.log(res)
           resolve(true)
@@ -274,7 +271,6 @@ Page({
       const blockThis = this
       eventChannel.on('showABCInfo', function (dataItem) {
         util.log(dataItem.data)
-        debugger
         var copyData1: Event = JSON.parse(JSON.stringify(dataItem.data));
         copyData1.createTime = new Date(copyData1.createTime)
         copyData1.modifyTime = new Date(copyData1.modifyTime)
