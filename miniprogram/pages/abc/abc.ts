@@ -82,11 +82,12 @@ Page({
 
     // 拼时间字符串
     let localTime = `${value.replace(/\//g,'-')}T${util.formatTime(new Date())}+08:00`
-    
+
     // 目前只有创建事件时可以修改时间
     lastEvent.createTime = new Date(localTime)
     lastEvent.modifyTime = new Date(localTime)
     
+    debugger
     this.setData({
       lastEvent: lastEvent,
     });
@@ -110,9 +111,6 @@ Page({
     const { lastEvent } = this.data
     if (event?.currentTarget?.dataset?.target == "title") {
       lastEvent.title = event.detail.value
-      this.setData({
-        lastEvent: lastEvent
-      })
     } else {
       const index = event?.currentTarget?.dataset?.index
       var item = lastEvent.content[index]
@@ -120,17 +118,19 @@ Page({
         return
       }
       item.content = event.detail.value
-      this.setData({
-        lastEvent: lastEvent
-      })
     }
+    this.setData({
+      lastEvent: lastEvent
+    })
   },
 
   onEditTask() {
-    debugger
     var { state } = this.data
     if (state == TaskState.TaskStateEdit) {
-      var copyData = JSON.parse(JSON.stringify(this.data.dataEvent));
+      debugger
+      var copyData: Event = JSON.parse(JSON.stringify(this.data.dataEvent));
+      copyData.createTime = new Date(copyData.createTime)
+      copyData.modifyTime = new Date(copyData.modifyTime)
       this.setData({
         state: TaskState.TaskStateShow,
         lastEvent: copyData
@@ -262,11 +262,8 @@ Page({
     }
 
     var taskState = Number(state)
-    // 为后面请求数据做准备
-    // let { lastEvent } = this.data
     this.setData({
       state: taskState,
-      // lastEvent: lastEvent
     })
 
     const eventChannel = this.getOpenerEventChannel()
@@ -277,8 +274,15 @@ Page({
       const blockThis = this
       eventChannel.on('showABCInfo', function (dataItem) {
         util.log(dataItem.data)
-        var copyData1 = JSON.parse(JSON.stringify(dataItem.data));
+        debugger
+        var copyData1: Event = JSON.parse(JSON.stringify(dataItem.data));
+        copyData1.createTime = new Date(copyData1.createTime)
+        copyData1.modifyTime = new Date(copyData1.modifyTime)
+
         var copyData2 = JSON.parse(JSON.stringify(dataItem.data));
+        copyData2.createTime = new Date(copyData2.createTime)
+        copyData2.modifyTime = new Date(copyData2.modifyTime)
+
         blockThis.setData({
           state: TaskState.TaskStateShow,
           lastEvent: copyData1,

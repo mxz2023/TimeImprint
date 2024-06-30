@@ -55,7 +55,7 @@
     </view>
 
     <view wx:if="{{eventList.length > 0}}">
-      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ eventList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-index="{{idx}}" wx:for="{{ eventList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
         <view class="view-part">
           <text class="text-title">{{item.title}}</text>
           <view class="view-part-sub" wx:if="{{item.total > 0}}">

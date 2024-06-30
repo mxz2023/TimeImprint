@@ -180,7 +180,9 @@ Component({
 
     // 打开详情页
     onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
-      const taskItem = event.currentTarget.dataset.taskItem
+      let { eventList } = this.data
+      const taskIndex = event.currentTarget.dataset.taskIndex
+      const taskItem = eventList[taskIndex]
       wx.navigateTo({
         url: `/pages/abc/abc?state=1`,
         events: {
