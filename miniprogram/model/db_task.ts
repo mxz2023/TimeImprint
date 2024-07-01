@@ -4,11 +4,11 @@ import * as util from "../utils/util"
 
 export interface DBTask {
   taskId: string  // 任务ID
-  
+
   title: string
   createTime: Date
   modifyTime: Date
-  
+
   total: number
   eventIdList: Array<string>
 }
@@ -76,10 +76,10 @@ export class TaskDataBase {
 
   // 获取全部任务数量
   public getCount(): Promise<number> {
-    return new Promise((resolve, reject)=>{
-      this.db.collection(this.tableName).count().then((res)=>{
+    return new Promise((resolve, reject) => {
+      this.db.collection(this.tableName).count().then((res) => {
         resolve(res.total)
-      }).catch((err)=>{
+      }).catch((err) => {
         util.error(err)
         reject(err)
       })
@@ -88,15 +88,27 @@ export class TaskDataBase {
 
   // 获取事件最多的任务
   public getEventMaxTotal(): Promise<number> {
-    return new Promise((resolve, reject)=>{
-      this.db.collection(this.tableName).orderBy('total','desc').limit(1).get().then((res)=>{
-        if (res.data.length > 0) {
-          let dbItem = res.data[0] as DBTask
-          resolve(dbItem.total)
-        } else {
-          resolve(1)
-        }
-      }).catch((err)=>{
+    return new Promise((resolve, reject) => {
+      // this.db.collection(this.tableName).orderBy('total','desc').limit(1).get().then((res)=>{
+      //   if (res.data.length > 0) {
+      //     let dbItem = res.data[0] as DBTask
+      //     resolve(dbItem.total)
+      //   } else {
+      //     resolve(1)
+      //   }
+      // }).catch((err)=>{
+      //   util.error(err)
+      //   reject(err)
+      // })
+      this.db.collection(this.tableName).get().then((res) => {
+        let max = 1
+        res.data.forEach((item) => {
+          if (item.total && item.total > max) {
+            max = item.total
+          }
+        })
+        resolve(max)
+      }).catch((err) => {
         util.error(err)
         reject(err)
       })
@@ -122,10 +134,10 @@ export class TaskDataBase {
 
   // 查询任务
   public readTask(taskId: string): Promise<Task | undefined> {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       this.db.collection(this.tableName).where({
-        taskId:taskId
-      }).get().then((res)=>{
+        taskId: taskId
+      }).get().then((res) => {
         util.log(res)
         if (res.data.length > 0) {
           let task = this.converToTask(res.data[0] as DBTask)
@@ -133,7 +145,7 @@ export class TaskDataBase {
         } else {
           resolve(undefined)
         }
-      }).catch((err)=>{
+      }).catch((err) => {
         util.error(err)
         reject(err)
       })
@@ -141,12 +153,12 @@ export class TaskDataBase {
   }
 
   // 修改任务
-  public updateTask(task:Task): Promise<boolean> {
-    return new Promise(async (resolve, reject)=>{
+  public updateTask(task: Task): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
       this.db.collection(this.tableName).where({
         taskId: task.taskId
       }).get().then((res) => {
-        const promises = res.data.map((item)=>{
+        const promises = res.data.map((item) => {
           if (item._id) {
             return this.db.collection(this.tableName).doc(item._id).update({
               data: {
@@ -160,9 +172,9 @@ export class TaskDataBase {
           }
         })
 
-        Promise.all(promises).then(()=>{
+        Promise.all(promises).then(() => {
           resolve(true)
-        }).catch((err)=>{
+        }).catch((err) => {
           util.error(err)
           reject(err)
         })
@@ -172,7 +184,7 @@ export class TaskDataBase {
 
   // 删除任务
   public deleteTask(): Promise<boolean> {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
 
     })
   }

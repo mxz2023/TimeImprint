@@ -37,15 +37,15 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      TaskManager.getInstance().getEventCount().then((res)=>{
+      TaskManager.getInstance().getEventCount().then((res) => {
         this.setData({
           taskCount: res,
         })
       })
-      var max = TaskManager.getInstance().getMaxTotal()
-      this.setData({
-        taskCount: count,
-        maxTotal: max,
+      TaskManager.getInstance().getMaxTotal().then((res) => {
+        this.setData({
+          maxTotal: res,
+        })
       })
       var userInfo = wx.getStorageSync(userInfoKey)
       if (userInfo) {
@@ -70,10 +70,10 @@ Component({
       }
     },
     hide: function () {
-    
+
     },
     resize: function () {
- 
+
     },
   },
 
@@ -81,7 +81,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+
     onOpenSetting() {
       wx.navigateTo({
         url: "/pages/setting/setting"
