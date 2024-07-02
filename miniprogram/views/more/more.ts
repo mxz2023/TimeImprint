@@ -38,6 +38,7 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
+      debugger
       TaskManager.getInstance().getTaskList().then((dataList)=>{
         this.setData({
           taskList: dataList
@@ -59,15 +60,29 @@ Component({
     // 发布按钮
     onPublishAction(_: WechatMiniprogram.CustomEvent) {
       wx.navigateTo({
-        url: `/pages/task/task?state=0`
+        url: `/pages/abc/abc?state=0`
       })
     },
     
+    onOpenTaskExtend(event: WechatMiniprogram.CustomEvent) {
+      // const taskItem:Task = event.currentTarget.dataset.taskItem
+      // taskItem.showExtend = !taskItem.showExtend
+
+      const taskIndex = event.currentTarget.dataset.taskIndex
+      let { taskList } = this.data
+      const taskItem = taskList[taskIndex]
+      taskItem.showExtend = !taskItem.showExtend
+
+      this.setData({
+        taskList : taskList
+      })
+    },
+
     // 打开详情页
-    onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
-      const taskItem = event.currentTarget.dataset.taskItem
+    onOpenEventDetail(event: WechatMiniprogram.CustomEvent) {
+      const eventItem = event.currentTarget.dataset.eventItem
       wx.navigateTo({
-        url: `/pages/task/task?state=1`,
+        url: `/pages/abc/abc?state=1`,
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
           acceptDataFromOpenedPage: function (data: object) {
@@ -77,7 +92,7 @@ Component({
         success: function (res) {
           // 通过eventChannel向被打开页面传送数据
           res.eventChannel.emit('showABCInfo', {
-            data: taskItem,
+            data: eventItem,
           })
         }
       })

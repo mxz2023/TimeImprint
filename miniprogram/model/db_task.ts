@@ -59,7 +59,7 @@ export class TaskDataBase {
   // 获取全部任务
   public getListInfo(): Promise<Array<Task>> {
     return new Promise((resolve, reject) => {
-      this.db.collection(this.tableName).get().then((res) => {
+      this.db.collection(this.tableName).orderBy('createTime','desc').get().then((res) => {
         let dataList = res.data
         let eventList = new Array()
         dataList.forEach((item) => {

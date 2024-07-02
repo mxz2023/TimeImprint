@@ -46,8 +46,20 @@ export class TaskManager {
    */
   getTaskList(): Promise<Array<Task>> {
     return new Promise((resolve, reject) => {
-      TaskDataBase.getInstance().getListInfo().then((res) => {
-        resolve(res)
+      TaskDataBase.getInstance().getListInfo().then((taskList) => {
+        const promises = taskList.map((item) => {
+          return EventDataBase.getInstance().readEvent(item.eventIdList).then((res)=>{
+            item.eventList = res
+          })
+        })
+
+        Promise.all(promises).then(() => {
+          resolve(taskList)
+        }).catch((err) => {
+          util.error(err)
+          reject(err)
+        })
+        
       }).catch((err) => {
         reject(err)
       })

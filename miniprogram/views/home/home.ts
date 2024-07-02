@@ -179,7 +179,7 @@ Component({
     },
 
     // 打开详情页
-    onOpenTaskDetail(event: WechatMiniprogram.CustomEvent) {
+    onOpenEventDetail(event: WechatMiniprogram.CustomEvent) {
       let { eventList } = this.data
       const taskIndex = event.currentTarget.dataset.taskIndex
       const taskItem = eventList[taskIndex]

@@ -101,7 +101,7 @@ var getEditText = function (state) {
 }
 
 module.exports = {
-  taskItemContent: getEventItemContent,
+  getEventItemContent: getEventItemContent,
   canShowItem: canShowItem,
   getTotalText: getTotalText,
 

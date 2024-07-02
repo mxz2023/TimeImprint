@@ -24,13 +24,42 @@
 
 
 .view-item{
-  background-color: var(--grey1-color);
-  height: 88px;
+  border-radius: 3px;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 3px;
-  padding: 12px 20px;
   margin: 12px 12px 0px 12px;
+}
+
+.view-task-item{
+  background-color: var(--grey1-color);
+  border-radius: 3px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 12px;
+  height: 100px;
+}
+
+.view-event-item{
+  background-color: var(--grey1-color);
+  margin-top: 10px;
+  margin-left: 12px;
+  padding: 0px 12px;
+  border-radius: 3px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.text-record1{
+  color: var(--green-color);
+  font-size: var(--font-title2);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-record2{
+  color: var(--grey5-color);
+  font-size: var(--font-title2);
 }
 
 .view-cell-bg {

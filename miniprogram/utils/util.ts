@@ -48,5 +48,5 @@ export function error(...args: any[]) {
 }
 
 export function generateUniqueId(): string {
-  return 'id-' + Math.random().toString(36).substr(2, 16) + '-' + Date.now().toString(36);
+  return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2, 16);
 }

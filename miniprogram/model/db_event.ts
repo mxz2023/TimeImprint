@@ -1,6 +1,7 @@
 
 import { Event } from "./data_event";
 import * as util from "../utils/util"
+import { UserInfo } from "../utils/userinfo";
 
 
 export interface DBEvent {
@@ -86,7 +87,7 @@ export class EventDataBase {
   // 获取最新的事件
   public getLastEvent(): Promise<Event> {
     return new Promise((resolve, reject) => {
-      this.db.collection(this.tableName).orderBy('_openid', 'desc').limit(1).get().then((res) => {
+      this.db.collection(this.tableName).orderBy('modifyTime', 'desc').limit(1).get().then((res) => {
         if (res.data.length > 0) {
           let event: Event = this.converToEvent(res.data[0] as DBEvent)
           resolve(event)

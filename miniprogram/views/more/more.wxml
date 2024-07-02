@@ -1,4 +1,6 @@
 <!--views/more/more.wxml-->
+<wxs src='./more.wxs' module="utils"></wxs>
+
 <view class="mContent">
   <m-nav back="{{false}}">
     <view slot="left" class="view-custom-title">
@@ -6,32 +8,42 @@
     </view>
   </m-nav>
 
-  <view class="view-scrollarea" wx:if="{{taskList.length > 0}}">
+  <view wx:if="{{taskList.length > 0}}" class="view-scrollarea">
     <scroll-view class="scrollarea" scroll-y="true" type="list" enable-back-to-top="true">
-      <view class="view-item" bind:tap="onOpenTaskDetail" data-task-item="{{item}}" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
-        <view class="view-cell-bg">
-          <image src="../../static/welcome_icon.png" style="opacity: 0.1; height: 60px; width: 60px; margin-right: 28px;" mode="aspectFit" />
-        </view>
-
-        <view class="view-part">
-          <text class="text-title">{{item.taskTitle}}</text>
-          <view class="view-part-sub" wx:if="{{item.taskTotal > 0}}">
-            <text class="text-total-tips">{{item.taskTotal > 1 ? "累计打卡" : "打卡第"}}</text>
-            <text class="text-total">{{item.taskTotal}}</text>
-            <text class="text-total-tips">天</text>
+      <view class="view-item" style="height:{{utils.getCellHeight(item)}};" wx:for="{{ taskList }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
+        <view class="view-task-item" bind:tap="onOpenTaskExtend" data-task-item="{{item}}" data-task-index="{{idx}}">
+          <view class="view-cell-bg">
+            <image src="../../static/welcome_icon.png" style="opacity: 0.1; height: 60px; width: 60px; margin-right: 28px;" mode="aspectFit" />
+          </view>
+          <view class="view-part">
+            <text class="text-title">{{item.title}}</text>
+            <view class="view-part-sub" wx:if="{{item.total > 0}}">
+              <text class="text-total-tips">{{item.total > 1 ? "累计打卡" : "打卡第"}}</text>
+              <text class="text-total">{{item.total}}</text>
+              <text class="text-total-tips">天</text>
+            </view>
+          </view>
+          <view class="view-part">
+            <text class="text-type">ABCDE</text>
+            <text class="text-time">{{item.date}}</text>
           </view>
         </view>
-        <view class="view-part">
-          <text class="text-type">ABCDE</text>
-          <text class="text-time">{{item.taskCreateTime}}</text>
+
+        <view class="view-task-item-extend" wx:if="{{item.showExtend}}">
+          <view wx:for="{{ item.eventList }}" wx:key="index" wx:for-index="idy" wx:for-item="event">
+            <view class="view-event-item" bind:tap="onOpenEventDetail" data-event-item="{{event}}">
+              <text class="text-record1">记录{{idy+1}}</text>
+              <text class="text-record2">{{event.date}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </scroll-view>
   </view>
-  <view class="view-scrollarea" style="justify-content: center; align-items: center;" wx:else>
+
+  <view wx:else class="view-scrollarea" style="justify-content: center; align-items: center;">
     <text class="text-no-history">暂无记录，去打一次卡吧</text>
     <image src="../../static/welcome_icon.png" style="opacity: 0.1;" mode="aspectFit" />
-
   </view>
 
   <!-- 发布按钮 -->

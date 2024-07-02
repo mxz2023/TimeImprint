@@ -51,7 +51,7 @@
     <view class="view-item" wx:for="{{ configItems }}" wx:key="index" wx:for-index="idx" wx:for-item="item">
 
       <view wx:if="{{ utils.canShowItem(lastEvent, idx) || state != 1 }}">
-        <!-- <m-textare disabled="{{state != 1}}" item="{{item}}" itemData="{{utils.taskItemContent(lastEvent, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
+        <!-- <m-textare disabled="{{state != 1}}" item="{{item}}" itemData="{{utils.getEventItemContent(lastEvent, idx)}}" bind:textareBlur="onBlur"></m-textare> -->
 
         <view class="view-title" style="flex-direction: row; align-items: center; margin-top: 12px;">
           <t-icon name="{{item.icon}}" style="color: {{item.color}}" size="{{item.size}}"></t-icon>
@@ -61,7 +61,7 @@
           <text wx:if="{{state != 1}}" style="margin-left: 5px; color: {{item.tipColor}}; font-weight: 600; font-size: {{item.tipSize}};">{{item.tip}}</text>
         </view>
 
-        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{!utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.taskItemContent(lastEvent, idx)}}" />
+        <t-textarea class="view-content" style="padding: 10px; margin-top: 5px; height: 70px;" data-index="{{item.index}}" disabled="{{!utils.canEditContent(state)}}" placeholder="{{item.placeholder}}" disableDefaultPadding="{{true}}" autosize="{{true}}" maxlength="{{item.maxlenght}}" bordered="true" bind:blur="onBlur" value="{{utils.getEventItemContent(lastEvent, idx)}}" />
       </view>
 
     </view>

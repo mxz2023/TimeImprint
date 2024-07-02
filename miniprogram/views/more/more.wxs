@@ -1,0 +1,13 @@
+var getCellHeight = function (item) {
+  var height = 100
+  if (item.eventIdList.length > 0 && item.showExtend) {
+    var t = 40 * item.eventIdList.length
+    height = height+t
+  }
+  return height + 'px'
+}
+
+
+module.exports = {
+  getCellHeight: getCellHeight,
+}
